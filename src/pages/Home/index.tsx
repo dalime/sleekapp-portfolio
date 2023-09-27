@@ -24,7 +24,7 @@ function Home() {
   };
 
   return (
-    <div>
+    <div data-testid="home-page">
       <HeroWrapper>
         <HeroLeft>
           <h1>Sleek App</h1>
