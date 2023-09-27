@@ -21,3 +21,9 @@ export const HeroLeft = styled(Flex)`
   height: fit-content;
   text-align: left;
 `;
+
+export const CaseStudiesWrapper = styled(Flex)`
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+`;
