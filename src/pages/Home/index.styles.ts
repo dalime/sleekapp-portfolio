@@ -10,7 +10,7 @@ export const HeroWrapper = styled(Flex)`
   align-items: center;
   width: 100vw;
   height: fit-content;
-  padding: 2.5%;
+  padding: 5%;
 `;
 
 export const HeroLeft = styled(Flex)`

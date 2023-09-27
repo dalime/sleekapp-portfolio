@@ -1,5 +1,7 @@
 import React from "react";
 import { animated, useSpring } from "@react-spring/web";
+import { Button, Typography } from "@mui/material";
+import { yellow } from "@mui/material/colors";
 
 // Styles
 import { HeroWrapper, HeroLeft } from "./index.styles";
@@ -26,13 +28,26 @@ function Hero() {
   return (
     <HeroWrapper>
       <HeroLeft>
-        <h1>Sleek App</h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum cum nam
-          obcaecati quia ea facere, consequuntur cupiditate beatae aut
-          aspernatur saepe quis assumenda omnis corporis voluptas sit
-          consequatur deserunt ipsam?
-        </p>
+        <Typography
+          variant="h1"
+          sx={{
+            fontSize: 30,
+            textTransform: "uppercase",
+            fontWeight: 600,
+          }}
+        >
+          Sleek App{" "}
+          <span style={{ color: yellow[500] }}>Development Agency</span>
+        </Typography>
+        <Typography variant="h2" sx={{ fontWeight: 500 }}>
+          Let's Bring Your Vision to Life
+        </Typography>
+        <Typography variant="body1">
+          A One-Stop-Shop App Development Agency. We turn visions into reality.
+        </Typography>
+        <Button variant="contained" sx={{ marginTop: 4 }}>
+          Develop Your App
+        </Button>
       </HeroLeft>
       <animated.img
         src={SleekAppLogo}
