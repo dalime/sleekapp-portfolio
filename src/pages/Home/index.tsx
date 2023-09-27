@@ -1,6 +1,9 @@
 import React from "react";
 import { animated, useSpring } from "@react-spring/web";
 
+// Components
+import { HeaderMenu } from "../../components";
+
 // Styles
 import { HeroWrapper, HeroLeft } from "./index.styles";
 
@@ -25,6 +28,7 @@ function Home() {
 
   return (
     <div data-testid="home-page">
+      <HeaderMenu />
       <HeroWrapper>
         <HeroLeft>
           <h1>Sleek App</h1>
