@@ -9,13 +9,13 @@ import SleekAppLogo from "../../assets/images/sleekapp-logo.png";
 
 function Home() {
   const [springs, api] = useSpring(() => ({
-    from: { x: 100 },
+    from: { x: -50 },
   }));
 
   const handleClick = () => {
     api.start({
       from: {
-        x: -200,
+        x: -50,
       },
       to: {
         x: -100,
