@@ -3,15 +3,15 @@ import React from "react";
 // Components
 import Hero from "./Hero";
 import CaseStudies from "./CaseStudies";
-import { HeaderMenu } from "../../components";
+import { HeaderMenu, Page } from "../../components";
 
 function Home() {
   return (
-    <div data-testid="home-page">
+    <Page testId="home-page">
       <HeaderMenu />
       <Hero />
       <CaseStudies />
-    </div>
+    </Page>
   );
 }
 
