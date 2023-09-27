@@ -90,10 +90,10 @@ function Background() {
             value: 0.2,
           },
           shape: {
-            type: "circle",
+            type: "triangle",
           },
           size: {
-            value: { min: 1, max: 3 },
+            value: { min: 1, max: 4 },
           },
         },
         detectRetina: true,
