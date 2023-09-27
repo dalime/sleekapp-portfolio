@@ -1,7 +1,16 @@
+// Global Imports
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./styles/index.css";
+
+// For Material UI
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
+
+// Local Imports
 import App from "./App";
+import "./styles/index.css";
 import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(
