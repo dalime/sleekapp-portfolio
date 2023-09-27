@@ -11,10 +11,11 @@ export const Wrapper = styled(FlexRow)`
   position: sticky;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: calc(100vw - 40px);
   height: fit-content;
   color: #ffffff;
   z-index: 1;
+  padding: 10px 20px;
 `;
 
 export const RightSide = styled(FlexRow)`
@@ -23,4 +24,9 @@ export const RightSide = styled(FlexRow)`
 
 export const LeftSide = styled(FlexRow)`
   justify-content: flex-start;
+`;
+
+export const LogoImg = styled.img`
+  width: 75px;
+  height: auto;
 `;

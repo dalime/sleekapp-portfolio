@@ -1,12 +1,21 @@
 import React from "react";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+
 import Home from "./pages/Home";
-import "./styles/App.css";
+
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+  },
+});
 
 function App() {
   return (
-    <div data-testid="app" className="app background">
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
       <Home />
-    </div>
+    </ThemeProvider>
   );
 }
 
