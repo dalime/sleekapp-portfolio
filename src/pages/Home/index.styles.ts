@@ -13,6 +13,14 @@ export const HeroWrapper = styled(Flex)`
   padding: 5%;
 `;
 
+export const MobileHeroWrapper = styled(HeroWrapper)`
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 10%;
+  padding-top: 5%;
+`;
+
 export const HeroLeft = styled(Flex)`
   flex-direction: column;
   justify-content: flex-start;

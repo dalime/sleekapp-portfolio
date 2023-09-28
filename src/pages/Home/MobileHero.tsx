@@ -1,20 +1,16 @@
 import React from "react";
-import { useMediaQuery } from "react-responsive";
 import { animated, useSpring } from "@react-spring/web";
 
 // Components
-import MobileHero from "./MobileHero";
 import HeroText from "./HeroText";
 
 // Styles
-import { HeroWrapper, HeroLeft } from "./index.styles";
+import { MobileHeroWrapper } from "./index.styles";
 
 // Images
 import SleekAppLogo from "../../assets/images/sleekapp-logo.png";
 
-function Hero() {
-  const isMobile = useMediaQuery({ maxWidth: 720 });
-
+function MobileHero() {
   const [springs, api] = useSpring(() => ({
     from: { x: -50 },
   }));
@@ -30,13 +26,9 @@ function Hero() {
     });
   };
 
-  if (isMobile) return <MobileHero />;
-
   return (
-    <HeroWrapper>
-      <HeroLeft>
-        <HeroText />
-      </HeroLeft>
+    <MobileHeroWrapper>
+      <HeroText />
       <animated.img
         src={SleekAppLogo}
         alt="Sleek App"
@@ -48,8 +40,8 @@ function Hero() {
           ...springs,
         }}
       />
-    </HeroWrapper>
+    </MobileHeroWrapper>
   );
 }
 
-export default Hero;
+export default MobileHero;
