@@ -17,7 +17,7 @@ export const HeroLeft = styled(Flex)`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  width: calc(100vw - 400px);
+  width: calc(100vw - 10% - 500px);
   height: fit-content;
   text-align: left;
 `;
