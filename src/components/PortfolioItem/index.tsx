@@ -37,11 +37,21 @@ function PortfolioItem({
       }}
     >
       {imgSrc && (
-        <Img
-          src={imgSrc}
-          alt={`Preview of portfolio item ${title}`}
-          className="portfolio-item-img"
-        />
+        <button
+          type="button"
+          style={{
+            border: "none",
+            background: "transparent",
+            cursor: "pointer",
+          }}
+          onClick={() => (viewLink ? navigateToUrl(viewLink) : {})}
+        >
+          <Img
+            src={imgSrc}
+            alt={`Preview of portfolio item ${title}`}
+            className="portfolio-item-img"
+          />
+        </button>
       )}
       <RightColumn>
         <h3>{title}</h3>
