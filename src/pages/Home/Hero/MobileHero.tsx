@@ -5,30 +5,32 @@ import { animated, useSpring } from "@react-spring/web";
 import HeroText from "./HeroText";
 
 // Styles
-import { MobileHeroWrapper } from "./index.styles";
+import { MobileHeroWrapper, MobileHeroTextWrapper } from "./index.styles";
 
 // Images
-import SleekAppLogo from "../../assets/images/sleekapp-logo.png";
+import SleekAppLogo from "../../../assets/images/sleekapp-logo.png";
 
 function MobileHero() {
   const [springs, api] = useSpring(() => ({
-    from: { x: -50 },
+    from: { y: 0 },
   }));
 
   const handleClick = () => {
     api.start({
       from: {
-        x: -50,
+        y: 0,
       },
       to: {
-        x: -100,
+        y: -50,
       },
     });
   };
 
   return (
     <MobileHeroWrapper>
-      <HeroText />
+      <MobileHeroTextWrapper>
+        <HeroText mobile />
+      </MobileHeroTextWrapper>
       <animated.img
         src={SleekAppLogo}
         alt="Sleek App"

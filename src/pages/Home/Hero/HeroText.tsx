@@ -4,9 +4,13 @@ import { Button, Typography } from "@mui/material";
 import { yellow } from "@mui/material/colors";
 
 // Helpers
-import { navigateToUrl } from "../../helpers";
+import { navigateToUrl } from "../../../helpers";
 
-function HeroText() {
+interface Props {
+  mobile?: boolean;
+}
+
+function HeroText({ mobile }: Props) {
   return (
     <>
       <Typography
@@ -19,8 +23,15 @@ function HeroText() {
       >
         Sleek App <span style={{ color: yellow[200] }}>Development Agency</span>
       </Typography>
-      <Typography variant="h2" sx={{ fontWeight: 500, marginTop: 2 }}>
-        <Typed strings={["Let's Bring Your Vision to Life"]} typeSpeed={40} />
+      <Typography
+        variant="h2"
+        sx={{ fontWeight: 500, marginTop: 2, fontSize: mobile ? 40 : "auto" }}
+      >
+        <Typed
+          strings={["Let's Bring Your Vision to Life"]}
+          typeSpeed={40}
+          style={{ textAlign: mobile ? "center" : "left" }}
+        />
       </Typography>
       <Typography variant="body1" sx={{ marginTop: 2 }}>
         A One-Stop-Shop App Development Agency. We turn visions into reality.

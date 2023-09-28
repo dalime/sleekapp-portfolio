@@ -10,7 +10,7 @@ import HeroText from "./HeroText";
 import { HeroWrapper, HeroLeft } from "./index.styles";
 
 // Images
-import SleekAppLogo from "../../assets/images/sleekapp-logo.png";
+import SleekAppLogo from "../../../assets/images/sleekapp-logo.png";
 
 function Hero() {
   const isMobile = useMediaQuery({ maxWidth: 720 });
