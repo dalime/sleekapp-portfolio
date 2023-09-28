@@ -1,8 +1,14 @@
 import React from "react";
-import { Paper, Button } from "@mui/material";
+import { Button } from "@mui/material";
 import { Code, Visibility } from "@mui/icons-material";
 
+// Helpers
 import { navigateToUrl } from "../../helpers";
+
+// Components
+import Backdrop from "../Backdrop";
+
+// Styles
 import { Img, RightColumn, ButtonWrapper } from "./index.styles";
 import "./index.css";
 
@@ -22,18 +28,14 @@ function PortfolioItem({
   codeLink,
 }: Props) {
   return (
-    <Paper
+    <Backdrop
       data-testid="portfolio-item"
-      style={{
-        width: "80%",
-      }}
+      width="80%"
       sx={{
         display: "flex",
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "flex-start",
-        padding: 3,
-        borderRadius: 5,
       }}
     >
       {imgSrc && (
@@ -77,7 +79,7 @@ function PortfolioItem({
           )}
         </ButtonWrapper>
       </RightColumn>
-    </Paper>
+    </Backdrop>
   );
 }
 

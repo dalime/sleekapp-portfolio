@@ -1,9 +1,11 @@
 import React from "react";
-import { Paper, Typography, Button } from "@mui/material";
+import { Typography, Button } from "@mui/material";
+
+// Components
+import { Backdrop } from "../../../components";
 
 // Styles
 import { ServiceImg } from "./index.styles";
-import "./index.css";
 
 interface Props {
   title: string;
@@ -13,7 +15,16 @@ interface Props {
 
 function Service({ title, imgSrc, description }: Props) {
   return (
-    <Paper className="service-wrapper">
+    <Backdrop
+      width="calc(100% / 3 - 5%)"
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-start",
+        alignItems: "center",
+        height: 500,
+      }}
+    >
       <Typography
         variant="h3"
         color="primary"
@@ -26,7 +37,7 @@ function Service({ title, imgSrc, description }: Props) {
         {description}
       </Typography>
       <Button variant="contained">See More</Button>
-    </Paper>
+    </Backdrop>
   );
 }
 
