@@ -1,4 +1,5 @@
 import React from "react";
+import { useMatch } from "react-router-dom";
 import { Button } from "@mui/material";
 
 // Styled Components
@@ -9,11 +10,18 @@ import SleekAppLogo from "../../assets/images/sleekapp-logo.png";
 
 interface MenuItemProps {
   text: string;
+  route: string;
 }
 
-function MenuItem({ text }: MenuItemProps) {
+function MenuItem({ text, route }: MenuItemProps) {
+  const match = useMatch(route);
+
   return (
-    <Button variant="text" sx={{ marginLeft: 1, marginRight: 1 }}>
+    <Button
+      variant="text"
+      sx={{ marginLeft: 1, marginRight: 1 }}
+      color={match ? "primary" : "inherit"}
+    >
       {text}
     </Button>
   );
@@ -26,9 +34,9 @@ function HeaderMenu() {
         <LogoImg src={SleekAppLogo} alt="Sleek App" />
       </LeftSide>
       <RightSide>
-        <MenuItem text="Home" />
-        <MenuItem text="About" />
-        <MenuItem text="Blog" />
+        <MenuItem text="Home" route="/" />
+        <MenuItem text="About" route="/about" />
+        <MenuItem text="Blog" route="/blog" />
       </RightSide>
     </Wrapper>
   );
