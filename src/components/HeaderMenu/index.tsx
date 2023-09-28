@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useMatch } from "react-router-dom";
 import { Button } from "@mui/material";
 
-// Styled Components
+// Styles
 import { Wrapper, RightSide, LeftSide, LogoImg } from "./index.styles";
+import "./index.css";
 
 // Images
 import SleekAppLogo from "../../assets/images/sleekapp-logo.png";
@@ -28,8 +29,30 @@ function MenuItem({ text, route }: MenuItemProps) {
 }
 
 function HeaderMenu() {
+  const [scrollY, setScrollY] = useState<number>(0);
+
+  const handleScroll = () => {
+    setScrollY(window.scrollY);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const navbarHeight = 70; // Adjust this value as per your navbar height
+  const opacity = Math.min(scrollY / navbarHeight, 1);
+
   return (
-    <Wrapper data-testid="desktop-navigation">
+    <Wrapper
+      data-testid="desktop-navigation"
+      className="navbar"
+      style={{
+        background: `linear-gradient(to bottom, rgba(0, 0, 0, ${opacity}) 0%, rgba(0, 0, 0, ${opacity}) 100%)`,
+      }}
+    >
       <LeftSide>
         <LogoImg src={SleekAppLogo} alt="Sleek App" />
       </LeftSide>
