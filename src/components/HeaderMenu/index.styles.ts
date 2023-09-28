@@ -7,7 +7,6 @@ const FlexRow = styled.div`
 `;
 
 export const Wrapper = styled(FlexRow)`
-  justify-content: space-between;
   position: sticky;
   top: 0;
   left: 0;
