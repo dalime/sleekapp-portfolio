@@ -9,3 +9,5 @@ export {
   PortfolioItem,
   Section,
 };
+
+export * from './fonts';

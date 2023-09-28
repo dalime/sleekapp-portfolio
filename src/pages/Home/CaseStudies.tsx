@@ -1,7 +1,7 @@
 import React from "react";
 
 // Components
-import { PortfolioItem, Section } from "../../components";
+import { PortfolioItem, Section, Subheading } from "../../components";
 
 // Styles
 import { CaseStudiesWrapper } from "./index.styles";
@@ -45,7 +45,7 @@ function CaseStudies() {
   return (
     <Section>
       <CaseStudiesWrapper>
-        <h1>Case Studies</h1>
+        <Subheading>Case Studies</Subheading>
         {renderPortfolioItems()}
       </CaseStudiesWrapper>
     </Section>
