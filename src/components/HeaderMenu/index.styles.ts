@@ -10,7 +10,6 @@ export const Wrapper = styled(FlexRow)`
   position: sticky;
   top: 0;
   left: 0;
-  width: calc(100vw - 40px);
   height: fit-content;
   color: #ffffff;
   z-index: 1;

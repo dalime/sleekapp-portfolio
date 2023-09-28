@@ -53,6 +53,7 @@ function HeaderMenu() {
       style={{
         background: `linear-gradient(to bottom, rgba(14, 14, 14, ${opacity}) 0%, rgba(14, 14, 14, ${opacity}) 100%)`,
         justifyContent: isMobile ? "flex-end" : "space-between",
+        width: isMobile ? "100vw" : "calc(100vw - 40px)",
       }}
     >
       {isMobile ? <MobileMenu /> : HeaderMenuBody}
