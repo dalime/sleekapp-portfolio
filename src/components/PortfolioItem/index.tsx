@@ -52,12 +52,13 @@ function PortfolioItem({
   viewLink,
   codeLink,
 }: Props) {
+  const isSmallScreen = useMediaQuery({ maxWidth: 1100 });
   const isMobile = useMediaQuery({ maxWidth: 720 });
 
   return (
     <Backdrop
       data-testid="portfolio-item"
-      width={isMobile ? "90%" : "50%"}
+      width={isMobile || isSmallScreen ? "90%" : "50%"}
       sx={{
         display: "flex",
         flexDirection: "row",

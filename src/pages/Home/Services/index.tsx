@@ -1,4 +1,5 @@
 import React from "react";
+import { useMediaQuery } from "react-responsive";
 
 // Components
 import Service from "./Service";
@@ -8,10 +9,12 @@ import { Section, Subheading } from "../../../components";
 import { Wrapper } from "./index.styles";
 
 function Services() {
+  const isSmallScreen = useMediaQuery({ maxWidth: 1100 });
+
   return (
     <Section>
       <Subheading>A Comprehensive Development Agency</Subheading>
-      <Wrapper>
+      <Wrapper style={{ flexDirection: isSmallScreen ? "column" : "row" }}>
         <Service
           title="Design"
           imgSrc="https://sleekapp.io/wp-content/uploads/2023/07/app-design-2-768x511.jpeg"

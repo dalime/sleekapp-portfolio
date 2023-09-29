@@ -1,4 +1,5 @@
 import React from "react";
+import { useMediaQuery } from "react-responsive";
 import { Typography, Button } from "@mui/material";
 
 // Components
@@ -14,15 +15,19 @@ interface Props {
 }
 
 function Service({ title, imgSrc, description }: Props) {
+  const isSmallScreen = useMediaQuery({ maxWidth: 1100 });
+
   return (
     <Backdrop
-      width="calc(100% / 3 - 5%)"
+      width={isSmallScreen ? "50%" : "calc(100% / 3 - 5%)"}
       style={{
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-start",
         alignItems: "center",
         height: 500,
+        marginLeft: isSmallScreen ? "25%" : "auto",
+        marginBottom: isSmallScreen ? 20 : "auto",
       }}
     >
       <Typography
