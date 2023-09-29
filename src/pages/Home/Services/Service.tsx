@@ -1,21 +1,46 @@
 import React from "react";
+import Lottie from "react-lottie";
 import { useMediaQuery } from "react-responsive";
 import { Typography, Button } from "@mui/material";
 
 // Components
 import { Backdrop } from "../../../components";
 
-// Styles
-import { ServiceImg } from "./index.styles";
+// Animations
+import * as designJson from "./lottie-jsons/design.json";
+import * as developmentJson from "./lottie-jsons/development.json";
+import * as copywritingJson from "./lottie-jsons/copywriting.json";
 
 interface Props {
   title: string;
-  imgSrc: string;
+  animationName: string;
   description: string;
 }
 
-function Service({ title, imgSrc, description }: Props) {
+function Service({ title, animationName, description }: Props) {
   const isSmallScreen = useMediaQuery({ maxWidth: 1100 });
+
+  const pickAnimation = () => {
+    switch (animationName) {
+      case "design":
+        return designJson;
+      case "development":
+        return developmentJson;
+      case "copywriting":
+        return copywritingJson;
+      default:
+        return null;
+    }
+  };
+
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: pickAnimation(),
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
 
   return (
     <Backdrop
@@ -37,7 +62,24 @@ function Service({ title, imgSrc, description }: Props) {
       >
         {title}
       </Typography>
-      {imgSrc ? <ServiceImg src={imgSrc} /> : <></>}
+      {animationName ? (
+        <Lottie
+          options={defaultOptions}
+          height={300}
+          width={300}
+          isStopped={false}
+          isPaused={false}
+        />
+      ) : (
+        <div
+          style={{
+            width: 300,
+            height: 300,
+            border: "1px solid #e0e0e0",
+            borderRadius: 8,
+          }}
+        />
+      )}
       <Typography variant="body2" sx={{ marginTop: 2, marginBottom: 2 }}>
         {description}
       </Typography>
