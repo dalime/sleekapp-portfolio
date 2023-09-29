@@ -24,5 +24,4 @@ export const ButtonWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 25%;
 `;

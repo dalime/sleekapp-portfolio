@@ -9,6 +9,8 @@ import { CaseStudiesWrapper } from "./index.styles";
 interface PortfolioItemInterface {
   title: string;
   description: string;
+  role: string;
+  feedback: string;
   imgSrc: string;
   viewLink?: string;
   codeLink?: string;
@@ -22,12 +24,15 @@ function CaseStudies() {
 
   const renderPortfolioItems = (): JSX.Element[] => {
     return portfolioItems.map((item, index) => {
-      const { title, description, imgSrc, viewLink, codeLink } = item;
+      const { title, description, role, feedback, imgSrc, viewLink, codeLink } =
+        item;
       return (
         <PortfolioItem
           key={`portfolio-item-${index}`}
           title={title}
           description={description}
+          role={role}
+          feedback={feedback || ""}
           imgSrc={imgSrc}
           viewLink={viewLink || ""}
           codeLink={codeLink || ""}

@@ -33,7 +33,7 @@ function HeroText({ mobile }: Props) {
           style={{ textAlign: mobile ? "center" : "left" }}
         />
       </Typography>
-      <Typography variant="body1" sx={{ marginTop: 2 }}>
+      <Typography variant="body1" sx={{ marginTop: 2, fontSize: 20 }}>
         A One-Stop-Shop App Development Agency. We turn visions into reality.
       </Typography>
       <Button
@@ -43,7 +43,7 @@ function HeroText({ mobile }: Props) {
           navigateToUrl("https://calendly.com/sleekapp/consultation")
         }
       >
-        Develop Your App
+        Turn Money Printer On
       </Button>
     </>
   );
