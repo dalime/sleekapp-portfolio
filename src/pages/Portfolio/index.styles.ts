@@ -17,7 +17,7 @@ export const ProjectPreview = styled.div`
 `;
 
 export const ProjectsList = styled.div`
-  height: calc(100vh - 95px - 40px - 70.02px);
+  height: calc(100vh - 95px - 40px - 90.02px);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

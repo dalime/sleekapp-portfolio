@@ -10,7 +10,9 @@ function Portfolio() {
   return (
     <Page>
       <Section padding={20}>
-        <MainHeading>Our Portfolio</MainHeading>
+        <MainHeading align="center" style={{ marginBottom: 20 }}>
+          Our Portfolio
+        </MainHeading>
         <Wrapper>
           <ProjectPreview></ProjectPreview>
           <ProjectsList>
