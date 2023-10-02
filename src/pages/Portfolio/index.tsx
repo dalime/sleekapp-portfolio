@@ -4,7 +4,7 @@ import React from "react";
 import { Page, Section, MainHeading, Subheading } from "../../components";
 
 // Styles
-import { Wrapper } from "./index.styles";
+import { Wrapper, ProjectPreview, ProjectsList } from "./index.styles";
 
 function Portfolio() {
   return (
@@ -12,10 +12,10 @@ function Portfolio() {
       <Section padding={20}>
         <MainHeading>Our Portfolio</MainHeading>
         <Wrapper>
-          <div></div>
-          <div>
+          <ProjectPreview></ProjectPreview>
+          <ProjectsList>
             <Subheading>Projects</Subheading>
-          </div>
+          </ProjectsList>
         </Wrapper>
       </Section>
     </Page>

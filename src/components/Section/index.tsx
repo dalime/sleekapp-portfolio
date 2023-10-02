@@ -9,10 +9,7 @@ interface Props {
 
 function Section({ padding, children }: Props) {
   return (
-    <Wrapper
-      data-testid="section-component"
-      style={padding ? { padding, width: `calc(100% - ${padding * 2}px)` } : {}}
-    >
+    <Wrapper data-testid="section-component" style={padding ? { padding } : {}}>
       {children}
     </Wrapper>
   );
