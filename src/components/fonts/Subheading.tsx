@@ -1,21 +1,33 @@
-import React, { ReactNode } from "react";
-import { Typography } from "@mui/material";
+import React, { CSSProperties, ReactNode } from "react";
+import { SxProps, Typography } from "@mui/material";
 
 interface Props {
+  sx?: SxProps;
+  style?: CSSProperties;
   children?: ReactNode | ReactNode[];
 }
 
-function Subheading({ children }: Props) {
+function Subheading({ sx, style, children }: Props) {
+  const baseSx: SxProps = {
+    fontSize: 40,
+    fontWeight: 600,
+    textAlign: "center",
+    marginBottom: 5,
+  };
+
   return (
     <Typography
       variant="h2"
       color="inherit"
-      sx={{
-        fontSize: 40,
-        fontWeight: 600,
-        textAlign: "center",
-        marginBottom: 5,
-      }}
+      sx={
+        sx
+          ? {
+              ...baseSx,
+              ...sx,
+            }
+          : baseSx
+      }
+      style={style || {}}
     >
       {children}
     </Typography>

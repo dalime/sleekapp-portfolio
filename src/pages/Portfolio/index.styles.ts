@@ -24,4 +24,6 @@ export const ProjectsList = styled.div`
   justify-content: flex-start;
   align-items: flex-end;
   overflow-y: auto;
+  border: 1px solid #ffffff;
+  border-radius: 8px;
 `;
