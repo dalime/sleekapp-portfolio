@@ -1,5 +1,5 @@
 import React from "react";
-import { useMatch } from "react-router-dom";
+import { useMatch, useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 
 interface MenuItemProps {
@@ -9,12 +9,14 @@ interface MenuItemProps {
 
 function CustomMenuItem({ text, route }: MenuItemProps) {
   const match = useMatch(route);
+  const navigate = useNavigate();
 
   return (
     <Button
       variant="text"
       sx={{ marginLeft: 1, marginRight: 1 }}
       color={match ? "primary" : "inherit"}
+      onClick={() => navigate(route)}
     >
       {text}
     </Button>
