@@ -14,6 +14,7 @@ import { yellow } from "@mui/material/colors";
 import { PortfolioItemInterface } from "../../types";
 
 // Components
+import ProjectDetails from "./ProjectDetails";
 import { Page, Section, MainHeading, Subheading } from "../../components";
 
 // Styles
@@ -113,10 +114,13 @@ function Portfolio() {
             <Subheading sx={{ paddingRight: 2, paddingTop: 2 }}>
               {activeItem ? (
                 <>
-                  {activeItem.title}
-                  <Button onClick={() => setActiveItem(null)}>
-                    <Close />
-                  </Button>
+                  <div style={{ width: "100%", textAlign: "right" }}>
+                    {activeItem.title}
+                    <Button onClick={() => setActiveItem(null)}>
+                      <Close />
+                    </Button>
+                  </div>
+                  <ProjectDetails project={activeItem} />
                 </>
               ) : (
                 "Projects"

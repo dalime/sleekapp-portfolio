@@ -33,3 +33,7 @@ export const ProjectsList = styled.div`
   border: 1px solid #ffffff;
   border-radius: 8px;
 `;
+
+export const ProjectDetailWrapper = styled.div`
+  margin-top: 30px;
+`;
