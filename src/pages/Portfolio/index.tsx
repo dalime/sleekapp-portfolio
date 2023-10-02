@@ -1,10 +1,23 @@
 import React from "react";
-import { Page } from "../../components";
+
+// Components
+import { Page, Section, MainHeading, Subheading } from "../../components";
+
+// Styles
+import { Wrapper } from "./index.styles";
 
 function Portfolio() {
   return (
     <Page>
-      <h1>Portfolio</h1>
+      <Section padding={20}>
+        <MainHeading>Our Portfolio</MainHeading>
+        <Wrapper>
+          <div></div>
+          <div>
+            <Subheading>Projects</Subheading>
+          </div>
+        </Wrapper>
+      </Section>
     </Page>
   );
 }

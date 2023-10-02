@@ -1,7 +1,11 @@
 import React, { ReactNode } from "react";
 
+// Components
 import HeaderMenu from "../HeaderMenu";
 import Background from "../Background";
+
+// Styles
+import { Div, Body } from "./index.styles";
 
 interface Props {
   testId?: string;
@@ -10,11 +14,11 @@ interface Props {
 
 function Page({ testId, children }: Props) {
   return (
-    <div data-testid={testId || ""}>
+    <Div data-testid={testId || ""}>
       <HeaderMenu />
-      <div style={{ zIndex: 1, position: "sticky" }}>{children}</div>
+      <Body>{children}</Body>
       <Background />
-    </div>
+    </Div>
   );
 }
 

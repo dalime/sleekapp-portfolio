@@ -1,5 +1,7 @@
+import MainHeading from './MainHeading';
 import Subheading from './Subheading';
 
 export {
-  Subheading
+  MainHeading,
+  Subheading,
 };
