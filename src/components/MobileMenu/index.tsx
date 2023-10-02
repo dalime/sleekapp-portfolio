@@ -76,6 +76,11 @@ function MobileMenu() {
       >
         <CustomItem text="Home" route="/" handleClose={handleClose} />
         <CustomItem text="About" route="/about" handleClose={handleClose} />
+        <CustomItem
+          text="Portfolio"
+          route="/portfolio"
+          handleClose={handleClose}
+        />
         <CustomItem text="Blog" route="/blog" handleClose={handleClose} />
       </Menu>
     </div>
