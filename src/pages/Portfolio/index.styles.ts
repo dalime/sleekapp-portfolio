@@ -16,6 +16,12 @@ export const ProjectPreview = styled.div`
   border-radius: 8px;
 `;
 
+export const PreviewImg = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
 export const ProjectsList = styled.div`
   height: calc(100vh - 95px - 40px - 90.02px);
   width: 50%;
