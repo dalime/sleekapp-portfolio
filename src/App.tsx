@@ -4,8 +4,10 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { grey, yellow } from "@mui/material/colors";
 import CssBaseline from "@mui/material/CssBaseline";
 
-import Home from "./pages/Home";
+// Pages
 import NotFoundPage from "./routes/NotFoundPage";
+import Home from "./pages/Home";
+import Portfolio from "./pages/Portfolio";
 
 const darkTheme = createTheme({
   palette: {
@@ -35,7 +37,7 @@ const router = createBrowserRouter([
   // Portfolio
   {
     path: "/portfolio",
-    element: <></>,
+    element: <Portfolio />,
     errorElement: <NotFoundPage />,
   },
   // Home
