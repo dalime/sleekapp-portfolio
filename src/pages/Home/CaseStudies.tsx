@@ -17,13 +17,24 @@ interface PortfolioItemInterface {
 }
 
 function CaseStudies() {
-  const data = process.env.REACT_APP_PORTFOLIO_ITEMS
-    ? JSON.parse(process.env.REACT_APP_PORTFOLIO_ITEMS)
-    : [];
-  const portfolioItems = data as PortfolioItemInterface[];
+  const portfolioItem1 = process.env.REACT_APP_PORTFOLIO_ITEM_1
+    ? JSON.parse(process.env.REACT_APP_PORTFOLIO_ITEM_1)
+    : null;
+  const portfolioItem2 = process.env.REACT_APP_PORTFOLIO_ITEM_2
+    ? JSON.parse(process.env.REACT_APP_PORTFOLIO_ITEM_2)
+    : null;
+  const portfolioItem3 = process.env.REACT_APP_PORTFOLIO_ITEM_3
+    ? JSON.parse(process.env.REACT_APP_PORTFOLIO_ITEM_3)
+    : null;
+  const portfolioItems: (PortfolioItemInterface | null)[] = [
+    portfolioItem1,
+    portfolioItem2,
+    portfolioItem3,
+  ];
 
   const renderPortfolioItems = (): JSX.Element[] => {
     return portfolioItems.map((item, index) => {
+      if (!item) return <></>;
       const { title, description, role, feedback, imgSrc, viewLink, codeLink } =
         item;
       return (
