@@ -5,8 +5,9 @@ import {
   ListItemText,
   ListItemAvatar,
   Avatar,
+  Button,
 } from "@mui/material";
-import { Code, BrushTwoTone, Keyboard } from "@mui/icons-material";
+import { Code, BrushTwoTone, Keyboard, Close } from "@mui/icons-material";
 import { yellow } from "@mui/material/colors";
 
 // Types
@@ -25,7 +26,9 @@ import {
 
 function Portfolio() {
   const [hoveringItem, setHoveringItem] = useState<number | null>(null);
-  const [previewImgSrc, setPreviewImgSrc] = useState<string | null>(null);
+  const [activeItem, setActiveItem] = useState<PortfolioItemInterface | null>(
+    null
+  );
 
   /**
    * Renders the correct icon based on what the role of Sleek App was for the project
@@ -59,7 +62,7 @@ function Portfolio() {
     return items.map((item, index) => {
       if (!item) return <></>;
       const portfolioItem = JSON.parse(item) as PortfolioItemInterface;
-      const { title, description, role, imgSrc } = portfolioItem;
+      const { title, description, role } = portfolioItem;
       return (
         <ListItem
           key={`portfolio-list-item-${index}`}
@@ -72,10 +75,11 @@ function Portfolio() {
             border:
               hoveringItem === index ? `1px solid ${yellow[500]}` : "none",
             borderRadius: 2,
+            cursor: "pointer",
           }}
           onMouseEnter={() => setHoveringItem(index)}
           onMouseLeave={() => setHoveringItem(null)}
-          onClick={() => setPreviewImgSrc(imgSrc)}
+          onClick={() => setActiveItem(portfolioItem)}
         >
           <ListItemAvatar>
             <Avatar>{renderRoleIcon(role)}</Avatar>
@@ -98,20 +102,33 @@ function Portfolio() {
         </MainHeading>
         <Wrapper>
           <ProjectPreview>
-            {previewImgSrc && (
+            {activeItem && activeItem.imgSrc && (
               <PreviewImg
-                src={previewImgSrc}
+                src={activeItem.imgSrc}
                 alt="Preview of the project being hovered"
               />
             )}
           </ProjectPreview>
           <ProjectsList>
             <Subheading sx={{ paddingRight: 2, paddingTop: 2 }}>
-              Projects
+              {activeItem ? (
+                <>
+                  {activeItem.title}
+                  <Button onClick={() => setActiveItem(null)}>
+                    <Close />
+                  </Button>
+                </>
+              ) : (
+                "Projects"
+              )}
             </Subheading>
-            <List dense={false} sx={{ width: "100%" }}>
-              {renderPortfolioItems()}
-            </List>
+            {activeItem ? (
+              <></>
+            ) : (
+              <List dense={false} sx={{ width: "100%" }}>
+                {renderPortfolioItems()}
+              </List>
+            )}
           </ProjectsList>
         </Wrapper>
       </Section>
