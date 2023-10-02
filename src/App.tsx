@@ -20,6 +20,25 @@ const darkTheme = createTheme({
 });
 
 const router = createBrowserRouter([
+  // About
+  {
+    path: "/about",
+    element: <></>,
+    errorElement: <NotFoundPage />,
+  },
+  // Blog
+  {
+    path: "/blog",
+    element: <></>,
+    errorElement: <NotFoundPage />,
+  },
+  // Portfolio
+  {
+    path: "/portfolio",
+    element: <></>,
+    errorElement: <NotFoundPage />,
+  },
+  // Home
   {
     path: "/",
     element: <Home />,
