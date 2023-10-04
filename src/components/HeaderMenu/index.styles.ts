@@ -12,7 +12,7 @@ export const Wrapper = styled(FlexRow)`
   left: 0;
   height: fit-content;
   color: #ffffff;
-  z-index: 1;
+  z-index: 2;
   padding: 10px 20px;
 `;
 
