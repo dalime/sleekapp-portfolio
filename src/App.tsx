@@ -8,6 +8,8 @@ import CssBaseline from "@mui/material/CssBaseline";
 import NotFoundPage from "./routes/NotFoundPage";
 import Home from "./pages/Home";
 import Portfolio from "./pages/Portfolio";
+import About from "./pages/About";
+import Blog from "./pages/Blog";
 
 const darkTheme = createTheme({
   palette: {
@@ -25,13 +27,13 @@ const router = createBrowserRouter([
   // About
   {
     path: "/about",
-    element: <></>,
+    element: <About />,
     errorElement: <NotFoundPage />,
   },
   // Blog
   {
     path: "/blog",
-    element: <></>,
+    element: <Blog />,
     errorElement: <NotFoundPage />,
   },
   // Portfolio
