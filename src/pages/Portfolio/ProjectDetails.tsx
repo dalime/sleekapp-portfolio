@@ -11,13 +11,14 @@ import { ProjectDetailWrapper } from "./index.styles";
 
 interface Props {
   project: PortfolioItemInterface;
+  isMobile?: boolean;
 }
 
-function ProjectDetails({ project }: Props) {
+function ProjectDetails({ project, isMobile }: Props) {
   const { description, role, feedback } = project;
 
   return (
-    <ProjectDetailWrapper>
+    <ProjectDetailWrapper mobile={isMobile || false}>
       <H3>Role: {role}</H3>
       <Paragraph>{description}</Paragraph>
       <H3>Feedback</H3>

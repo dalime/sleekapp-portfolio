@@ -5,8 +5,14 @@ export const Wrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
-  width: 100v%;
+  width: 100%;
   height: fit-content;
+`;
+
+export const MobileWrapper = styled(Wrapper)`
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 `;
 
 export const ProjectPreview = styled.div`
@@ -16,10 +22,21 @@ export const ProjectPreview = styled.div`
   border-radius: 8px;
 `;
 
+export const MobileProjectPreview = styled(ProjectPreview)`
+  width: 100%;
+  height: calc(70vh - 56px - 40px - 90.02px);
+`;
+
 export const PreviewImg = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+`;
+
+export const MobilePreviewImg = styled.img`
+  width: auto;
+  height: 100%;
+  object-fit: contain;
 `;
 
 export const ProjectsList = styled.div`
@@ -34,6 +51,12 @@ export const ProjectsList = styled.div`
   border-radius: 8px;
 `;
 
-export const ProjectDetailWrapper = styled.div`
+export const MobileProjectsList = styled(ProjectsList)`
+  height: 20vh;
+  width: 100%;
+`;
+
+export const ProjectDetailWrapper = styled.div<{ mobile: boolean }>`
   margin-top: 30px;
+  text-align: ${(props) => props.mobile ? "center" : "right"};
 `;

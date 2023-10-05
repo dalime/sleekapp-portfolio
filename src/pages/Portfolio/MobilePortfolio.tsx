@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useMediaQuery } from "react-responsive";
 import { List, Button } from "@mui/material";
 import { Close } from "@mui/icons-material";
 
@@ -13,16 +12,13 @@ import { Page, Section, MainHeading, Subheading } from "../../components";
 
 // Styles
 import {
-  Wrapper,
-  ProjectPreview,
-  PreviewImg,
-  ProjectsList,
+  MobileWrapper,
+  MobileProjectPreview,
+  MobilePreviewImg,
+  MobileProjectsList,
 } from "./index.styles";
-import MobilePortfolio from "./MobilePortfolio";
 
-function Portfolio() {
-  const isSmallScreen = useMediaQuery({ maxWidth: 900 });
-
+function MobilePortfolio() {
   const [hoveringItem, setHoveringItem] = useState<number | null>(null);
   const [activeItem, setActiveItem] = useState<PortfolioItemInterface | null>(
     null
@@ -57,24 +53,22 @@ function Portfolio() {
     });
   };
 
-  if (isSmallScreen) return <MobilePortfolio />;
-
   return (
     <Page>
       <Section padding={20}>
-        <MainHeading align="center" style={{ marginBottom: 20 }}>
+        <MainHeading align="center" style={{ marginBottom: 20, fontSize: 36 }}>
           Our Portfolio
         </MainHeading>
-        <Wrapper>
-          <ProjectPreview>
+        <MobileWrapper>
+          <MobileProjectPreview>
             {activeItem && activeItem.imgSrc && (
-              <PreviewImg
+              <MobilePreviewImg
                 src={activeItem.imgSrc}
                 alt="Preview of the project being hovered"
               />
             )}
-          </ProjectPreview>
-          <ProjectsList>
+          </MobileProjectPreview>
+          <MobileProjectsList>
             <Subheading sx={{ paddingRight: 2, paddingTop: 2 }}>
               {activeItem ? (
                 <>
@@ -84,7 +78,7 @@ function Portfolio() {
                       <Close />
                     </Button>
                   </div>
-                  <ProjectDetails project={activeItem} />
+                  <ProjectDetails project={activeItem} isMobile />
                 </>
               ) : (
                 "Projects"
@@ -97,11 +91,11 @@ function Portfolio() {
                 {renderPortfolioItems()}
               </List>
             )}
-          </ProjectsList>
-        </Wrapper>
+          </MobileProjectsList>
+        </MobileWrapper>
       </Section>
     </Page>
   );
 }
 
-export default Portfolio;
+export default MobilePortfolio;
