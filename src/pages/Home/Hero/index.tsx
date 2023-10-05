@@ -10,7 +10,7 @@ import HeroLogo from "./HeroLogo";
 import { HeroWrapper, HeroLeft } from "./index.styles";
 
 function Hero() {
-  const isMobile = useMediaQuery({ maxWidth: 720 });
+  const isMobile = useMediaQuery({ maxWidth: 900 });
 
   if (isMobile) return <MobileHero />;
 

@@ -33,8 +33,16 @@ function HeroText({ mobile }: Props) {
           style={{ textAlign: mobile ? "center" : "left" }}
         />
       </Typography>
-      <Typography variant="body1" sx={{ marginTop: 2, fontSize: 20 }}>
-        A One-Stop-Shop App Development Agency. We turn visions into reality.
+      <Typography
+        variant="body1"
+        sx={{
+          marginTop: 2,
+          fontSize: 20,
+          textAlign: mobile ? "center" : "left",
+        }}
+      >
+        A One-Stop-Shop App Development Agency.{mobile ? <br /> : <></>}We turn
+        visions into reality.
       </Typography>
       <Button
         variant="contained"

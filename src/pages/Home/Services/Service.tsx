@@ -19,6 +19,7 @@ interface Props {
 
 function Service({ title, animationName, description }: Props) {
   const isSmallScreen = useMediaQuery({ maxWidth: 1100 });
+  const isMobile = useMediaQuery({ maxWidth: 768 });
 
   const pickAnimation = () => {
     switch (animationName) {
@@ -44,14 +45,14 @@ function Service({ title, animationName, description }: Props) {
 
   return (
     <Backdrop
-      width={isSmallScreen ? "50%" : "calc(100% / 3 - 5%)"}
+      width={isMobile ? "90%" : isSmallScreen ? "50%" : "calc(100% / 3 - 5%)"}
       style={{
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-start",
         alignItems: "center",
         height: 500,
-        marginLeft: isSmallScreen ? "25%" : "auto",
+        marginLeft: isMobile ? "5%" : isSmallScreen ? "25%" : "auto",
         marginBottom: isSmallScreen ? 20 : "auto",
       }}
     >

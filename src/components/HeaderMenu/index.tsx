@@ -14,7 +14,7 @@ import MobileMenu from "../MobileMenu";
 
 function HeaderMenu() {
   const [scrollY, setScrollY] = useState<number>(0);
-  const isMobile = useMediaQuery({ maxWidth: 720 });
+  const isMobile = useMediaQuery({ maxWidth: 768 });
 
   /**
    * Sets scrollY state to scroll position to smoothly show linear gradient background
