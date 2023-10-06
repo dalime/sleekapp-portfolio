@@ -60,6 +60,12 @@ export const ProjectDetailWrapper = styled.div<{ mobile: boolean }>`
   margin-top: 30px;
   text-align: ${(props) => props.mobile ? "center" : "right"};
   padding: 20px;
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+  border-radius: 10px; /* Optional: rounded corners */
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
 `;
 
 export const StarsWrapper = styled.div`
