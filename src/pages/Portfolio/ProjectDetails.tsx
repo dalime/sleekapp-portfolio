@@ -1,4 +1,6 @@
 import React from "react";
+import { Star } from "@mui/icons-material";
+import { yellow } from "@mui/material/colors";
 
 // Types
 import { PortfolioItemInterface } from "../../types";
@@ -7,7 +9,7 @@ import { PortfolioItemInterface } from "../../types";
 import { H3, Paragraph } from "../../components";
 
 // Styles
-import { ProjectDetailWrapper } from "./index.styles";
+import { ProjectDetailWrapper, StarsWrapper } from "./index.styles";
 
 interface Props {
   project: PortfolioItemInterface;
@@ -22,6 +24,11 @@ function ProjectDetails({ project, isMobile }: Props) {
       <H3>Role: {role}</H3>
       <Paragraph>{description}</Paragraph>
       <H3>Feedback</H3>
+      <StarsWrapper>
+        {[...Array(5)].map((_, i) => (
+          <Star key={`star-${i}`} sx={{ color: yellow[500] }} />
+        ))}
+      </StarsWrapper>
       <Paragraph>{feedback}</Paragraph>
     </ProjectDetailWrapper>
   );
