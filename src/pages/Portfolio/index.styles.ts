@@ -74,3 +74,13 @@ export const StarsWrapper = styled.div`
   justify-content: flex-end;
   align-items: center;
 `;
+
+export const PlaceholderWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+`;
+
+export const PlaceholderText = styled.p`
+  font-size: 20px;
+`;

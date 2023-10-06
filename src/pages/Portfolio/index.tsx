@@ -9,6 +9,7 @@ import { PortfolioItemInterface } from "../../types";
 // Components
 import ProjectDetails from "./ProjectDetails";
 import PortfolioItem from "./PortfolioItem";
+import PlaceholderCoding from "./PlaceholderCoding";
 import { Page, Section, MainHeading, Subheading } from "../../components";
 
 // Styles
@@ -67,11 +68,13 @@ function Portfolio() {
         </MainHeading>
         <Wrapper>
           <ProjectPreview>
-            {activeItem && activeItem.imgSrc && (
+            {activeItem && activeItem.imgSrc ? (
               <PreviewImg
                 src={activeItem.imgSrc}
                 alt="Preview of the project being hovered"
               />
+            ) : (
+              <PlaceholderCoding />
             )}
           </ProjectPreview>
           <ProjectsList>
