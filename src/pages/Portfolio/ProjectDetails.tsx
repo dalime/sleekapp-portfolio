@@ -43,7 +43,17 @@ interface Props {
 }
 
 function ProjectDetails({ project, isMobile }: Props) {
-  const { description, role, feedback, codeLink, viewLink } = project;
+  const {
+    description,
+    role,
+    results,
+    before,
+    work,
+    approach,
+    feedback,
+    codeLink,
+    viewLink,
+  } = project;
 
   return (
     <ProjectDetailWrapper mobile={isMobile || false}>
@@ -54,23 +64,30 @@ function ProjectDetails({ project, isMobile }: Props) {
           Our Role: <span style={{ color: yellow[500] }}>{role}</span>
         </H4>
       )}
-      <SubHeading>Results</SubHeading>
-      <BodyText>
-        Because of our work, [App Name] now has 250+ daily active users
-      </BodyText>
-      <SubHeading>State Before Work</SubHeading>
-      <BodyText>
-        When we joined the project, [App Name] was not even built yet
-      </BodyText>
-      <SubHeading>What We Did</SubHeading>
-      <BodyText>
-        We buitl a version 1.0 of [App Name] from start to finish
-      </BodyText>
-      <SubHeading>Our Approach</SubHeading>
-      <BodyText>
-        We had to get creative to build [App Name], so we employed [Package
-        Name] NPM package and inputted custom props
-      </BodyText>
+      {results && (
+        <>
+          <SubHeading>Results</SubHeading>
+          <BodyText>{results}</BodyText>
+        </>
+      )}
+      {before && (
+        <>
+          <SubHeading>Before Our Engagement</SubHeading>
+          <BodyText>{before}</BodyText>
+        </>
+      )}
+      {work && (
+        <>
+          <SubHeading>The Work We Did</SubHeading>
+          <BodyText>{work}</BodyText>
+        </>
+      )}
+      {approach && (
+        <>
+          <SubHeading>Our Approach</SubHeading>
+          <BodyText>{approach}</BodyText>
+        </>
+      )}
       {feedback && (
         <>
           <SubHeading>Feedback</SubHeading>

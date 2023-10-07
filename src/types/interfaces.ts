@@ -2,6 +2,10 @@ export interface PortfolioItemInterface {
   title: string;
   description: string;
   role: string;
+  results: string;
+  before: string;
+  work: string;
+  approach: string;
   feedback: string;
   imgSrc: string;
   viewLink?: string;
