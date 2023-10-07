@@ -9,7 +9,7 @@ import { fetchBlogPosts } from "../../actions";
 // Components
 import PostPreview from "./PostPreview";
 import PostBody from "./PostBody";
-import { Page } from "../../components";
+import { Page, MainHeading } from "../../components";
 
 // Styles
 import { PreviewsList } from "./index.styles";
@@ -50,8 +50,12 @@ function Blog() {
 
   return (
     <Page>
-      <h1>Blog</h1>
-      {blogPosts.length && <PreviewsList>{renderBlogPosts()}</PreviewsList>}
+      <MainHeading align="center">Blog</MainHeading>
+      {blogPosts.length ? (
+        <PreviewsList>{renderBlogPosts()}</PreviewsList>
+      ) : (
+        <></>
+      )}
     </Page>
   );
 }

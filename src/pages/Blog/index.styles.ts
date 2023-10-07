@@ -7,6 +7,7 @@ export const PreviewsList = styled.div`
   align-items: center;
   width: 50%;
   margin-left: 25%;
+  margin-top: 30px;
 `;
 
 export const PreviewWrapper = styled.div`

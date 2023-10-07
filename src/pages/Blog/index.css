@@ -1,0 +1,14 @@
+a {
+  color: #FFEB3B;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover, a:active {
+  color: #FBC02D;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
