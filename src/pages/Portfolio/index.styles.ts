@@ -31,10 +31,40 @@ export const MobileProjectPreview = styled(ProjectPreview)`
   height: calc(70vh - 56px - 40px - 90.02px);
 `;
 
+export const PreviewWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  position: relative;
+`;
+
+export const PreviewBackdrop = styled.div`
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  top: 0;
+  left: 0;
+`;
+
+export const PreviewActions = styled.div`
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const PreviewImg = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  position: absolute;
+  left: 0;
+  top: 0;
 `;
 
 export const MobilePreviewImg = styled.img`

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { List, Button } from "@mui/material";
 import { Close, Web, Code } from "@mui/icons-material";
+import { yellow } from "@mui/material/colors";
 
 // Types
 import { PortfolioItemInterface } from "../../types";
@@ -13,12 +14,14 @@ import { navigateToUrl } from "../../helpers";
 import ProjectDetails from "./ProjectDetails";
 import PortfolioItem from "./PortfolioItem";
 import PlaceholderCoding from "./Placeholder";
+import PreviewOverlay from "./PreviewOverlay";
 import { Page, Section, MainHeading, Subheading } from "../../components";
 
 // Styles
 import {
   Wrapper,
   ProjectPreview,
+  PreviewWrapper,
   PreviewImg,
   ProjectsList,
   MatrixBackdrop,
@@ -36,6 +39,7 @@ function Portfolio() {
     null
   );
   const [loading, setLoading] = useState<boolean>(false);
+  const [previewHovering, setPreviewHovering] = useState<boolean>(false);
 
   /**
    * Changes the active item to preview and kicks off the matrix animation to show
@@ -85,7 +89,11 @@ function Portfolio() {
       <Section padding={20}>
         <MainHeading
           align="center"
-          style={{ marginBottom: 20, fontSize: isSmallScreen ? 30 : 50 }}
+          style={{
+            marginBottom: 20,
+            fontSize: isSmallScreen ? 30 : 50,
+            color: yellow[300],
+          }}
         >
           Portfolio
         </MainHeading>
@@ -94,11 +102,19 @@ function Portfolio() {
             {loading ? (
               <MatrixBackdrop src={MatrixBackground} alt="Matrix background" />
             ) : activeItem && activeItem.imgSrc ? (
-              <PreviewImg
-                src={activeItem.imgSrc}
-                alt="Preview of the project being hovered"
-                loading="lazy"
-              />
+              <PreviewWrapper
+                onMouseEnter={() => setPreviewHovering(true)}
+                onMouseLeave={() => setPreviewHovering(false)}
+              >
+                {previewHovering && activeItem && (
+                  <PreviewOverlay project={activeItem} />
+                )}
+                <PreviewImg
+                  src={activeItem.imgSrc}
+                  alt="Preview of the project being hovered"
+                  loading="lazy"
+                />
+              </PreviewWrapper>
             ) : (
               <PlaceholderCoding />
             )}
