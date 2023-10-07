@@ -6,11 +6,11 @@ interface Props {
   children?: ReactNode | ReactNode[];
 }
 
-function H3({ style, children }: Props) {
+function H4({ style, children }: Props) {
   return (
     <Typography
-      variant="h3"
-      sx={{ fontSize: 25, fontWeight: 500, marginBottom: 2 }}
+      variant="h4"
+      sx={{ fontSize: 20, fontWeight: 500, marginBottom: 1 }}
       style={style || {}}
     >
       {children}
@@ -18,4 +18,4 @@ function H3({ style, children }: Props) {
   );
 }
 
-export default H3;
+export default H4;

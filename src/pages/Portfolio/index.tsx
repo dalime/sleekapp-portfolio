@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { List, Button } from "@mui/material";
-import { Close } from "@mui/icons-material";
+import { Close, Web, Code } from "@mui/icons-material";
 
 // Types
 import { PortfolioItemInterface } from "../../types";
+
+// Helpers
+import { navigateToUrl } from "../../helpers";
 
 // Components
 import ProjectDetails from "./ProjectDetails";
@@ -80,8 +83,11 @@ function Portfolio() {
   return (
     <Page>
       <Section padding={20}>
-        <MainHeading align="center" style={{ marginBottom: 20 }}>
-          Our Portfolio
+        <MainHeading
+          align="center"
+          style={{ marginBottom: 20, fontSize: isSmallScreen ? 30 : 50 }}
+        >
+          Portfolio
         </MainHeading>
         <Wrapper>
           <ProjectPreview>
@@ -101,11 +107,48 @@ function Portfolio() {
             <Subheading sx={{ paddingRight: 2, paddingTop: 2 }}>
               {activeItem ? (
                 <>
-                  <div style={{ width: "100%", textAlign: "right" }}>
-                    {activeItem.title}
-                    <Button onClick={() => changeProject(null)}>
-                      <Close />
-                    </Button>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      paddingLeft: 20,
+                    }}
+                  >
+                    {activeItem.viewLink && (
+                      <Button
+                        variant="contained"
+                        onClick={() =>
+                          activeItem.viewLink
+                            ? navigateToUrl(activeItem.viewLink)
+                            : {}
+                        }
+                      >
+                        <Web style={{ marginRight: 5 }} />
+                        View
+                      </Button>
+                    )}
+                    {activeItem.codeLink && (
+                      <Button
+                        variant="contained"
+                        color="secondary"
+                        onClick={() =>
+                          activeItem.codeLink
+                            ? navigateToUrl(activeItem.codeLink)
+                            : {}
+                        }
+                      >
+                        <Code style={{ marginRight: 5 }} />
+                        Code
+                      </Button>
+                    )}
+                    <div style={{ width: "100%", textAlign: "right" }}>
+                      {activeItem.title}
+                      <Button onClick={() => changeProject(null)}>
+                        <Close fontSize="large" />
+                      </Button>
+                    </div>
                   </div>
                   <ProjectDetails project={activeItem} />
                 </>

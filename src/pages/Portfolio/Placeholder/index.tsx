@@ -30,8 +30,8 @@ function Placeholder() {
       setStep(1);
       setTimeout(() => {
         setStep(2);
-      }, 8000);
-    }, 9000);
+      }, 3000);
+    }, 8000);
   }, []);
 
   return (
@@ -43,15 +43,17 @@ function Placeholder() {
         <Text>
           <span style={{ marginLeft: 10 }}>{" > "}</span>
           <Typed
-            strings={
-              step === 1
-                ? [escapeHtml("makeSleek();")]
-                : [
-                    escapeHtml(
-                      "<div><h1>New App</h1><p>Let's build something cool together...</p></div>"
-                    ),
-                  ]
-            }
+            strings={[
+              escapeHtml(
+                "<div><h1>New App</h1><p>Let's build something cool together...</p></div>"
+              ),
+              "makeSleek();",
+              "implementFeature1();",
+              "implementFeature2();",
+              "build();",
+              "publish();",
+              "Sleek App Complete!",
+            ]}
             backSpeed={0}
             typeSpeed={40}
             startDelay={2000}
