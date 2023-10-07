@@ -58,7 +58,7 @@ export const MobileProjectsList = styled(ProjectsList)`
 
 export const ProjectDetailWrapper = styled.div<{ mobile: boolean }>`
   margin-top: 30px;
-  text-align: ${(props) => props.mobile ? "center" : "right"};
+  text-align: ${(props) => props.mobile ? "center" : "left"};
   padding: 20px;
   background: rgba(125, 125, 125, 0.1);
   border-radius: 8px;
@@ -71,7 +71,7 @@ export const ProjectDetailWrapper = styled.div<{ mobile: boolean }>`
 export const StarsWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
 `;
 
