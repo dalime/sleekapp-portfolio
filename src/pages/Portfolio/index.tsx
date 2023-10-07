@@ -39,7 +39,6 @@ function Portfolio() {
     null
   );
   const [loading, setLoading] = useState<boolean>(false);
-  const [previewHovering, setPreviewHovering] = useState<boolean>(false);
 
   /**
    * Changes the active item to preview and kicks off the matrix animation to show
@@ -102,13 +101,8 @@ function Portfolio() {
             {loading ? (
               <MatrixBackdrop src={MatrixBackground} alt="Matrix background" />
             ) : activeItem && activeItem.imgSrc ? (
-              <PreviewWrapper
-                onMouseEnter={() => setPreviewHovering(true)}
-                onMouseLeave={() => setPreviewHovering(false)}
-              >
-                {previewHovering && activeItem && (
-                  <PreviewOverlay project={activeItem} />
-                )}
+              <PreviewWrapper>
+                {activeItem && <PreviewOverlay project={activeItem} />}
                 <PreviewImg
                   src={activeItem.imgSrc}
                   alt="Preview of the project being hovered"

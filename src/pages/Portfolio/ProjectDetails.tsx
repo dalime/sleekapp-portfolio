@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import { Button, ButtonGroup } from "@mui/material";
-import { Star, Code, Web } from "@mui/icons-material";
+import { Star, Code, Web, Call } from "@mui/icons-material";
 import { yellow, grey } from "@mui/material/colors";
 
 // Types
@@ -71,36 +71,50 @@ function ProjectDetails({ project, isMobile }: Props) {
         We had to get creative to build [App Name], so we employed [Package
         Name] NPM package and inputted custom props
       </BodyText>
-      <SubHeading>Feedback</SubHeading>
-      <StarsWrapper>
-        {[...Array(5)].map((_, i) => (
-          <Star key={`star-${i}`} sx={{ color: yellow[500] }} />
+      {feedback && (
+        <>
+          <SubHeading>Feedback</SubHeading>
+          <StarsWrapper>
+            {[...Array(5)].map((_, i) => (
+              <Star key={`star-${i}`} sx={{ color: yellow[500] }} />
+            ))}
+          </StarsWrapper>
+          <BodyText>{feedback}</BodyText>
+        </>
+      )}
+      {codeLink ||
+        (viewLink && (
+          <>
+            <SubHeading>Check It Out</SubHeading>
+            <ButtonGroup>
+              {codeLink && (
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  onClick={() => navigateToUrl(codeLink)}
+                >
+                  <Code sx={{ marginRight: 2 }} />
+                  Source Code
+                </Button>
+              )}
+              {viewLink && (
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={() => navigateToUrl(viewLink)}
+                >
+                  <Web sx={{ marginRight: 2 }} />
+                  View Project
+                </Button>
+              )}
+            </ButtonGroup>
+          </>
         ))}
-      </StarsWrapper>
-      <BodyText>{feedback}</BodyText>
-      <SubHeading>Check It Out</SubHeading>
-      <ButtonGroup>
-        {codeLink && (
-          <Button
-            variant="contained"
-            color="secondary"
-            onClick={() => navigateToUrl(codeLink)}
-          >
-            <Code sx={{ marginRight: 2 }} />
-            Source Code
-          </Button>
-        )}
-        {viewLink && (
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => navigateToUrl(viewLink)}
-          >
-            <Web sx={{ marginRight: 2 }} />
-            Deployed Project
-          </Button>
-        )}
-      </ButtonGroup>
+      <SubHeading>Get Your Own Sleek App</SubHeading>
+      <Button variant="contained" color="primary">
+        <Call sx={{ marginRight: 1 }} />
+        Book 1:1 Strategy Call
+      </Button>
     </ProjectDetailWrapper>
   );
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@mui/material";
 import { RemoveRedEye, Code, Download } from "@mui/icons-material";
 
@@ -10,16 +10,25 @@ import { navigateToUrl } from "../../helpers";
 
 // Styles
 import { PreviewBackdrop, PreviewActions } from "./index.styles";
+import "./index.css";
 
 interface Props {
   project: PortfolioItemInterface;
 }
 
 function PreviewOverlay({ project }: Props) {
+  const [backdropClass, setBackdropClass] = useState<"fade-in" | "fade-out">(
+    "fade-out"
+  );
+
   const { viewLink, codeLink } = project;
 
   return (
-    <PreviewBackdrop>
+    <PreviewBackdrop
+      className={backdropClass}
+      onMouseEnter={() => setBackdropClass("fade-in")}
+      onMouseLeave={() => setBackdropClass("fade-out")}
+    >
       <PreviewActions>
         {viewLink && (
           <Button

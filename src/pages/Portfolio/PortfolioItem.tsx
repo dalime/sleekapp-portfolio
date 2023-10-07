@@ -1,9 +1,12 @@
 import React from "react";
 import { ListItem, ListItemAvatar, ListItemText, Avatar } from "@mui/material";
 import { Code, BrushTwoTone, Keyboard } from "@mui/icons-material";
-import { yellow } from "@mui/material/colors";
 
+// Types
 import { PortfolioItemInterface } from "../../types";
+
+// Style
+import "./index.css";
 
 interface Props {
   index: number;
@@ -46,10 +49,10 @@ function PortfolioItem({
         alignItems: "center",
         width: "100%",
         paddingLeft: 5,
-        border: hoveringItem === index ? `1px solid ${yellow[500]}` : "none",
         borderRadius: 2,
         cursor: "pointer",
       }}
+      className={hoveringItem === index ? "highlight-on" : "highlight-off"}
       onMouseEnter={() => setHoveringItem(index)}
       onMouseLeave={() => setHoveringItem(null)}
       onClick={() => setActiveItem(portfolioItem)}
