@@ -18,8 +18,12 @@ import {
   ProjectPreview,
   PreviewImg,
   ProjectsList,
+  MatrixBackdrop,
 } from "./index.styles";
 import MobilePortfolio from "./MobilePortfolio";
+
+// Assets
+import MatrixBackground from "../../assets/images/matrix-background.gif";
 
 function Portfolio() {
   const isSmallScreen = useMediaQuery({ maxWidth: 900 });
@@ -28,6 +32,19 @@ function Portfolio() {
   const [activeItem, setActiveItem] = useState<PortfolioItemInterface | null>(
     null
   );
+  const [loading, setLoading] = useState<boolean>(false);
+
+  /**
+   * Changes the active item to preview and kicks off the matrix animation to show
+   * @param newItem PortfolioItemInterface | null
+   */
+  const changeProject = (newItem: PortfolioItemInterface | null): void => {
+    setLoading(true);
+    setActiveItem(newItem);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  };
 
   /**
    * Renders portfolio items
@@ -52,7 +69,7 @@ function Portfolio() {
           portfolioItem={portfolioItem}
           hoveringItem={hoveringItem}
           setHoveringItem={setHoveringItem}
-          setActiveItem={setActiveItem}
+          setActiveItem={changeProject}
         />
       );
     });
@@ -68,7 +85,9 @@ function Portfolio() {
         </MainHeading>
         <Wrapper>
           <ProjectPreview>
-            {activeItem && activeItem.imgSrc ? (
+            {loading ? (
+              <MatrixBackdrop src={MatrixBackground} alt="Matrix background" />
+            ) : activeItem && activeItem.imgSrc ? (
               <PreviewImg
                 src={activeItem.imgSrc}
                 alt="Preview of the project being hovered"
@@ -83,7 +102,7 @@ function Portfolio() {
                 <>
                   <div style={{ width: "100%", textAlign: "right" }}>
                     {activeItem.title}
-                    <Button onClick={() => setActiveItem(null)}>
+                    <Button onClick={() => changeProject(null)}>
                       <Close />
                     </Button>
                   </div>

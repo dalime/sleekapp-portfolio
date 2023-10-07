@@ -84,3 +84,10 @@ export const PlaceholderWrapper = styled.div`
 export const PlaceholderText = styled.p`
   font-size: 20px;
 `;
+
+export const MatrixBackdrop = styled.img`
+  width: auto;
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;

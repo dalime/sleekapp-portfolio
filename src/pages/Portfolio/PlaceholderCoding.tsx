@@ -1,19 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Typed from "react-typed";
 
 // Styles
 import { PlaceholderWrapper, PlaceholderText } from "./index.styles";
-import "./index.css";
 
 function PlaceholderCoding() {
-  const [viewClass, setViewClass] = useState<string>("fade-in");
-
-  useEffect(() => {
-    return () => {
-      setViewClass("fade-out");
-    };
-  }, []);
-
   const escapeHtml = (unsafe: string) => {
     return unsafe
       .replace(/&/g, "&amp;")
@@ -24,7 +15,7 @@ function PlaceholderCoding() {
   };
 
   return (
-    <PlaceholderWrapper className={viewClass}>
+    <PlaceholderWrapper>
       <PlaceholderText>
         <Typed
           strings={[escapeHtml("<div><h1>Hello World...</h1></div>")]}
