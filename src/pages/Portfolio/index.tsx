@@ -42,11 +42,11 @@ function Portfolio() {
    * @param newItem PortfolioItemInterface | null
    */
   const changeProject = (newItem: PortfolioItemInterface | null): void => {
-    setLoading(true);
+    if (newItem) setLoading(true);
     setActiveItem(newItem);
     setTimeout(() => {
       setLoading(false);
-    }, 1000);
+    }, 2000);
   };
 
   /**
@@ -145,7 +145,10 @@ function Portfolio() {
                     )}
                     <div style={{ width: "100%", textAlign: "right" }}>
                       {activeItem.title}
-                      <Button onClick={() => changeProject(null)}>
+                      <Button
+                        onClick={() => changeProject(null)}
+                        style={{ marginLeft: 10 }}
+                      >
                         <Close fontSize="large" />
                       </Button>
                     </div>
