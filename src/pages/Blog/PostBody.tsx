@@ -16,12 +16,15 @@ interface Props {
 }
 
 function PostBody({ title, body, closePost }: Props) {
-  const isSmallScreen = useMediaQuery({ maxWidth: 1000 });
+  const isTablet = useMediaQuery({ maxWidth: 1000 });
   const isMobile = useMediaQuery({ maxWidth: 768 });
+  const isSmallMobile = useMediaQuery({ maxWidth: 380 });
 
-  const sidePadding: string | number = isMobile
-    ? 20
-    : isSmallScreen
+  const sidePadding: string | number = isSmallMobile
+    ? 30
+    : isMobile
+    ? 40
+    : isTablet
     ? "5%"
     : "7%";
 
@@ -34,6 +37,7 @@ function PostBody({ title, body, closePost }: Props) {
           paddingLeft: sidePadding,
           paddingRight: sidePadding,
           paddingBottom: 30,
+          paddingTop: 20,
         }}
       >
         <Button onClick={() => closePost()}>
