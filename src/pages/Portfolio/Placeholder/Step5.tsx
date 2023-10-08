@@ -1,5 +1,9 @@
 import React from "react";
 import { CircularProgress } from "@mui/material";
+import { grey } from "@mui/material/colors";
+
+// Style
+import "./index.css";
 
 function Step5() {
   return (
@@ -9,6 +13,7 @@ function Step5() {
         background: "transparent",
         backgroundSize: "auto 100%",
       }}
+      className="fade-in-fast"
     >
       <div
         style={{
@@ -19,7 +24,7 @@ function Step5() {
           textAlign: "center",
         }}
       >
-        <CircularProgress size={200} />
+        <CircularProgress size={200} style={{ color: grey[200] }} />
       </div>
     </div>
   );

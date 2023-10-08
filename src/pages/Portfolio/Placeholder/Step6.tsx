@@ -1,12 +1,12 @@
 import React from "react";
 import { useMediaQuery } from "react-responsive";
 import { Upload } from "@mui/icons-material";
-import { yellow } from "@mui/material/colors";
+import { grey } from "@mui/material/colors";
 
 // Style
 import "./index.css";
 
-function Step5() {
+function Step6() {
   const mobile = useMediaQuery({ maxWidth: 768 });
 
   return (
@@ -16,6 +16,7 @@ function Step5() {
         background: "transparent",
         backgroundSize: "auto 100%",
       }}
+      className="fade-in"
     >
       <div
         style={{
@@ -31,7 +32,7 @@ function Step5() {
           style={{
             width: mobile ? 100 : 200,
             height: "auto",
-            color: yellow[500],
+            color: grey[200],
           }}
         />
       </div>
@@ -39,4 +40,4 @@ function Step5() {
   );
 }
 
-export default Step5;
+export default Step6;

@@ -73,9 +73,9 @@ function Placeholder() {
               // Step 6 Delay
             }, 1500);
             // Step 5 Delay
-          }, 1000);
+          }, 1250);
           // Step 4 Delay
-        }, 1750);
+        }, 2000);
         // Step 3 Delay
       }, 1750);
       // Step 2 Delay

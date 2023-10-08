@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 import { animated, useSpring } from "@react-spring/web";
 import { Button } from "@mui/material";
@@ -8,10 +8,14 @@ import { green, grey } from "@mui/material/colors";
 // Helpers
 import { navigateToUrl } from "../../../helpers";
 
-function Step5() {
+// Style
+import "./index.css";
+
+function Step7() {
   const mobile = useMediaQuery({ maxWidth: 768 });
 
-  const [pulse, setPulse] = useState(false);
+  const [pulse, setPulse] = useState<boolean>(false);
+  const [showCTA, setShowCTA] = useState<boolean>(false);
 
   const { y } = useSpring({
     from: { y: 0 },
@@ -22,6 +26,12 @@ function Step5() {
       friction: 0,
     },
   });
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShowCTA(true);
+    }, 1500);
+  }, []);
 
   return (
     <div
@@ -35,10 +45,11 @@ function Step5() {
         style={{
           position: "absolute",
           left: "50%",
-          top: "50%",
-          transform: "translate(-50%, -50%)",
+          top: "10%",
+          transform: "translateX(-50%)",
           textAlign: "center",
         }}
+        className="fade-in"
       >
         <AppShortcut
           fontSize="large"
@@ -49,37 +60,49 @@ function Step5() {
             marginBottom: 30,
           }}
         />
-        <animated.div
-          children={
-            <Paid
-              fontSize="large"
-              style={{
-                width: mobile ? 50 : 150,
-                height: "auto",
-                color: green[500],
-              }}
-            />
-          }
-          style={{
-            width: mobile ? 50 : 150,
-            height: "auto",
-            transform: y.to((value) => `translate3d(0,${value}px,0)`),
-            margin: "auto",
-          }}
-        />
-        <Button
-          color="primary"
-          variant="contained"
-          sx={{ marginTop: 7 }}
-          onClick={() =>
-            navigateToUrl("https://calendly.com/sleekapp/consultation")
-          }
-        >
-          Turn Money Printer On
-        </Button>
       </div>
+      {showCTA && (
+        <div
+          style={{
+            position: "absolute",
+            left: "50%",
+            top: "70%",
+            transform: "translate(-50%, -70%)",
+            textAlign: "center",
+          }}
+        >
+          <animated.div
+            children={
+              <Paid
+                fontSize="large"
+                style={{
+                  width: mobile ? 50 : 150,
+                  height: "auto",
+                  color: green[500],
+                }}
+              />
+            }
+            style={{
+              width: mobile ? 50 : 150,
+              height: "auto",
+              transform: y.to((value) => `translate3d(0,${value}px,0)`),
+              margin: "auto",
+            }}
+          />
+          <Button
+            color="primary"
+            variant="contained"
+            sx={{ marginTop: 7 }}
+            onClick={() =>
+              navigateToUrl("https://calendly.com/sleekapp/consultation")
+            }
+          >
+            Turn Money Printer On
+          </Button>
+        </div>
+      )}
     </div>
   );
 }
 
-export default Step5;
+export default Step7;

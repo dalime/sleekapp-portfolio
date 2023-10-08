@@ -6,6 +6,9 @@ import { StepProps } from "./types";
 // Assets
 import PhoneTransparent from "../../../assets/images/iphone-frame-transparent.png";
 
+// Style
+import "./index.css";
+
 function Step2({ phoneDimensions }: StepProps) {
   const { width } = phoneDimensions;
 
@@ -29,6 +32,7 @@ function Step2({ phoneDimensions }: StepProps) {
           width: width - 30,
           marginLeft: 15,
         }}
+        className="fade-in"
       >
         <h2 style={{ color: "#FFFFFF" }}>New App</h2>
         <p style={{ color: "#FFFFFF" }}>Let's build something cool together!</p>

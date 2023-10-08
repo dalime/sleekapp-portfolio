@@ -6,6 +6,9 @@ import { StepProps } from "./types";
 // Assets
 import PhoneTransparent from "../../../assets/images/iphone-frame-transparent.png";
 
+// Style
+import "./index.css";
+
 function Step1({ phoneDimensions }: StepProps) {
   const { width, height } = phoneDimensions;
 
@@ -20,6 +23,7 @@ function Step1({ phoneDimensions }: StepProps) {
         backgroundRepeat: "no-repeat",
         backgroundPosition: "50% 0",
       }}
+      className="fade-in"
     ></div>
   );
 }

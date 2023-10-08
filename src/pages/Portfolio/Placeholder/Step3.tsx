@@ -9,6 +9,9 @@ import { StepProps } from "./types";
 import PhoneTransparent from "../../../assets/images/iphone-frame-transparent.png";
 import PlaceholderImage from "../../../assets/images/placeholder-image.jpeg";
 
+// Style
+import "./index.css";
+
 function Step3({ phoneDimensions }: StepProps) {
   const { width, height } = phoneDimensions;
 
@@ -39,6 +42,7 @@ function Step3({ phoneDimensions }: StepProps) {
             marginLeft: 15,
             marginRight: 15,
           }}
+          className="fade-in"
         >
           <Typography
             variant="h2"
