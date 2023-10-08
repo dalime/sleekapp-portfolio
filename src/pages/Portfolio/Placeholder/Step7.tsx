@@ -11,11 +11,7 @@ import { navigateToUrl } from "../../../helpers";
 // Style
 import "./index.css";
 
-interface Props {
-  rebuild(): void;
-}
-
-function Step7({ rebuild }: Props) {
+function Step7() {
   const mobile = useMediaQuery({ maxWidth: 768 });
 
   const [pulse, setPulse] = useState<boolean>(false);
@@ -23,10 +19,10 @@ function Step7({ rebuild }: Props) {
 
   const { y } = useSpring({
     from: { y: 0 },
-    to: { y: pulse ? 0 : mobile ? 15 : 20 },
+    to: { y: pulse ? 0 : mobile ? 10 : 15 },
     onRest: () => setPulse(!pulse),
     config: {
-      tension: mobile ? 15 : 20,
+      tension: mobile ? 10 : 15,
       friction: 0,
     },
   });
@@ -96,7 +92,8 @@ function Step7({ rebuild }: Props) {
           <Button
             color="primary"
             variant="contained"
-            sx={{ marginTop: 6 }}
+            className="pulse"
+            sx={{ marginTop: 7 }}
             onClick={() =>
               process.env.REACT_APP_CALL_LINK
                 ? navigateToUrl(process.env.REACT_APP_CALL_LINK)
@@ -104,15 +101,6 @@ function Step7({ rebuild }: Props) {
             }
           >
             Turn Money Printer On
-          </Button>
-          <div />
-          <Button
-            color="secondary"
-            variant="contained"
-            sx={{ marginTop: 1 }}
-            onClick={() => rebuild()}
-          >
-            Rebuild
           </Button>
         </div>
       )}

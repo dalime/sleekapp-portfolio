@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Typed from "react-typed";
+import { Button } from "@mui/material";
 import { yellow } from "@mui/material/colors";
 
 // Components
@@ -97,12 +98,7 @@ function Placeholder({ isMobile }: Props) {
     <Wrapper>
       <Body style={{ background: "transparent" }}>
         {step === 7 ? (
-          <Step7
-            rebuild={() => {
-              setStep(1);
-              setRebuild(true);
-            }}
-          />
+          <Step7 />
         ) : step === 6 ? (
           <Step6 />
         ) : step === 5 ? (
@@ -122,23 +118,36 @@ function Placeholder({ isMobile }: Props) {
       <Keyboard>
         <Text style={isMobile ? { fontSize: 11 } : {}}>
           <span style={{ marginLeft: 10, color: yellow[500] }}>{" > "}</span>
-          <Typed
-            strings={[
-              escapeHtml(
-                "<div><h1>New App</h1><p>Let's build something cool together!</p></div>"
-              ),
-              "makeSleek();",
-              "implementFeature();",
-              "build();",
-              "publish();",
-              "Sleek App Complete!",
-            ]}
-            backSpeed={0}
-            typeSpeed={40}
-            startDelay={2000}
-            style={{ textAlign: "left" }}
-            loop={rebuild}
-          />
+          {step === 7 ? (
+            <Button
+              variant="outlined"
+              color="secondary"
+              onClick={() => {
+                setStep(1);
+                setRebuild(true);
+              }}
+            >
+              Rebuild();
+            </Button>
+          ) : (
+            <Typed
+              strings={[
+                escapeHtml(
+                  "<div><h1>New App</h1><p>Let's build something cool together!</p></div>"
+                ),
+                "makeSleek();",
+                "implementFeature();",
+                "build();",
+                "publish();",
+                "Sleek App Complete!",
+              ]}
+              backSpeed={0}
+              typeSpeed={40}
+              startDelay={2000}
+              style={{ textAlign: "left" }}
+              loop={rebuild}
+            />
+          )}
         </Text>
       </Keyboard>
     </Wrapper>
