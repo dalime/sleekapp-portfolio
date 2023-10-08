@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { CircularProgress } from "@mui/material";
+import { useMediaQuery } from "react-responsive";
 
 // Types
 import { WPPost } from "../../types";
@@ -15,12 +17,17 @@ import { Page, MainHeading } from "../../components";
 import { PreviewsList } from "./index.styles";
 
 function Blog() {
+  const mobile = useMediaQuery({ maxWidth: 768 });
+
   const [blogPosts, setBlogPosts] = useState<WPPost[]>([]);
+  const [fetchLoading, setFetchLoading] = useState<boolean>(false);
   const [activePost, setActivePost] = useState<WPPost | null>(null);
 
   useEffect(() => {
     const fetchPosts = async () => {
+      setFetchLoading(true);
       const response = await fetchBlogPosts();
+      setFetchLoading(false);
       setBlogPosts(response || []);
     };
 
@@ -28,6 +35,7 @@ function Blog() {
   }, []);
 
   const renderBlogPosts = (): JSX.Element[] => {
+    if (fetchLoading) return [<CircularProgress />];
     if (!blogPosts) return [];
 
     return blogPosts.map((blogPost: WPPost) => (
@@ -51,7 +59,11 @@ function Blog() {
   return (
     <Page>
       <MainHeading align="center">Blog</MainHeading>
-      {blogPosts.length ? (
+      {fetchLoading ? (
+        <div style={{ width: "100%", textAlign: "center", marginTop: 30 }}>
+          <CircularProgress size={mobile ? 150 : 200} />
+        </div>
+      ) : blogPosts.length ? (
         <PreviewsList>{renderBlogPosts()}</PreviewsList>
       ) : (
         <></>
