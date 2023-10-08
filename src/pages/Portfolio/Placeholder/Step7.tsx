@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { animated, useSpring } from "@react-spring/web";
+import { Button } from "@mui/material";
 import { AppShortcut, Paid } from "@mui/icons-material";
 import { yellow, green } from "@mui/material/colors";
+
+// Helpers
+import { navigateToUrl } from "../../../helpers";
 
 function Step5() {
   const mobile = useMediaQuery({ maxWidth: 768 });
@@ -36,33 +40,43 @@ function Step5() {
           textAlign: "center",
         }}
       >
-        <animated.div
-          children={
-            <>
-              <AppShortcut
-                fontSize="large"
-                style={{
-                  width: mobile ? 100 : 200,
-                  height: "auto",
-                  color: yellow[500],
-                }}
-              />
-              <Paid
-                fontSize="large"
-                style={{
-                  width: mobile ? 100 : 200,
-                  height: "auto",
-                  color: green[500],
-                }}
-              />
-            </>
-          }
+        <AppShortcut
+          fontSize="large"
           style={{
-            width: mobile ? 100 : 200,
+            width: mobile ? 50 : 150,
             height: "auto",
-            transform: y.to((value) => `translate3d(0,${value}px,0)`),
+            color: yellow[500],
+            marginBottom: 30,
           }}
         />
+        <animated.div
+          children={
+            <Paid
+              fontSize="large"
+              style={{
+                width: mobile ? 50 : 150,
+                height: "auto",
+                color: green[500],
+              }}
+            />
+          }
+          style={{
+            width: mobile ? 50 : 150,
+            height: "auto",
+            transform: y.to((value) => `translate3d(0,${value}px,0)`),
+            margin: "auto",
+          }}
+        />
+        <Button
+          color="primary"
+          variant="contained"
+          sx={{ marginTop: 7 }}
+          onClick={() =>
+            navigateToUrl("https://calendly.com/sleekapp/consultation")
+          }
+        >
+          Turn Money Printer On
+        </Button>
       </div>
     </div>
   );
