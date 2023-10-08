@@ -27,6 +27,7 @@ function Placeholder({ isMobile }: Props) {
     width: 0,
     height: 0,
   });
+  const [rebuild, setRebuild] = useState<boolean>(true);
 
   /**
    * Escapes the HTML renders for strings that go into react-typed
@@ -59,41 +60,49 @@ function Placeholder({ isMobile }: Props) {
   }, [isMobile]);
 
   useEffect(() => {
-    setTimeout(() => {
-      setStep(2);
-
+    if (rebuild) {
+      setRebuild(false);
       setTimeout(() => {
-        setStep(3);
+        setStep(2);
 
         setTimeout(() => {
-          setStep(4);
+          setStep(3);
 
           setTimeout(() => {
-            setStep(5);
+            setStep(4);
 
             setTimeout(() => {
-              setStep(6);
+              setStep(5);
 
               setTimeout(() => {
-                setStep(7);
+                setStep(6);
+
+                setTimeout(() => {
+                  setStep(7);
+                }, 1500);
+                // Step 6 Delay
               }, 1500);
-              // Step 6 Delay
-            }, 1500);
-            // Step 5 Delay
-          }, 1250);
-          // Step 4 Delay
-        }, 2000);
-        // Step 3 Delay
-      }, 1750);
-      // Step 2 Delay
-    }, 7000);
-  }, []);
+              // Step 5 Delay
+            }, 1250);
+            // Step 4 Delay
+          }, 2000);
+          // Step 3 Delay
+        }, 1750);
+        // Step 2 Delay
+      }, 7000);
+    }
+  }, [rebuild]);
 
   return (
     <Wrapper>
       <Body style={{ background: "transparent" }}>
         {step === 7 ? (
-          <Step7 />
+          <Step7
+            rebuild={() => {
+              setStep(1);
+              setRebuild(true);
+            }}
+          />
         ) : step === 6 ? (
           <Step6 />
         ) : step === 5 ? (
@@ -128,6 +137,7 @@ function Placeholder({ isMobile }: Props) {
             typeSpeed={40}
             startDelay={2000}
             style={{ textAlign: "left" }}
+            loop={rebuild}
           />
         </Text>
       </Keyboard>

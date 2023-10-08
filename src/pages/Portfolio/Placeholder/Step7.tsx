@@ -11,7 +11,11 @@ import { navigateToUrl } from "../../../helpers";
 // Style
 import "./index.css";
 
-function Step7() {
+interface Props {
+  rebuild(): void;
+}
+
+function Step7({ rebuild }: Props) {
   const mobile = useMediaQuery({ maxWidth: 768 });
 
   const [pulse, setPulse] = useState<boolean>(false);
@@ -92,7 +96,7 @@ function Step7() {
           <Button
             color="primary"
             variant="contained"
-            sx={{ marginTop: 7 }}
+            sx={{ marginTop: 6 }}
             onClick={() =>
               process.env.REACT_APP_CALL_LINK
                 ? navigateToUrl(process.env.REACT_APP_CALL_LINK)
@@ -100,6 +104,15 @@ function Step7() {
             }
           >
             Turn Money Printer On
+          </Button>
+          <div />
+          <Button
+            color="secondary"
+            variant="contained"
+            sx={{ marginTop: 1 }}
+            onClick={() => rebuild()}
+          >
+            Rebuild
           </Button>
         </div>
       )}
