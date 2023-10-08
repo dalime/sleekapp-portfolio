@@ -129,7 +129,15 @@ function ProjectDetails({ project, isMobile }: Props) {
           </>
         ))}
       <SubHeading>Get Your Own Sleek App</SubHeading>
-      <Button variant="contained" color="primary">
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() =>
+          process.env.REACT_APP_CALL_LINK
+            ? navigateToUrl(process.env.REACT_APP_CALL_LINK)
+            : {}
+        }
+      >
         <Call sx={{ marginRight: 1 }} />
         Book 1:1 Strategy Call
       </Button>

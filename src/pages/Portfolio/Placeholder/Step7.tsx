@@ -94,7 +94,9 @@ function Step7() {
             variant="contained"
             sx={{ marginTop: 7 }}
             onClick={() =>
-              navigateToUrl("https://calendly.com/sleekapp/consultation")
+              process.env.REACT_APP_CALL_LINK
+                ? navigateToUrl(process.env.REACT_APP_CALL_LINK)
+                : {}
             }
           >
             Turn Money Printer On

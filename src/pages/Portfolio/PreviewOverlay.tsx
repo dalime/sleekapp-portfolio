@@ -55,7 +55,9 @@ function PreviewOverlay({ project }: Props) {
           color="primary"
           sx={{ marginTop: 2 }}
           onClick={() =>
-            navigateToUrl("https://calendly.com/sleekapp/consultation")
+            process.env.REACT_APP_CALL_LINK
+              ? navigateToUrl(process.env.REACT_APP_CALL_LINK)
+              : {}
           }
         >
           <Download style={{ marginRight: 5 }} />

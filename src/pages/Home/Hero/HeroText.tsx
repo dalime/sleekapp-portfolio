@@ -48,7 +48,9 @@ function HeroText({ mobile }: Props) {
         variant="contained"
         sx={{ marginTop: 4 }}
         onClick={() =>
-          navigateToUrl("https://calendly.com/sleekapp/consultation")
+          process.env.REACT_APP_CALL_LINK
+            ? navigateToUrl(process.env.REACT_APP_CALL_LINK)
+            : {}
         }
       >
         Turn Money Printer On
