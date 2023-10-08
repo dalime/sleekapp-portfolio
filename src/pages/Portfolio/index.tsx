@@ -27,6 +27,7 @@ import {
   MatrixBackdrop,
 } from "./index.styles";
 import MobilePortfolio from "./MobilePortfolio";
+import "./index.css";
 
 // Assets
 import MatrixBackground from "../../assets/images/matrix-background.gif";
@@ -172,7 +173,7 @@ function Portfolio() {
             {activeItem ? (
               <></>
             ) : (
-              <List dense={false} sx={{ width: "100%" }}>
+              <List dense={false} sx={{ width: "100%" }} className="fade-in">
                 {renderPortfolioItems()}
               </List>
             )}

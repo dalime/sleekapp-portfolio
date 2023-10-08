@@ -14,6 +14,7 @@ import { H3, H4, Paragraph } from "../../components";
 
 // Styles
 import { ProjectDetailWrapper, StarsWrapper } from "./index.styles";
+import "./index.css";
 
 interface SubHeadingProps {
   noMargin?: boolean;
@@ -56,7 +57,7 @@ function ProjectDetails({ project, isMobile }: Props) {
   } = project;
 
   return (
-    <ProjectDetailWrapper mobile={isMobile || false}>
+    <ProjectDetailWrapper mobile={isMobile || false} className="fade-in">
       <SubHeading noMargin>Summary</SubHeading>
       <BodyText>{description}</BodyText>
       {role && (
