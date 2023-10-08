@@ -54,6 +54,7 @@ function Placeholder() {
   useEffect(() => {
     setTimeout(() => {
       setStep(2);
+
       setTimeout(() => {
         setStep(3);
 
@@ -62,10 +63,23 @@ function Placeholder() {
 
           setTimeout(() => {
             setStep(5);
-          }, 4000);
-        }, 4000);
-      }, 3000);
-    }, 8000);
+
+            setTimeout(() => {
+              setStep(6);
+
+              setTimeout(() => {
+                setStep(7);
+              }, 2000);
+              // Step 6 Delay
+            }, 1500);
+            // Step 5 Delay
+          }, 1000);
+          // Step 4 Delay
+        }, 2000);
+        // Step 3 Delay
+      }, 1750);
+      // Step 2 Delay
+    }, 7000);
   }, []);
 
   return (
@@ -97,7 +111,6 @@ function Placeholder() {
               escapeHtml(
                 "<div><h1>New App</h1><p>Let's build something cool together...</p></div>"
               ),
-              "render();",
               "makeSleek();",
               "implementFeature();",
               "build();",
