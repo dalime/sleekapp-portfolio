@@ -19,12 +19,23 @@ import "./index.css";
 interface SubHeadingProps {
   noMargin?: boolean;
   children?: ReactNode | ReactNode[];
+  isMobile?: boolean;
 }
 
-function SubHeading({ noMargin, children }: SubHeadingProps): JSX.Element {
-  const baseStyle = { color: grey[200] };
+function SubHeading({
+  noMargin,
+  children,
+  isMobile,
+}: SubHeadingProps): JSX.Element {
+  const baseStyle = { color: grey[200], fontSize: isMobile ? 20 : "auto" };
   return (
-    <H3 style={noMargin ? baseStyle : { ...baseStyle, marginTop: 30 }}>
+    <H3
+      style={
+        noMargin
+          ? baseStyle
+          : { ...baseStyle, marginTop: isMobile ? (noMargin ? 0 : 20) : 30 }
+      }
+    >
       {children}
     </H3>
   );
@@ -32,10 +43,15 @@ function SubHeading({ noMargin, children }: SubHeadingProps): JSX.Element {
 
 interface BodyTextProps {
   children?: ReactNode | ReactNode[];
+  isMobile?: boolean;
 }
 
-function BodyText({ children }: BodyTextProps): JSX.Element {
-  return <Paragraph sx={{ color: grey[400] }}>{children}</Paragraph>;
+function BodyText({ children, isMobile }: BodyTextProps): JSX.Element {
+  return (
+    <Paragraph sx={{ color: grey[400], fontSize: isMobile ? 12 : "auto" }}>
+      {children}
+    </Paragraph>
+  );
 }
 
 interface Props {
@@ -57,59 +73,73 @@ function ProjectDetails({ project, isMobile }: Props) {
   } = project;
 
   return (
-    <ProjectDetailWrapper mobile={isMobile || false} className="fade-in">
-      <SubHeading noMargin>Summary</SubHeading>
-      <BodyText>{description}</BodyText>
+    <ProjectDetailWrapper
+      className="fade-in"
+      style={isMobile ? { marginTop: 0 } : {}}
+    >
+      <SubHeading noMargin isMobile={isMobile || false}>
+        Summary
+      </SubHeading>
+      <BodyText isMobile={isMobile || false}>{description}</BodyText>
       {role && (
-        <H4 style={{ marginTop: 30, color: grey[400] }}>
+        <H4
+          style={{
+            marginTop: 30,
+            color: grey[400],
+            fontSize: isMobile ? 16 : "auto",
+          }}
+        >
           Our Role: <span style={{ color: yellow[500] }}>{role}</span>
         </H4>
       )}
       {results && (
         <>
-          <SubHeading>Results</SubHeading>
-          <BodyText>{results}</BodyText>
+          <SubHeading isMobile={isMobile || false}>Results</SubHeading>
+          <BodyText isMobile={isMobile || false}>{results}</BodyText>
         </>
       )}
       {before && (
         <>
-          <SubHeading>Before Our Engagement</SubHeading>
-          <BodyText>{before}</BodyText>
+          <SubHeading isMobile={isMobile || false}>
+            Before Our Engagement
+          </SubHeading>
+          <BodyText isMobile={isMobile || false}>{before}</BodyText>
         </>
       )}
       {work && (
         <>
-          <SubHeading>The Work We Did</SubHeading>
-          <BodyText>{work}</BodyText>
+          <SubHeading isMobile={isMobile || false}>The Work We Did</SubHeading>
+          <BodyText isMobile={isMobile || false}>{work}</BodyText>
         </>
       )}
       {approach && (
         <>
-          <SubHeading>Our Approach</SubHeading>
-          <BodyText>{approach}</BodyText>
+          <SubHeading isMobile={isMobile || false}>Our Approach</SubHeading>
+          <BodyText isMobile={isMobile || false}>{approach}</BodyText>
         </>
       )}
       {feedback && (
         <>
-          <SubHeading>Feedback</SubHeading>
+          <SubHeading isMobile={isMobile || false}>Feedback</SubHeading>
           <StarsWrapper>
             {[...Array(5)].map((_, i) => (
               <Star key={`star-${i}`} sx={{ color: yellow[500] }} />
             ))}
           </StarsWrapper>
-          <BodyText>{feedback}</BodyText>
+          <BodyText isMobile={isMobile || false}>{feedback}</BodyText>
         </>
       )}
       {codeLink ||
         (viewLink && (
           <>
-            <SubHeading>Check It Out</SubHeading>
+            <SubHeading isMobile={isMobile || false}>Check It Out</SubHeading>
             <ButtonGroup>
               {codeLink && (
                 <Button
                   variant="contained"
                   color="secondary"
                   onClick={() => navigateToUrl(codeLink)}
+                  sx={isMobile ? { fontSize: 12 } : {}}
                 >
                   <Code sx={{ marginRight: 2 }} />
                   Source Code
@@ -120,6 +150,7 @@ function ProjectDetails({ project, isMobile }: Props) {
                   variant="contained"
                   color="primary"
                   onClick={() => navigateToUrl(viewLink)}
+                  sx={isMobile ? { fontSize: 12 } : {}}
                 >
                   <Web sx={{ marginRight: 2 }} />
                   View Project
@@ -128,7 +159,9 @@ function ProjectDetails({ project, isMobile }: Props) {
             </ButtonGroup>
           </>
         ))}
-      <SubHeading>Get Your Own Sleek App</SubHeading>
+      <SubHeading isMobile={isMobile || false}>
+        Get Your Own Sleek App
+      </SubHeading>
       <Button
         variant="contained"
         color="primary"
@@ -137,6 +170,7 @@ function ProjectDetails({ project, isMobile }: Props) {
             ? navigateToUrl(process.env.REACT_APP_CALL_LINK)
             : {}
         }
+        sx={isMobile ? { fontSize: 12 } : {}}
       >
         <Call sx={{ marginRight: 1 }} />
         Book 1:1 Strategy Call

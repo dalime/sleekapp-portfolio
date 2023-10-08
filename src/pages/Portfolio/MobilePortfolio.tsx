@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { List, Button } from "@mui/material";
 import { Close } from "@mui/icons-material";
+import { yellow } from "@mui/material/colors";
 
 // Types
 import { PortfolioItemInterface } from "../../types";
@@ -8,21 +9,42 @@ import { PortfolioItemInterface } from "../../types";
 // Components
 import ProjectDetails from "./ProjectDetails";
 import PortfolioItem from "./PortfolioItem";
+import PlaceholderCoding from "./Placeholder";
+import PreviewOverlay from "./PreviewOverlay";
 import { Page, Section, MainHeading, Subheading } from "../../components";
 
 // Styles
 import {
   MobileWrapper,
   MobileProjectPreview,
+  PreviewWrapper,
   MobilePreviewImg,
   MobileProjectsList,
+  MatrixBackdrop,
 } from "./index.styles";
+import "./index.css";
+
+// Assets
+import MatrixBackground from "../../assets/images/matrix-background.gif";
 
 function MobilePortfolio() {
   const [hoveringItem, setHoveringItem] = useState<number | null>(null);
   const [activeItem, setActiveItem] = useState<PortfolioItemInterface | null>(
     null
   );
+  const [loading, setLoading] = useState<boolean>(false);
+
+  /**
+   * Changes the active item to preview and kicks off the matrix animation to show
+   * @param newItem PortfolioItemInterface | null
+   */
+  const changeProject = (newItem: PortfolioItemInterface | null): void => {
+    if (newItem) setLoading(true);
+    setActiveItem(newItem);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  };
 
   /**
    * Renders portfolio items
@@ -47,7 +69,7 @@ function MobilePortfolio() {
           portfolioItem={portfolioItem}
           hoveringItem={hoveringItem}
           setHoveringItem={setHoveringItem}
-          setActiveItem={setActiveItem}
+          setActiveItem={changeProject}
         />
       );
     });
@@ -55,27 +77,58 @@ function MobilePortfolio() {
 
   return (
     <Page>
-      <Section padding={20}>
-        <MainHeading align="center" style={{ marginBottom: 20, fontSize: 36 }}>
-          Our Portfolio
+      <Section padding={20} style={{ paddingTop: 10 }}>
+        <MainHeading
+          align="center"
+          style={{
+            marginBottom: 10,
+            fontSize: 26,
+            color: yellow[300],
+          }}
+        >
+          Portfolio
         </MainHeading>
         <MobileWrapper>
           <MobileProjectPreview>
-            {activeItem && activeItem.imgSrc && (
-              <MobilePreviewImg
-                src={activeItem.imgSrc}
-                alt="Preview of the project being hovered"
-              />
+            {loading ? (
+              <MatrixBackdrop src={MatrixBackground} alt="Matrix background" />
+            ) : activeItem && activeItem.imgSrc ? (
+              <PreviewWrapper>
+                {activeItem && <PreviewOverlay project={activeItem} />}
+                <MobilePreviewImg
+                  src={activeItem.imgSrc}
+                  alt="Preview of the project being hovered"
+                  loading="lazy"
+                />
+              </PreviewWrapper>
+            ) : (
+              <PlaceholderCoding />
             )}
           </MobileProjectPreview>
           <MobileProjectsList>
-            <Subheading sx={{ paddingRight: 2, paddingTop: 2 }}>
+            <Subheading
+              sx={{
+                paddingRight: 2,
+                paddingTop: 2,
+                fontSize: 20,
+                marginBottom: 0,
+              }}
+            >
               {activeItem ? (
                 <>
-                  <div style={{ width: "100%", textAlign: "right" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      paddingLeft: 20,
+                      width: "100%",
+                    }}
+                  >
                     {activeItem.title}
-                    <Button onClick={() => setActiveItem(null)}>
-                      <Close />
+                    <Button onClick={() => changeProject(null)}>
+                      <Close fontSize="medium" />
                     </Button>
                   </div>
                   <ProjectDetails project={activeItem} isMobile />
@@ -87,7 +140,7 @@ function MobilePortfolio() {
             {activeItem ? (
               <></>
             ) : (
-              <List dense={false} sx={{ width: "100%" }}>
+              <List dense={false} sx={{ width: "100%" }} className="fade-in">
                 {renderPortfolioItems()}
               </List>
             )}

@@ -28,7 +28,7 @@ export const ProjectPreview = styled.div`
 
 export const MobileProjectPreview = styled(ProjectPreview)`
   width: 100%;
-  height: calc(70vh - 56px - 40px - 90.02px);
+  height: calc(75vh - 76px - 75px);
 `;
 
 export const PreviewWrapper = styled.div`
@@ -88,13 +88,13 @@ export const ProjectsList = styled.div`
 `;
 
 export const MobileProjectsList = styled(ProjectsList)`
-  height: 20vh;
+  height: calc(30vh - 20px);
   width: 100%;
 `;
 
-export const ProjectDetailWrapper = styled.div<{ mobile: boolean }>`
+export const ProjectDetailWrapper = styled.div`
   margin-top: 30px;
-  text-align: ${(props) => props.mobile ? "center" : "left"};
+  text-align: left;
   padding: 20px;
   padding: 20px;
 `;
