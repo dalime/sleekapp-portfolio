@@ -15,6 +15,13 @@ import { Wrapper, Text, Keyboard, Body } from "./index.styles";
 
 function Placeholder() {
   const [step, setStep] = useState<number>(1);
+  const [phoneDimensions, setPhoneDimensions] = useState<{
+    width: number;
+    height: number;
+  }>({
+    width: 0,
+    height: 0,
+  });
 
   /**
    * Escapes the HTML renders for strings that go into react-typed
@@ -29,6 +36,20 @@ function Placeholder() {
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#039;");
   };
+
+  useEffect(() => {
+    const handleResize = (): void => {
+      const newHeight = window.innerHeight - 95 - 40 - 90.02 - 50 - 40;
+      const newWidth = (newHeight * 1298) / 2592;
+      setPhoneDimensions({
+        width: newWidth,
+        height: newHeight,
+      });
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     setTimeout(() => {
@@ -57,13 +78,13 @@ function Placeholder() {
         ) : step === 5 ? (
           <Step5 />
         ) : step === 4 ? (
-          <Step4 />
+          <Step4 phoneDimensions={phoneDimensions} />
         ) : step === 3 ? (
-          <Step3 />
+          <Step3 phoneDimensions={phoneDimensions} />
         ) : step === 2 ? (
-          <Step2 />
+          <Step2 phoneDimensions={phoneDimensions} />
         ) : step === 1 ? (
-          <Step1 />
+          <Step1 phoneDimensions={phoneDimensions} />
         ) : (
           <></>
         )}

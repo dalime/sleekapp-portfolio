@@ -3,13 +3,23 @@ import { Typography, Button } from "@mui/material";
 import { Google, Facebook, Email } from "@mui/icons-material";
 import { blue, grey } from "@mui/material/colors";
 
+// Types
+import { StepProps } from "./types";
+
 // Assets
 import PhoneTransparent from "../../../assets/images/iphone-frame-transparent.png";
 import PlaceholderImage from "../../../assets/images/placeholder-image.jpeg";
 
-function Step4() {
+function Step4({ phoneDimensions }: StepProps) {
+  const { width, height } = phoneDimensions;
+
+  /**
+   * Renders a social media button
+   * @param Icon JSX.Element
+   * @returns JSX.Element
+   */
   const renderButton = (Icon: JSX.Element): JSX.Element => (
-    <Button variant="contained" color="info" sx={{ margin: 1 }}>
+    <Button variant="contained" color="info" sx={{ margin: 0.5 }}>
       {Icon}
     </Button>
   );
@@ -17,10 +27,11 @@ function Step4() {
   return (
     <div
       style={{
-        height: "100%",
+        width: "100%",
+        height,
         background: "transparent",
         backgroundImage: `url(${PhoneTransparent}`,
-        backgroundSize: "auto 100%",
+        backgroundSize: `${width}px ${height}px`,
         backgroundRepeat: "no-repeat",
         backgroundPosition: "50% 0",
       }}
@@ -34,29 +45,37 @@ function Step4() {
           textAlign: "center",
         }}
       >
-        <Typography
-          variant="h2"
+        <div
           style={{
-            fontSize: 30,
-            fontWeight: 600,
-            color: blue[500],
-            textAlign: "center",
+            width: width - 30,
+            marginLeft: 15,
+            marginRight: 15,
           }}
         >
-          New App
-        </Typography>
-        <p style={{ color: grey[500], textAlign: "center" }}>
-          Let's build something cool together...
-        </p>
-        <img
-          src={PlaceholderImage}
-          alt="Placeholder"
-          style={{ width: 100, height: "auto", borderRadius: 8 }}
-        />
-        <div style={{ marginTop: 20 }}>
-          {renderButton(<Google />)}
-          {renderButton(<Facebook />)}
-          {renderButton(<Email />)}
+          <Typography
+            variant="h2"
+            style={{
+              fontSize: 30,
+              fontWeight: 600,
+              color: blue[500],
+              textAlign: "center",
+            }}
+          >
+            New App
+          </Typography>
+          <p style={{ color: grey[500], textAlign: "center" }}>
+            Let's build something cool together...
+          </p>
+          <img
+            src={PlaceholderImage}
+            alt="Placeholder"
+            style={{ width: 100, height: "auto", borderRadius: 8 }}
+          />
+          <div style={{ marginTop: 20 }}>
+            {renderButton(<Google />)}
+            {renderButton(<Facebook />)}
+            {renderButton(<Email />)}
+          </div>
         </div>
       </div>
     </div>
