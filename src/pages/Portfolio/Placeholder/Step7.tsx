@@ -3,7 +3,7 @@ import { useMediaQuery } from "react-responsive";
 import { animated, useSpring } from "@react-spring/web";
 import { Button } from "@mui/material";
 import { AppShortcut, Paid } from "@mui/icons-material";
-import { yellow, green } from "@mui/material/colors";
+import { green, grey } from "@mui/material/colors";
 
 // Helpers
 import { navigateToUrl } from "../../../helpers";
@@ -45,7 +45,7 @@ function Step5() {
           style={{
             width: mobile ? 50 : 150,
             height: "auto",
-            color: yellow[500],
+            color: grey[200],
             marginBottom: 30,
           }}
         />
