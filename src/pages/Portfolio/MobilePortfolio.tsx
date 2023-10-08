@@ -9,7 +9,7 @@ import { PortfolioItemInterface } from "../../types";
 // Components
 import ProjectDetails from "./ProjectDetails";
 import PortfolioItem from "./PortfolioItem";
-import PlaceholderCoding from "./Placeholder";
+import Placeholder from "./Placeholder";
 import PreviewOverlay from "./PreviewOverlay";
 import { Page, Section, MainHeading, Subheading } from "../../components";
 
@@ -77,7 +77,7 @@ function MobilePortfolio() {
 
   return (
     <Page>
-      <Section padding={20} style={{ paddingTop: 10 }}>
+      <Section padding={20} style={{ paddingTop: 0 }}>
         <MainHeading
           align="center"
           style={{
@@ -102,7 +102,7 @@ function MobilePortfolio() {
                 />
               </PreviewWrapper>
             ) : (
-              <PlaceholderCoding />
+              <Placeholder isMobile />
             )}
           </MobileProjectPreview>
           <MobileProjectsList>

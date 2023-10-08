@@ -28,7 +28,7 @@ export const ProjectPreview = styled.div`
 
 export const MobileProjectPreview = styled(ProjectPreview)`
   width: 100%;
-  height: calc(75vh - 76px - 75px);
+  height: calc(75vh - 76px - 65px);
 `;
 
 export const PreviewWrapper = styled.div`

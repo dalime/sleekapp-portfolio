@@ -13,7 +13,7 @@ import { navigateToUrl } from "../../helpers";
 // Components
 import ProjectDetails from "./ProjectDetails";
 import PortfolioItem from "./PortfolioItem";
-import PlaceholderCoding from "./Placeholder";
+import Placeholder from "./Placeholder";
 import PreviewOverlay from "./PreviewOverlay";
 import { Page, Section, MainHeading, Subheading } from "../../components";
 
@@ -111,7 +111,7 @@ function Portfolio() {
                 />
               </PreviewWrapper>
             ) : (
-              <PlaceholderCoding />
+              <Placeholder />
             )}
           </ProjectPreview>
           <ProjectsList>

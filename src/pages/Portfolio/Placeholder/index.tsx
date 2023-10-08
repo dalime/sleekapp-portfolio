@@ -14,7 +14,11 @@ import Step7 from "./Step7";
 // Styles
 import { Wrapper, Text, Keyboard, Body } from "./index.styles";
 
-function Placeholder() {
+interface Props {
+  isMobile?: boolean;
+}
+
+function Placeholder({ isMobile }: Props) {
   const [step, setStep] = useState<number>(1);
   const [phoneDimensions, setPhoneDimensions] = useState<{
     width: number;
@@ -40,7 +44,9 @@ function Placeholder() {
 
   useEffect(() => {
     const handleResize = (): void => {
-      const newHeight = window.innerHeight - 95 - 40 - 90.02 - 50 - 40;
+      const newHeight = isMobile
+        ? window.innerHeight * 0.75 - 76 - 65 - 50
+        : window.innerHeight - 95 - 40 - 90.02 - 50 - 40;
       const newWidth = (newHeight * 1298) / 2592;
       setPhoneDimensions({
         width: newWidth,
@@ -50,7 +56,7 @@ function Placeholder() {
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [isMobile]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -105,7 +111,7 @@ function Placeholder() {
         )}
       </Body>
       <Keyboard>
-        <Text>
+        <Text style={isMobile ? { fontSize: 11 } : {}}>
           <span style={{ marginLeft: 10, color: yellow[500] }}>{" > "}</span>
           <Typed
             strings={[
