@@ -1,11 +1,20 @@
 import React from "react";
 
+// Assets
+import PhoneTransparent from "../../../assets/images/iphone-frame-transparent.png";
+
 function Step1() {
   return (
-    <div>
-      <h1 style={{ color: "#FFFFFF" }}>New App</h1>
-      <p style={{ color: "#FFFFFF" }}>Let's build something cool together...</p>
-    </div>
+    <div
+      style={{
+        height: "100%",
+        background: "transparent",
+        backgroundImage: `url(${PhoneTransparent}`,
+        backgroundSize: "auto 100%",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "50% 0",
+      }}
+    ></div>
   );
 }
 

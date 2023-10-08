@@ -1,13 +1,33 @@
 import React from "react";
-import { yellow } from "@mui/material/colors";
+
+// Assets
+import PhoneTransparent from "../../../assets/images/iphone-frame-transparent.png";
 
 function Step2() {
   return (
-    <div style={{ background: "transparent" }}>
-      <h1 style={{ color: yellow[500] }}>New App</h1>
-      <p style={{ color: yellow[500] }}>
-        Let's build something cool together...
-      </p>
+    <div
+      style={{
+        height: "100%",
+        background: "transparent",
+        backgroundImage: `url(${PhoneTransparent}`,
+        backgroundSize: "auto 100%",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "50% 0",
+      }}
+    >
+      <div
+        style={{
+          position: "absolute",
+          left: "50%",
+          top: 50,
+          transform: "translateX(-50%)",
+        }}
+      >
+        <h2 style={{ color: "#FFFFFF" }}>New App</h2>
+        <p style={{ color: "#FFFFFF" }}>
+          Let's build something cool together...
+        </p>
+      </div>
     </div>
   );
 }
