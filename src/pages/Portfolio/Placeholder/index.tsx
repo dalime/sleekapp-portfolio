@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Typed from "react-typed";
+import { yellow } from "@mui/material/colors";
 
 // Components
 import Step1 from "./Step1";
@@ -105,7 +106,7 @@ function Placeholder() {
       </Body>
       <Keyboard>
         <Text>
-          <span style={{ marginLeft: 10 }}>{" > "}</span>
+          <span style={{ marginLeft: 10, color: yellow[500] }}>{" > "}</span>
           <Typed
             strings={[
               escapeHtml(

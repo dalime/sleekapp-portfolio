@@ -33,7 +33,7 @@ import "./index.css";
 import MatrixBackground from "../../assets/images/matrix-background.gif";
 
 function Portfolio() {
-  const isSmallScreen = useMediaQuery({ maxWidth: 900 });
+  const isMobile = useMediaQuery({ maxWidth: 768 });
 
   const [hoveringItem, setHoveringItem] = useState<number | null>(null);
   const [activeItem, setActiveItem] = useState<PortfolioItemInterface | null>(
@@ -82,7 +82,7 @@ function Portfolio() {
     });
   };
 
-  if (isSmallScreen) return <MobilePortfolio />;
+  if (isMobile) return <MobilePortfolio />;
 
   return (
     <Page>
@@ -91,7 +91,7 @@ function Portfolio() {
           align="center"
           style={{
             marginBottom: 20,
-            fontSize: isSmallScreen ? 30 : 50,
+            fontSize: isMobile ? 30 : 50,
             color: yellow[300],
           }}
         >
