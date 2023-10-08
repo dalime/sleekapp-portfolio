@@ -52,7 +52,7 @@ function Step3({ phoneDimensions }: StepProps) {
             New App
           </Typography>
           <p style={{ color: grey[500], textAlign: "center" }}>
-            Let's build something cool together...
+            Let's build something cool together!
           </p>
           <img
             src={PlaceholderImage}
