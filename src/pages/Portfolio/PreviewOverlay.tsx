@@ -28,7 +28,7 @@ function PreviewOverlay({ project }: Props) {
 
   return (
     <PreviewBackdrop
-      className={backdropClass}
+      className={isMobile ? "fade-in" : backdropClass}
       onMouseEnter={() => setBackdropClass("fade-in")}
       onMouseLeave={() => setBackdropClass("fade-out")}
     >
