@@ -93,7 +93,7 @@ function Step7() {
             color="primary"
             variant="contained"
             className="pulse"
-            sx={{ marginTop: 7 }}
+            sx={{ marginTop: 7, fontSize: mobile ? 11 : "auto" }}
             onClick={() =>
               process.env.REACT_APP_CALL_LINK
                 ? navigateToUrl(process.env.REACT_APP_CALL_LINK)

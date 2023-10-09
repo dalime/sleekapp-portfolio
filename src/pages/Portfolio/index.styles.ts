@@ -28,7 +28,7 @@ export const ProjectPreview = styled.div`
 
 export const MobileProjectPreview = styled(ProjectPreview)`
   width: 100%;
-  height: calc(75vh - 76px - 65px);
+  height: calc(100vh - 76px - 65px - 46.5px);
 `;
 
 export const PreviewWrapper = styled.div`
@@ -37,6 +37,7 @@ export const PreviewWrapper = styled.div`
   position: relative;
   border: 1px solid #FFEB3B;
   border-radius: 8px;
+  overflow: hidden;
 `;
 
 export const PreviewBackdrop = styled.div`
@@ -69,12 +70,7 @@ export const PreviewImg = styled.img`
   left: 0;
   top: 0;
   border-radius: 8px;
-`;
-
-export const MobilePreviewImg = styled.img`
-  width: auto;
-  height: 100%;
-  object-fit: contain;
+  overflow: hidden;
 `;
 
 export const ProjectsList = styled.div`
@@ -88,7 +84,7 @@ export const ProjectsList = styled.div`
 `;
 
 export const MobileProjectsList = styled(ProjectsList)`
-  height: calc(30vh - 20px);
+  height: calc(100vh - 76px - 60px - 46.5px);
   width: 100%;
 `;
 

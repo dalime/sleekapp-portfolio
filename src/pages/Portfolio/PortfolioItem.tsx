@@ -1,4 +1,5 @@
 import React from "react";
+import { useMediaQuery } from "react-responsive";
 import { ListItem, ListItemAvatar, ListItemText, Avatar } from "@mui/material";
 import { Code, BrushTwoTone, Keyboard } from "@mui/icons-material";
 
@@ -23,6 +24,8 @@ function PortfolioItem({
   setHoveringItem,
   setActiveItem,
 }: Props) {
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+
   const { title, description, role } = portfolioItem;
 
   /**
@@ -63,7 +66,7 @@ function PortfolioItem({
       <ListItemText
         primary={title}
         secondary={description}
-        sx={{ textAlign: "right" }}
+        sx={{ textAlign: "right", fontSize: isMobile ? 2 : "auto" }}
       />
     </ListItem>
   );

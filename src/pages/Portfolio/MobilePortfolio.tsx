@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { List, Button } from "@mui/material";
 import { Close } from "@mui/icons-material";
 import { yellow } from "@mui/material/colors";
@@ -18,7 +18,6 @@ import {
   MobileWrapper,
   MobileProjectPreview,
   PreviewWrapper,
-  MobilePreviewImg,
   MobileProjectsList,
   MatrixBackdrop,
 } from "./index.styles";
@@ -33,6 +32,26 @@ function MobilePortfolio() {
     null
   );
   const [loading, setLoading] = useState<boolean>(false);
+  const [showPreview, setShowPreview] = useState<boolean>(false);
+  const [windowDimensions, setWindowDimensions] = useState<{
+    width: number;
+    height: number;
+  }>({
+    width: 0,
+    height: 0,
+  });
+
+  useEffect(() => {
+    const handleResize = (): void => {
+      setWindowDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   /**
    * Changes the active item to preview and kicks off the matrix animation to show
@@ -75,6 +94,8 @@ function MobilePortfolio() {
     });
   };
 
+  const { width, height } = windowDimensions;
+
   return (
     <Page>
       <Section padding={20} style={{ paddingTop: 0 }}>
@@ -89,62 +110,110 @@ function MobilePortfolio() {
           Portfolio
         </MainHeading>
         <MobileWrapper>
-          <MobileProjectPreview>
-            {loading ? (
-              <MatrixBackdrop src={MatrixBackground} alt="Matrix background" />
-            ) : activeItem && activeItem.imgSrc ? (
-              <PreviewWrapper>
-                {activeItem && <PreviewOverlay project={activeItem} />}
-                <MobilePreviewImg
-                  src={activeItem.imgSrc}
-                  alt="Preview of the project being hovered"
-                  loading="lazy"
-                />
-              </PreviewWrapper>
-            ) : (
-              <Placeholder isMobile />
-            )}
-          </MobileProjectPreview>
-          <MobileProjectsList>
-            <Subheading
-              sx={{
-                paddingRight: 2,
-                paddingTop: 2,
-                fontSize: 20,
-                marginBottom: 0,
-              }}
-            >
-              {activeItem ? (
-                <>
-                  <div
+          {showPreview ? (
+            <>
+              <Button onClick={() => setShowPreview(false)}>
+                {activeItem ? "Hide" : "Close"}
+              </Button>
+              <MobileProjectPreview>
+                {loading ? (
+                  <MatrixBackdrop
+                    src={MatrixBackground}
+                    alt="Matrix background"
+                  />
+                ) : activeItem && activeItem.imgSrc ? (
+                  <PreviewWrapper
                     style={{
                       display: "flex",
-                      flexDirection: "row",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      paddingLeft: 20,
-                      width: "100%",
+                      justifyContent: "center",
+                      overflow: "hidden",
                     }}
                   >
-                    {activeItem.title}
-                    <Button onClick={() => changeProject(null)}>
-                      <Close fontSize="medium" />
-                    </Button>
-                  </div>
-                  <ProjectDetails project={activeItem} isMobile />
-                </>
-              ) : (
-                "Projects"
-              )}
-            </Subheading>
-            {activeItem ? (
-              <></>
-            ) : (
-              <List dense={false} sx={{ width: "100%" }} className="fade-in">
-                {renderPortfolioItems()}
-              </List>
-            )}
-          </MobileProjectsList>
+                    {activeItem && <PreviewOverlay project={activeItem} />}
+                    <img
+                      src={
+                        activeItem.mobileImg && height > width
+                          ? activeItem.mobileImg
+                          : activeItem.imgSrc
+                      }
+                      alt="Preview of the project being hovered"
+                      loading="lazy"
+                      style={
+                        height > width
+                          ? {
+                              width: "auto",
+                              height:
+                                "calc(100vh - 76px - 65px - 46.5px) !important",
+                              objectFit: "contain",
+                              maxWidth: "none",
+                              display: "block",
+                              marginLeft: "auto",
+                              marginRight: "auto",
+                            }
+                          : {
+                              width: "100%",
+                              height: "auto",
+                              objectFit: "cover",
+                            }
+                      }
+                    />
+                  </PreviewWrapper>
+                ) : (
+                  <Placeholder isMobile />
+                )}
+              </MobileProjectPreview>
+            </>
+          ) : (
+            <>
+              <Button onClick={() => setShowPreview(true)}>
+                {activeItem ? "Preview" : "Demo"}
+              </Button>
+              <MobileProjectsList>
+                <Subheading
+                  sx={{
+                    paddingRight: 2,
+                    paddingTop: 2,
+                    fontSize: 20,
+                    marginBottom: 0,
+                  }}
+                >
+                  {activeItem ? (
+                    <>
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          justifyContent: "space-between",
+                          alignItems: "center",
+                          paddingLeft: 20,
+                          width: "100%",
+                        }}
+                      >
+                        {activeItem.title}
+                        <Button onClick={() => changeProject(null)}>
+                          <Close fontSize="medium" />
+                        </Button>
+                      </div>
+                      <ProjectDetails project={activeItem} isMobile />
+                    </>
+                  ) : (
+                    "Projects"
+                  )}
+                </Subheading>
+                {activeItem ? (
+                  <></>
+                ) : (
+                  <List
+                    dense={false}
+                    sx={{ width: "100%" }}
+                    className="fade-in"
+                  >
+                    {renderPortfolioItems()}
+                  </List>
+                )}
+              </MobileProjectsList>
+            </>
+          )}
         </MobileWrapper>
       </Section>
     </Page>

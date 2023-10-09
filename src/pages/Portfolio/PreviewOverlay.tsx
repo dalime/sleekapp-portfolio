@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useMediaQuery } from "react-responsive";
 import { Button } from "@mui/material";
 import { RemoveRedEye, Code, Download } from "@mui/icons-material";
 
@@ -17,6 +18,8 @@ interface Props {
 }
 
 function PreviewOverlay({ project }: Props) {
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+
   const [backdropClass, setBackdropClass] = useState<"fade-in" | "fade-out">(
     "fade-out"
   );
@@ -35,6 +38,7 @@ function PreviewOverlay({ project }: Props) {
             variant="contained"
             color="secondary"
             onClick={() => navigateToUrl(viewLink)}
+            sx={isMobile ? { fontSize: 11 } : {}}
           >
             <RemoveRedEye style={{ marginRight: 5 }} />
             View Project
@@ -45,6 +49,7 @@ function PreviewOverlay({ project }: Props) {
             variant="contained"
             color="secondary"
             onClick={() => navigateToUrl(codeLink)}
+            sx={isMobile ? { fontSize: 11 } : {}}
           >
             <Code style={{ marginRight: 5 }} />
             View Code
@@ -53,7 +58,10 @@ function PreviewOverlay({ project }: Props) {
         <Button
           variant="contained"
           color="primary"
-          sx={{ marginTop: 2 }}
+          sx={{
+            marginTop: 2,
+            fontSize: isMobile ? 11 : "auto",
+          }}
           onClick={() =>
             process.env.REACT_APP_CALL_LINK
               ? navigateToUrl(process.env.REACT_APP_CALL_LINK)

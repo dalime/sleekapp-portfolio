@@ -10,6 +10,7 @@ export interface PortfolioItemInterface {
   imgSrc: string;
   viewLink?: string;
   codeLink?: string;
+  mobileImg?: string;
 }
 
 interface RenderedObj {
