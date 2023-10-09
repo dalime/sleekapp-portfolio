@@ -115,11 +115,27 @@ function MobilePortfolio() {
               <Button onClick={() => setShowPreview(false)}>
                 {activeItem ? "Hide" : "Close"}
               </Button>
-              <MobileProjectPreview>
+              <MobileProjectPreview
+                style={
+                  loading
+                    ? {
+                        overflow: "hidden",
+                        display: "flex",
+                        justifyContent: "center",
+                      }
+                    : {}
+                }
+              >
                 {loading ? (
                   <MatrixBackdrop
                     src={MatrixBackground}
                     alt="Matrix background"
+                    style={{
+                      height: "100%",
+                      width: "auto",
+                      objectFit: "cover",
+                      maxWidth: "none",
+                    }}
                   />
                 ) : activeItem && activeItem.imgSrc ? (
                   <PreviewWrapper
@@ -127,6 +143,7 @@ function MobilePortfolio() {
                       display: "flex",
                       justifyContent: "center",
                       overflow: "hidden",
+                      border: "none",
                     }}
                   >
                     {activeItem && <PreviewOverlay project={activeItem} />}
