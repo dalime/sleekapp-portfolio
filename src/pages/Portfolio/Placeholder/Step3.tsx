@@ -12,7 +12,7 @@ import PlaceholderImage from "../../../assets/images/placeholder-image.jpeg";
 // Style
 import "./index.css";
 
-function Step3({ phoneDimensions }: StepProps) {
+function Step3({ phoneDimensions, isMobile, deviceHeight }: StepProps) {
   const { width, height } = phoneDimensions;
 
   return (
@@ -31,23 +31,23 @@ function Step3({ phoneDimensions }: StepProps) {
         style={{
           position: "absolute",
           left: "50%",
-          top: "50%",
-          transform: "translate(-50%, -50%)",
+          top: isMobile ? "20%" : "50%",
+          transform: isMobile ? "translateX(-50%)" : "translate(-50%, -50%)",
           textAlign: "center",
         }}
       >
         <div
           style={{
-            width: width - 30,
-            marginLeft: 15,
-            marginRight: 15,
+            width: width - (isMobile ? 10 : 30),
+            marginLeft: isMobile ? 5 : 15,
+            marginRight: isMobile ? 5 : 15,
           }}
           className="fade-in"
         >
           <Typography
             variant="h2"
             style={{
-              fontSize: 30,
+              fontSize: isMobile ? 11 : 30,
               fontWeight: 600,
               color: blue[500],
               textAlign: "center",
@@ -55,13 +55,24 @@ function Step3({ phoneDimensions }: StepProps) {
           >
             New App
           </Typography>
-          <p style={{ color: grey[500], textAlign: "center" }}>
+          <Typography
+            variant="body1"
+            style={{
+              color: grey[500],
+              textAlign: "center",
+              fontSize: isMobile ? 9 : "auto",
+            }}
+          >
             Let's build something cool together!
-          </p>
+          </Typography>
           <img
             src={PlaceholderImage}
             alt="Placeholder"
-            style={{ width: 100, height: "auto", borderRadius: 8 }}
+            style={{
+              width: isMobile ? 30 : 100,
+              height: "auto",
+              borderRadius: 8,
+            }}
           />
         </div>
       </div>

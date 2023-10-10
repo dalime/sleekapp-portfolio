@@ -28,6 +28,13 @@ function Placeholder({ isMobile }: Props) {
     width: 0,
     height: 0,
   });
+  const [windowDimensions, setWindowDimensions] = useState<{
+    width: number;
+    height: number;
+  }>({
+    width: 0,
+    height: 0,
+  });
   const [rebuild, setRebuild] = useState<boolean>(true);
 
   /**
@@ -46,13 +53,18 @@ function Placeholder({ isMobile }: Props) {
 
   useEffect(() => {
     const handleResize = (): void => {
+      const isSmallScreen = window.innerHeight < 600 || window.innerWidth < 768;
       const newHeight = isMobile
         ? window.innerHeight * 0.75 - 76 - 65 - 50
-        : window.innerHeight - 95 - 40 - 90.02 - 50 - 40;
+        : window.innerHeight - 95 - 40 - 90.02 - 50 - (isSmallScreen ? 0 : 40);
       const newWidth = (newHeight * 1298) / 2592;
       setPhoneDimensions({
         width: newWidth,
         height: newHeight,
+      });
+      setWindowDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight,
       });
     };
     handleResize();
@@ -98,19 +110,38 @@ function Placeholder({ isMobile }: Props) {
     <Wrapper>
       <Body style={{ background: "transparent" }}>
         {step === 7 ? (
-          <Step7 />
+          <Step7 deviceHeight={windowDimensions.height} />
         ) : step === 6 ? (
-          <Step6 />
+          <Step6 deviceHeight={windowDimensions.height} />
         ) : step === 5 ? (
-          <Step5 />
+          <Step5
+            isMobile={isMobile || false}
+            deviceHeight={windowDimensions.height}
+          />
         ) : step === 4 ? (
-          <Step4 phoneDimensions={phoneDimensions} />
+          <Step4
+            phoneDimensions={phoneDimensions}
+            isMobile={isMobile || false}
+            deviceHeight={windowDimensions.height}
+          />
         ) : step === 3 ? (
-          <Step3 phoneDimensions={phoneDimensions} />
+          <Step3
+            phoneDimensions={phoneDimensions}
+            isMobile={isMobile || false}
+            deviceHeight={windowDimensions.height}
+          />
         ) : step === 2 ? (
-          <Step2 phoneDimensions={phoneDimensions} />
+          <Step2
+            phoneDimensions={phoneDimensions}
+            isMobile={isMobile || false}
+            deviceHeight={windowDimensions.height}
+          />
         ) : step === 1 ? (
-          <Step1 phoneDimensions={phoneDimensions} />
+          <Step1
+            phoneDimensions={phoneDimensions}
+            isMobile={isMobile || false}
+            deviceHeight={windowDimensions.height}
+          />
         ) : (
           <></>
         )}

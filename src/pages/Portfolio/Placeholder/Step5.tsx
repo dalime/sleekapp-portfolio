@@ -2,10 +2,13 @@ import React from "react";
 import { CircularProgress } from "@mui/material";
 import { grey } from "@mui/material/colors";
 
+// Types
+import { LastStepProps } from "./types";
+
 // Style
 import "./index.css";
 
-function Step5() {
+function Step5({ isMobile }: LastStepProps) {
   return (
     <div
       style={{
@@ -24,7 +27,10 @@ function Step5() {
           textAlign: "center",
         }}
       >
-        <CircularProgress size={200} style={{ color: grey[200] }} />
+        <CircularProgress
+          size={isMobile ? 50 : 200}
+          style={{ color: grey[200] }}
+        />
       </div>
     </div>
   );

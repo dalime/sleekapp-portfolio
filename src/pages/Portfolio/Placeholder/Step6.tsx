@@ -3,11 +3,16 @@ import { useMediaQuery } from "react-responsive";
 import { Upload } from "@mui/icons-material";
 import { grey } from "@mui/material/colors";
 
+// Types
+import { BaseProps } from "./types";
+
 // Style
 import "./index.css";
 
-function Step6() {
+function Step6({ deviceHeight }: BaseProps) {
   const mobile = useMediaQuery({ maxWidth: 768 });
+
+  const iconSize = mobile ? (deviceHeight > 600 ? 100 : 50) : 200;
 
   return (
     <div
@@ -30,7 +35,7 @@ function Step6() {
         <Upload
           fontSize="large"
           style={{
-            width: mobile ? 100 : 200,
+            width: iconSize,
             height: "auto",
             color: grey[200],
           }}

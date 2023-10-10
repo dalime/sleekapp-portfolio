@@ -9,16 +9,17 @@ import PhoneTransparent from "../../../assets/images/iphone-frame-transparent.pn
 // Style
 import "./index.css";
 
-function Step2({ phoneDimensions }: StepProps) {
-  const { width } = phoneDimensions;
+function Step2({ phoneDimensions, isMobile, deviceHeight }: StepProps) {
+  const { width, height } = phoneDimensions;
 
   return (
     <div
       style={{
-        height: "100%",
+        width: "100%",
+        height,
         background: "transparent",
         backgroundImage: `url(${PhoneTransparent}`,
-        backgroundSize: "auto 100%",
+        backgroundSize: `${width}px ${height}px`,
         backgroundRepeat: "no-repeat",
         backgroundPosition: "50% 0",
       }}
@@ -29,13 +30,27 @@ function Step2({ phoneDimensions }: StepProps) {
           left: "50%",
           top: 50,
           transform: "translateX(-50%)",
-          width: width - 30,
-          marginLeft: 15,
+          width: width - (isMobile ? 10 : 30),
+          marginLeft: isMobile ? 5 : 15,
         }}
         className="fade-in"
       >
-        <h2 style={{ color: "#FFFFFF" }}>New App</h2>
-        <p style={{ color: "#FFFFFF" }}>Let's build something cool together!</p>
+        <h2
+          style={{
+            color: "#FFFFFF",
+            fontSize: isMobile ? 11 : "auto",
+          }}
+        >
+          New App
+        </h2>
+        <p
+          style={{
+            color: "#FFFFFF",
+            fontSize: isMobile ? 9 : "auto",
+          }}
+        >
+          Let's build something cool together!
+        </p>
       </div>
     </div>
   );

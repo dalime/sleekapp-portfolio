@@ -5,33 +5,58 @@ import { Button } from "@mui/material";
 import { AppShortcut, Paid } from "@mui/icons-material";
 import { green, grey } from "@mui/material/colors";
 
+// Types
+import { BaseProps } from "./types";
+
 // Helpers
 import { navigateToUrl } from "../../../helpers";
 
 // Style
 import "./index.css";
 
-function Step7() {
+function Step7({ deviceHeight }: BaseProps) {
+  // Hooks
   const mobile = useMediaQuery({ maxWidth: 768 });
 
+  // State
   const [pulse, setPulse] = useState<boolean>(false);
   const [showCTA, setShowCTA] = useState<boolean>(false);
 
+  const tensionAndSpring = mobile
+    ? deviceHeight > 600
+      ? 15
+      : deviceHeight > 700
+      ? 20
+      : deviceHeight > 800
+      ? 30
+      : 10
+    : 15;
+
+  // React Spring
   const { y } = useSpring({
     from: { y: 0 },
-    to: { y: pulse ? 0 : mobile ? 10 : 15 },
+    to: { y: pulse ? 0 : tensionAndSpring },
     onRest: () => setPulse(!pulse),
     config: {
-      tension: mobile ? 10 : 15,
+      tension: tensionAndSpring,
       friction: 0,
     },
   });
 
+  // Effects
   useEffect(() => {
     setTimeout(() => {
       setShowCTA(true);
     }, 1500);
   }, []);
+
+  const animatedIconSize = mobile
+    ? deviceHeight > 650
+      ? 100
+      : deviceHeight < 560
+      ? 30
+      : 50
+    : 150;
 
   return (
     <div
@@ -54,7 +79,7 @@ function Step7() {
         <AppShortcut
           fontSize="large"
           style={{
-            width: mobile ? 50 : 150,
+            width: mobile ? (deviceHeight > 700 ? 100 : 50) : 150,
             height: "auto",
             color: grey[200],
             marginBottom: 30,
@@ -76,14 +101,14 @@ function Step7() {
               <Paid
                 fontSize="large"
                 style={{
-                  width: mobile ? 50 : 150,
+                  width: animatedIconSize,
                   height: "auto",
                   color: green[500],
                 }}
               />
             }
             style={{
-              width: mobile ? 50 : 150,
+              width: animatedIconSize,
               height: "auto",
               transform: y.to((value) => `translate3d(0,${value}px,0)`),
               margin: "auto",
@@ -93,7 +118,10 @@ function Step7() {
             color="primary"
             variant="contained"
             className="pulse"
-            sx={{ marginTop: 7, fontSize: mobile ? 11 : "auto" }}
+            sx={{
+              marginTop: deviceHeight < 515 ? 3 : deviceHeight < 560 ? 5 : 7,
+              fontSize: mobile ? (deviceHeight < 560 ? 9 : 11) : "auto",
+            }}
             onClick={() =>
               process.env.REACT_APP_CALL_LINK
                 ? navigateToUrl(process.env.REACT_APP_CALL_LINK)
