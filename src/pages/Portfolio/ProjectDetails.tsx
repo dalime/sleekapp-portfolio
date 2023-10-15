@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import { Button, ButtonGroup } from "@mui/material";
-import { Star, Code, Web, Call } from "@mui/icons-material";
+import { Code, Web, Call } from "@mui/icons-material";
 import { yellow, grey } from "@mui/material/colors";
 
 // Types
@@ -10,10 +10,10 @@ import { PortfolioItemInterface } from "../../types";
 import { navigateToUrl } from "../../helpers";
 
 // Components
-import { H3, H4, Paragraph } from "../../components";
+import { H3, H4, Paragraph, StarRating } from "../../components";
 
 // Styles
-import { ProjectDetailWrapper, StarsWrapper } from "./index.styles";
+import { ProjectDetailWrapper } from "./index.styles";
 import "./index.css";
 
 interface SubHeadingProps {
@@ -121,11 +121,7 @@ function ProjectDetails({ project, isMobile }: Props) {
       {feedback && (
         <>
           <SubHeading isMobile={isMobile || false}>Feedback</SubHeading>
-          <StarsWrapper>
-            {[...Array(5)].map((_, i) => (
-              <Star key={`star-${i}`} sx={{ color: yellow[500] }} />
-            ))}
-          </StarsWrapper>
+          <StarRating rating={5} />
           <BodyText isMobile={isMobile || false}>{feedback}</BodyText>
         </>
       )}

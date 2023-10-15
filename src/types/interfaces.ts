@@ -122,3 +122,11 @@ export interface WPPost {
         curies: {name: string; href: string; templated: boolean;}[];
     }
 }
+
+export interface ClientReview {
+  name: string;
+  company: string;
+  rating: number;
+  feedback: string;
+  clientImg: string;
+}

@@ -95,14 +95,6 @@ export const ProjectDetailWrapper = styled.div`
   padding: 20px;
 `;
 
-export const StarsWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  margin-bottom: 20px;
-`;
-
 export const MatrixBackdrop = styled.img`
   width: auto;
   max-width: 100%;
