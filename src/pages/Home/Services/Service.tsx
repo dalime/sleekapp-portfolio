@@ -52,8 +52,8 @@ function Service({ title, animationName, description }: Props) {
         justifyContent: "flex-start",
         alignItems: "center",
         height: 500,
-        marginLeft: isMobile ? "5%" : isSmallScreen ? "25%" : "auto",
-        marginBottom: isSmallScreen ? 20 : "auto",
+        marginLeft: 0,
+        marginBottom: isSmallScreen ? 20 : 0,
       }}
     >
       <Typography
