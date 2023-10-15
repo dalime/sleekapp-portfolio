@@ -1,20 +1,13 @@
 import React from "react";
 
+// Types
+import { PortfolioItemInterface } from "../../types";
+
 // Components
 import { PortfolioItem, Section, Subheading } from "../../components";
 
 // Styles
 import { CaseStudiesWrapper } from "./index.styles";
-
-interface PortfolioItemInterface {
-  title: string;
-  description: string;
-  role: string;
-  feedback: string;
-  imgSrc: string;
-  viewLink?: string;
-  codeLink?: string;
-}
 
 function CaseStudies() {
   const portfolioItem1 = process.env.REACT_APP_PORTFOLIO_ITEM_1

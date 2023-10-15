@@ -7,9 +7,10 @@ interface Props {
   children?: ReactNode | ReactNode[];
   style?: CSSProperties;
   sx?: SxProps;
+  className?: string;
 }
 
-function Backdrop({ width, height, children, style, sx }: Props) {
+function Backdrop({ width, height, children, style, sx, className }: Props) {
   const baseSx: SxProps = {
     padding: 4,
     borderRadius: 3,
@@ -19,7 +20,11 @@ function Backdrop({ width, height, children, style, sx }: Props) {
   };
 
   return (
-    <Paper sx={sx ? { ...baseSx, ...sx } : baseSx} style={style || {}}>
+    <Paper
+      sx={sx ? { ...baseSx, ...sx } : baseSx}
+      style={style || {}}
+      className={className || ""}
+    >
       {children}
     </Paper>
   );
