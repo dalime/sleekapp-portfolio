@@ -4,7 +4,7 @@ import { render, screen } from "@testing-library/react";
 import HeaderMenu from "./index";
 
 describe("Desktop navigation", () => {
-  render(<HeaderMenu />);
+  render(<HeaderMenu opacity={0} />);
 
   it("Renders", () => {
     const headerMenu = screen.getByTestId("desktop-navigation");

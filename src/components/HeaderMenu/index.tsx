@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useMediaQuery } from "react-responsive";
 
 // Components
@@ -12,26 +12,12 @@ import "./index.css";
 import SleekAppLogo from "../../assets/images/sleekapp-logo.png";
 import MobileMenu from "../MobileMenu";
 
-function HeaderMenu() {
-  const [scrollY, setScrollY] = useState<number>(0);
+interface Props {
+  opacity: number;
+}
+
+function HeaderMenu({ opacity }: Props) {
   const isMobile = useMediaQuery({ maxWidth: 768 });
-
-  /**
-   * Sets scrollY state to scroll position to smoothly show linear gradient background
-   */
-  const handleScroll = () => {
-    setScrollY(window.scrollY);
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  const navbarHeight = 70;
-  const opacity = Math.min(scrollY / navbarHeight, 1);
 
   const HeaderMenuBody: JSX.Element = (
     <>
@@ -54,7 +40,7 @@ function HeaderMenu() {
       style={{
         background: `linear-gradient(to bottom, rgba(14, 14, 14, ${opacity}) 0%, rgba(14, 14, 14, ${opacity}) 100%)`,
         justifyContent: isMobile ? "flex-end" : "space-between",
-        width: isMobile ? "100vw" : "calc(100vw - 40px)",
+        width: "100vw",
       }}
     >
       {isMobile ? <MobileMenu /> : HeaderMenuBody}

@@ -5,6 +5,7 @@ export const Div = styled.div`
   height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
+  position: relative;
 `;
 
 export const Body = styled.div`
