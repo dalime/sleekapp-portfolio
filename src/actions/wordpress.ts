@@ -4,21 +4,26 @@ import WPAPI from 'wpapi';
 import { WPPost } from '../types';
 
 // Initialize WPAPI
-const wp = new WPAPI({ endpoint: 'https://sleekapp.io/wp-json' });
+const wpAgency = new WPAPI({ endpoint: `${process.env.REACT_APP_AGENCY_WP_URL}/wp-json` });
+// Initialize WPAPI
+const wpPersonal = new WPAPI({ endpoint: `${process.env.REACT_APP_PERSONAL_WP_URL}/wp-json` });
 
 /**
  * Fetches blog posts from WP backend
  * @returns Promise<WPPost[] | null>
  */
-export const fetchBlogPosts = (): Promise<WPPost[] | null> => {
-  return new Promise((resolve, reject) => {
-    wp.posts().then(( wpPosts: WPPost[] ) => {
-      console.log('Fetched WP Posts', wpPosts);
-      resolve(wpPosts);
-    }).catch(( err ) => {
-      console.error("WP Fetch Error", err);
-      reject(null);
-    });
+export const fetchBlogPosts = async (): Promise<WPPost[] | null> => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const [agencyPosts, personalPosts] = await Promise.all([
+        wpAgency.posts(),
+        wpPersonal.posts(),
+      ]);
+      const blogPosts = [ ...agencyPosts, ...personalPosts ];
+      resolve(blogPosts);
+    } catch (err) {
+      console.error('Fetch blog posts error: ', err);
+      reject(err);
+    }
   });
 };
-
