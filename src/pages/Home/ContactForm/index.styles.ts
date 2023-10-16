@@ -18,6 +18,11 @@ export const Separator = styled.div`
   width: 50%;
   margin-left: 25%;
   margin-bottom: 30px;
+
+  @media (max-width: 768px) {
+    width: 75%;
+    margin-left: 12.5%;
+  }
 `;
 
 export const Line = styled.hr`
@@ -29,4 +34,12 @@ export const LogoImg = styled.img`
   width: 40px;
   height: auto;
   object-fit: contain;
+  margin-left: 20px;
+  margin-right: 20px;
+
+  @media (max-width: 768px) {
+    width: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
 `;
