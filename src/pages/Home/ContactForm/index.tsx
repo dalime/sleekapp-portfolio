@@ -59,7 +59,12 @@ function ContactForm() {
   };
 
   return (
-    <Section>
+    <Section
+      style={{
+        paddingTop: "7.5%",
+        paddingBottom: "7.5%",
+      }}
+    >
       <H3 style={{ textAlign: "center" }}>Or...</H3>
       <Subheading sx={{ marginBottom: 1 }}>Leave Us A Message</Subheading>
       <Form onSubmit={handleSubmit}>

@@ -49,6 +49,8 @@ function Home() {
           alignItems: "center",
           paddingLeft: "10%",
           paddingRight: "10%",
+          paddingTop: "7.5%",
+          paddingBottom: "7.5%",
         }}
       >
         <Subheading>A Detailed Case Study</Subheading>

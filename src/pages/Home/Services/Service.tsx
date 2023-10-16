@@ -1,7 +1,11 @@
 import React from "react";
 import Lottie from "react-lottie";
 import { useMediaQuery } from "react-responsive";
+import { useNavigate } from "react-router-dom";
 import { Typography, Button } from "@mui/material";
+
+// Helpers
+import { navigateToUrl } from "../../../helpers";
 
 // Components
 import { Backdrop } from "../../../components";
@@ -18,9 +22,15 @@ interface Props {
 }
 
 function Service({ title, animationName, description }: Props) {
+  // Hooks
   const isSmallScreen = useMediaQuery({ maxWidth: 1100 });
   const isMobile = useMediaQuery({ maxWidth: 768 });
+  const navigate = useNavigate();
 
+  /**
+   * Picks the lottie animation JSON based on the animation name
+   * @returns JSON | null
+   */
   const pickAnimation = () => {
     switch (animationName) {
       case "design":
@@ -84,7 +94,9 @@ function Service({ title, animationName, description }: Props) {
       <Typography variant="body2" sx={{ marginTop: 2, marginBottom: 2 }}>
         {description}
       </Typography>
-      <Button variant="contained">See More</Button>
+      <Button variant="contained" onClick={() => navigate("portfolio")}>
+        See More
+      </Button>
     </Backdrop>
   );
 }

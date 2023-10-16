@@ -55,7 +55,12 @@ function Reviews() {
   ];
 
   return (
-    <Section>
+    <Section
+      style={{
+        paddingTop: "7.5%",
+        paddingBottom: "7.5%",
+      }}
+    >
       <Subheading>What Our Clients Say</Subheading>
       <Slider
         classNames={horizontalCss}
