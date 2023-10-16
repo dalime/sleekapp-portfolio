@@ -1,0 +1,130 @@
+import React, { CSSProperties, useState } from "react";
+import { useMediaQuery } from "react-responsive";
+import {
+  FormControl,
+  InputLabel,
+  Input,
+  FormHelperText,
+  FormLabel,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
+  TextField,
+  Button,
+} from "@mui/material";
+
+// Components
+import { Section, Subheading, H3, Paragraph } from "../../../components";
+
+// Styles
+import { Form } from "./index.styles";
+
+function ContactForm() {
+  // Hooks
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+
+  // State
+  const [firstName, setFirstName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [service, setService] = useState<
+    "design" | "development" | "copywriting"
+  >("development");
+  const [message, setMessage] = useState<string>("");
+
+  // Component Styles
+  const formControlStyle: CSSProperties = {
+    width: isMobile ? "100%" : "50%",
+    justifyContent: "center",
+    marginTop: 16,
+    marginBottom: 16,
+  };
+
+  return (
+    <Section>
+      <H3 style={{ textAlign: "center" }}>Or...</H3>
+      <Subheading sx={{ marginBottom: 1 }}>Leave Us A Message</Subheading>
+      <Form>
+        <FormControl style={formControlStyle} required>
+          <InputLabel htmlFor="first-name">Your First Name</InputLabel>
+          <Input
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            id="first-name"
+            aria-describedby="first-name-helper-text"
+          />
+        </FormControl>
+        <FormControl style={formControlStyle} required>
+          <InputLabel htmlFor="email">Email address</InputLabel>
+          <Input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            id="email"
+            aria-describedby="email-helper-text"
+          />
+          <FormHelperText id="email-helper-text">
+            We'll send you a confirmation email.
+          </FormHelperText>
+        </FormControl>
+        <FormControl style={formControlStyle}>
+          <FormLabel id="service-group-label">
+            Which Service Are You Interested In? (Optional)
+          </FormLabel>
+          <RadioGroup
+            aria-labelledby="service-group-label"
+            defaultValue="develompent"
+            value={service}
+            onChange={(e) =>
+              setService(
+                e.target.value as "design" | "development" | "copywriting"
+              )
+            }
+            name="service-group"
+          >
+            <FormControlLabel
+              value="design"
+              control={<Radio />}
+              label="Design"
+            />
+            <FormControlLabel
+              value="development"
+              control={<Radio />}
+              label="Development"
+            />
+            <FormControlLabel
+              value="copywriting"
+              control={<Radio />}
+              label="Copywriting"
+            />
+          </RadioGroup>
+        </FormControl>
+        <FormControl style={formControlStyle} required>
+          <InputLabel htmlFor="message">Message</InputLabel>
+          <TextField
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            multiline
+            rows={5}
+            id="message"
+            aria-describedby="message-helper-text"
+          />
+          <FormHelperText id="message-helper-text">
+            Please describe your project in detail.
+          </FormHelperText>
+        </FormControl>
+        <Button
+          type="submit"
+          color="primary"
+          variant="outlined"
+          sx={{ marginTop: 3, padding: 1.5 }}
+        >
+          Submit
+        </Button>
+      </Form>
+      <Paragraph sx={{ textAlign: "center", marginTop: 3 }}>
+        We look forward to working with you.
+      </Paragraph>
+    </Section>
+  );
+}
+
+export default ContactForm;

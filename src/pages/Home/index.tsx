@@ -4,6 +4,7 @@ import React from "react";
 import Hero from "./Hero";
 import Services from "./Services";
 import Reviews from "./Reviews";
+import ContactForm from "./ContactForm";
 import CTASection from "./CTASection";
 import { H3, Page, Paragraph, Section, Subheading } from "../../components";
 
@@ -44,6 +45,7 @@ function Home() {
         ></iframe>
       </Section>
       <CTASection />
+      <ContactForm />
     </Page>
   );
 }
