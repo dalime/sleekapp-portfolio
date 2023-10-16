@@ -34,6 +34,11 @@ function Home() {
   // Set paragraph width based on mobile or not
   const paragraphWidth = windowWidth <= 500 ? windowWidth * 0.8 : 500;
 
+  const videoWidth =
+    windowWidth < 768 ? windowWidth * 0.8 : Math.min(560, windowWidth);
+  const videoHeight =
+    windowWidth < 768 ? windowWidth : (videoWidth * 315) / 560;
+
   return (
     <Page testId="home-page">
       <Hero />
@@ -54,7 +59,9 @@ function Home() {
         }}
       >
         <Subheading>A Detailed Case Study</Subheading>
-        <H3>The Ask: Build a 2D Game Board with React</H3>
+        <H3 style={windowWidth < 768 ? { textAlign: "center" } : {}}>
+          Building a 2D Game Board with React
+        </H3>
         <Paragraph
           sx={{ width: paragraphWidth, marginBottom: 2, marginTop: 3 }}
         >
@@ -68,10 +75,10 @@ function Home() {
           explanation of how we approached the problem, step by step in a video.
         </Paragraph>
         <iframe
-          width="560"
-          height="315"
+          width={videoWidth}
+          height={videoHeight}
           src="https://www.youtube.com/embed/PjLBs2vAgl8?si=h-MtlY631oOtKxIj"
-          title="YouTube video player"
+          title="A Detailed YouTube Case Study"
           frameBorder={0}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
