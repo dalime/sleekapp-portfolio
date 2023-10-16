@@ -14,10 +14,13 @@ import {
 } from "@mui/material";
 
 // Components
-import { Section, Subheading, H3, Paragraph } from "../../../components";
+import { Section, Subheading, Paragraph } from "../../../components";
 
 // Styles
-import { Form } from "./index.styles";
+import { Form, Separator, Line, LogoImg } from "./index.styles";
+
+// Assets
+import SleekAppLogo from "../../../assets/images/sleekapp-logo.png";
 
 function ContactForm() {
   // Hooks
@@ -65,7 +68,11 @@ function ContactForm() {
         paddingBottom: "7.5%",
       }}
     >
-      <H3 style={{ textAlign: "center" }}>Or...</H3>
+      <Separator>
+        <Line />
+        <LogoImg src={SleekAppLogo} alt="Sleek App" />
+        <Line />
+      </Separator>
       <Subheading sx={{ marginBottom: 1 }}>Leave Us A Message</Subheading>
       <Form onSubmit={handleSubmit}>
         <FormControl style={formControlStyle} required>
@@ -145,7 +152,7 @@ function ContactForm() {
         </Button>
       </Form>
       <Paragraph sx={{ textAlign: "center", marginTop: 3 }}>
-        We look forward to working with you.
+        We'll get back to you shortly.
       </Paragraph>
     </Section>
   );
