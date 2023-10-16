@@ -4,9 +4,6 @@ import { useMediaQuery } from "react-responsive";
 import { useNavigate } from "react-router-dom";
 import { Typography, Button } from "@mui/material";
 
-// Helpers
-import { navigateToUrl } from "../../../helpers";
-
 // Components
 import { Backdrop } from "../../../components";
 
