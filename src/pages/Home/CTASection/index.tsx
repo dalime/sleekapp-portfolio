@@ -14,6 +14,8 @@ function CTASection() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        paddingTop: 20,
+        paddingBottom: 20,
       }}
     >
       <Button
