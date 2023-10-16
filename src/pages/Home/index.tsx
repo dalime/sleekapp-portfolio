@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect, ReactNode } from "react";
+import { yellow } from "@mui/material/colors";
 
 // Components
 import Hero from "./Hero";
@@ -8,7 +9,31 @@ import ContactForm from "./ContactForm";
 import CTASection from "./CTASection";
 import { H3, Page, Paragraph, Section, Subheading } from "../../components";
 
+interface GoldHighlightProps {
+  children?: ReactNode | ReactNode[];
+}
+
+function GoldHighlight({ children }: GoldHighlightProps): JSX.Element {
+  return <span style={{ color: yellow[500] }}>{children}</span>;
+}
+
 function Home() {
+  // State
+  const [windowWidth, setWindowWidth] = useState<number>(0);
+
+  // Effects
+  useEffect(() => {
+    const handleResize = (): void => {
+      setWindowWidth(window.innerWidth);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Set paragraph width based on mobile or not
+  const paragraphWidth = windowWidth <= 500 ? windowWidth * 0.8 : 500;
+
   return (
     <Page testId="home-page">
       <Hero />
@@ -26,13 +51,19 @@ function Home() {
           paddingRight: "10%",
         }}
       >
-        <Subheading>Case Study</Subheading>
+        <Subheading>A Detailed Case Study</Subheading>
         <H3>The Ask: Build a 2D Game Board with React</H3>
-        <Paragraph sx={{ marginBottom: 2 }}>
-          We were taskd with creating a 2D lofi game with React. The game is
-          meant to be played like a board game with selectable board zones and
-          the board is meant to be zoomable / pinch and zoom. This is how we
-          approached our problem, step by step.
+        <Paragraph
+          sx={{ width: paragraphWidth, marginBottom: 2, marginTop: 3 }}
+        >
+          <GoldHighlight>The Ask: </GoldHighlight>We were tasked with creating a
+          2D lofi game with React. The game is meant to be played like a board
+          game with selectable board zones and the board is meant to be zoomable
+          / pinch and zoom.
+        </Paragraph>
+        <Paragraph sx={{ width: paragraphWidth, marginBottom: 3 }}>
+          <GoldHighlight>Our Approach: </GoldHighlight>Here is a detailed
+          explanation of how we approached the problem, step by step in a video.
         </Paragraph>
         <iframe
           width="560"
