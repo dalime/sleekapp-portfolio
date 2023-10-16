@@ -39,11 +39,30 @@ function ContactForm() {
     marginBottom: 16,
   };
 
+  /**
+   * Handles the form submission and passes values to email SMTP server
+   * @param e React.FormEvent<HTMLFormElement>
+   */
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+    console.log(
+      "Sending new message!",
+      "First Name: ",
+      firstName,
+      "Email: ",
+      email,
+      "Service: ",
+      service,
+      "Message: ",
+      message
+    );
+  };
+
   return (
     <Section>
       <H3 style={{ textAlign: "center" }}>Or...</H3>
       <Subheading sx={{ marginBottom: 1 }}>Leave Us A Message</Subheading>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <FormControl style={formControlStyle} required>
           <InputLabel htmlFor="first-name">Your First Name</InputLabel>
           <Input
@@ -98,7 +117,6 @@ function ContactForm() {
           </RadioGroup>
         </FormControl>
         <FormControl style={formControlStyle} required>
-          <InputLabel htmlFor="message">Message</InputLabel>
           <TextField
             value={message}
             onChange={(e) => setMessage(e.target.value)}
@@ -106,6 +124,7 @@ function ContactForm() {
             rows={5}
             id="message"
             aria-describedby="message-helper-text"
+            placeholder="Message*"
           />
           <FormHelperText id="message-helper-text">
             Please describe your project in detail.
