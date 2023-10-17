@@ -10,15 +10,23 @@ import { Wrapper } from "./index.styles";
 
 function Services() {
   const isSmallScreen = useMediaQuery({ maxWidth: 1100 });
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+
+  const paddingSide = isMobile
+    ? { paddingLeft: "10%", paddingRight: "10%" }
+    : {};
 
   return (
     <Section
       style={{
+        ...paddingSide,
         paddingTop: "7.5%",
         paddingBottom: "7.5%",
       }}
     >
-      <Subheading>A Comprehensive Development Agency</Subheading>
+      <Subheading sx={isMobile ? { fontSize: 30 } : {}}>
+        A Comprehensive Development Agency
+      </Subheading>
       <Wrapper style={{ flexDirection: isSmallScreen ? "column" : "row" }}>
         <Service
           title="Design"

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Lottie from "react-lottie";
 import { useMediaQuery } from "react-responsive";
 import { useNavigate } from "react-router-dom";
@@ -22,7 +22,21 @@ function Service({ title, animationName, description }: Props) {
   // Hooks
   const isSmallScreen = useMediaQuery({ maxWidth: 1100 });
   const isMobile = useMediaQuery({ maxWidth: 768 });
+  const isSuperSmall = useMediaQuery({ maxWidth: 320 });
   const navigate = useNavigate();
+
+  // State
+  const [windowWidth, setWindowWidth] = useState<number>(0);
+
+  // Effects
+  useEffect(() => {
+    const handleResize = (): void => {
+      setWindowWidth(window.innerWidth);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   /**
    * Picks the lottie animation JSON based on the animation name
@@ -41,6 +55,7 @@ function Service({ title, animationName, description }: Props) {
     }
   };
 
+  // Options for Lottie animation
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -50,16 +65,30 @@ function Service({ title, animationName, description }: Props) {
     },
   };
 
+  const imageWidth = isSuperSmall
+    ? windowWidth * 0.5
+    : isMobile
+    ? Math.min(windowWidth * 0.6, 300)
+    : 300;
+
   return (
     <Backdrop
-      width={isMobile ? "90%" : isSmallScreen ? "50%" : "calc(100% / 3 - 5%)"}
+      width={
+        isSuperSmall
+          ? "90%"
+          : isMobile
+          ? "80%"
+          : isSmallScreen
+          ? "50%"
+          : "calc(100% / 3 - 5%)"
+      }
       style={{
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-start",
         alignItems: "center",
         height: 500,
-        marginLeft: 0,
+        marginLeft: isSuperSmall ? "5%" : isMobile ? "10%" : 0,
         marginBottom: isSmallScreen ? 20 : 0,
       }}
     >
@@ -73,16 +102,16 @@ function Service({ title, animationName, description }: Props) {
       {animationName ? (
         <Lottie
           options={defaultOptions}
-          height={300}
-          width={300}
+          height={imageWidth}
+          width={imageWidth}
           isStopped={false}
           isPaused={false}
         />
       ) : (
         <div
           style={{
-            width: 300,
-            height: 300,
+            width: imageWidth,
+            height: imageWidth,
             border: "1px solid #e0e0e0",
             borderRadius: 8,
           }}
