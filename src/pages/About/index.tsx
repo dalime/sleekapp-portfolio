@@ -7,6 +7,7 @@ import { yellow } from "@mui/material/colors";
 import { navigateToUrl } from "../../helpers";
 
 // Components
+import Process from "./Process";
 import {
   Page,
   Section,
@@ -151,9 +152,11 @@ function About() {
           something as complicated as developing an app a series of processes.
           Here is how we will handle business.
         </Paragraph>
-        <OptionsWrapper style={{ marginTop: 30 }}>
-          {renderJourneyStep()}
-        </OptionsWrapper>
+        <Process>
+          <OptionsWrapper style={{ marginTop: 30 }}>
+            {renderJourneyStep()}
+          </OptionsWrapper>
+        </Process>
       </Section>
       <Section
         style={{
