@@ -22,5 +22,5 @@ export const PreviewWrapper = styled.div`
   padding: 20px;
   border: none;
   border-radius: 8px;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  box-shadow: rgba(255, 241, 118, 0.2) 0px 8px 24px;
 `;
