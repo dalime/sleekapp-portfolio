@@ -3,6 +3,9 @@ import { useMediaQuery } from "react-responsive";
 import { Button } from "@mui/material";
 import { yellow } from "@mui/material/colors";
 
+// Helpers
+import { navigateToUrl } from "../../helpers";
+
 // Components
 import {
   Page,
@@ -22,7 +25,6 @@ import {
   TechText,
   TeamMemberImg,
 } from "./index.styles";
-import { navigateToUrl } from "../../helpers";
 
 function About() {
   // Hooks
@@ -30,7 +32,7 @@ function About() {
 
   // State
   const [techHovering, setTechHovering] = useState<string | null>(null);
-  const [started, setStarted] = useState<boolean>(false);
+  const [journeyStep, setJourneyStep] = useState<number>(0);
 
   // Style
   const mainStyle = { color: yellow[300], textAlign: "center" };
@@ -42,6 +44,82 @@ function About() {
     marginTop: 2,
   };
 
+  /**
+   * Renders the elements for the current step in the journey
+   * @returns JSX.Element
+   */
+  const renderJourneyStep = (): JSX.Element => {
+    switch (journeyStep) {
+      case 1:
+        // Zoom Call
+        return <Button onClick={() => setJourneyStep(2)}>Zoom Call</Button>;
+      case 2:
+        // Design Rounds
+        return <Button onClick={() => setJourneyStep(3)}>Design Rounds</Button>;
+      case 3:
+        // Project Management Board
+        return (
+          <Button onClick={() => setJourneyStep(4)}>
+            Project Management Board
+          </Button>
+        );
+      case 4:
+        // Version 1 Sprints
+        return (
+          <Button onClick={() => setJourneyStep(5)}>Version 1 Sprints</Button>
+        );
+      case 5:
+        // Deploy
+        return <Button onClick={() => setJourneyStep(6)}>Deploy</Button>;
+      case 6:
+        // Feature Sprints
+        return (
+          <Button onClick={() => setJourneyStep(7)}>Feature Sprints</Button>
+        );
+      case 7:
+        // Continued Support
+        return (
+          <Button onClick={() => setJourneyStep(8)}>Continued Support</Button>
+        );
+      case 8:
+        // Start Now
+        return (
+          <>
+            <Button
+              color="primary"
+              onClick={() =>
+                process.env.REACT_APP_CALL_LINK
+                  ? navigateToUrl(process.env.REACT_APP_CALL_LINK)
+                  : {}
+              }
+            >
+              Start Now
+            </Button>
+            <Button color="secondary" onClick={() => setJourneyStep(0)}>
+              Start Over
+            </Button>
+          </>
+        );
+      default:
+        return (
+          <Button
+            className="pulse"
+            variant="outlined"
+            onClick={() => setJourneyStep(1)}
+            sx={{ padding: 3 }}
+          >
+            Get Started
+          </Button>
+        );
+    }
+  };
+
+  /**
+   * Renders a technology logo and name for the Tech Stack
+   * @param imgSrc string
+   * @param name strig
+   * @returns JSX.Element
+   */
   const renderTech = (imgSrc: string, name: string): JSX.Element => (
     <TechWrapper
       onMouseEnter={() => setTechHovering(name)}
@@ -73,18 +151,7 @@ function About() {
           Here is how we will handle business.
         </Paragraph>
         <OptionsWrapper style={{ marginTop: 30 }}>
-          {started === false ? (
-            <Button
-              className="pulse"
-              variant="outlined"
-              onClick={() => setStarted(true)}
-              sx={{ padding: 3 }}
-            >
-              Get Started
-            </Button>
-          ) : (
-            <Button>Book Consultation</Button>
-          )}
+          {renderJourneyStep()}
         </OptionsWrapper>
       </Section>
       <Section
