@@ -31,6 +31,7 @@ function About() {
   const isMobile = useMediaQuery({ maxWidth: 768 });
 
   // State
+  const [imgHovering, setImgHovering] = useState<boolean>(false);
   const [techHovering, setTechHovering] = useState<string | null>(null);
   const [journeyStep, setJourneyStep] = useState<number>(0);
 
@@ -163,10 +164,24 @@ function About() {
           alignItems: "center",
         }}
       >
-        <TeamMemberImg
-          src="https://sleekapp.io/wp-content/uploads/2023/07/danny-avatar-bw-150x150.png"
-          alt="Sleek App President"
-        />
+        <Button
+          onClick={() =>
+            process.env.REACT_APP_LINKEDIN_URL
+              ? navigateToUrl(process.env.REACT_APP_LINKEDIN_URL)
+              : {}
+          }
+        >
+          <TeamMemberImg
+            src={
+              imgHovering
+                ? "http://sleekapp.io/wp-content/uploads/2023/10/danny-avatar.png"
+                : "https://sleekapp.io/wp-content/uploads/2023/07/danny-avatar-bw-150x150.png"
+            }
+            alt="Sleek App President"
+            onMouseEnter={() => setImgHovering(true)}
+            onMouseLeave={() => setImgHovering(false)}
+          />
+        </Button>
         <Paragraph sx={paragraphSx}>
           “There is nothing more fulfilling than watching clients&apos; visions
           become a reality” - Danny Lim, President
