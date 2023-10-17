@@ -6,6 +6,8 @@ export const Div = styled.div`
   overflow-x: hidden;
   overflow-y: auto;
   position: relative;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const Body = styled.div`
