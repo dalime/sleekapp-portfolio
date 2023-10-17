@@ -9,9 +9,6 @@ import { navigateToUrl } from "../../../helpers";
 // Components
 import { Section } from "../../../components";
 
-// Styles
-import "./index.css";
-
 function CTASection() {
   const isMobile = useMediaQuery({ maxWidth: 768 });
 
