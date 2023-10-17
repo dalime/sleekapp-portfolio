@@ -18,3 +18,15 @@ export const SocialMediaIcons = styled.div`
   justify-content: space-evenly;
   align-items: center;
 `;
+
+export const LogoImg = styled.img`
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  margin-right: 10px;
+
+  @media (max-width: 768px) {
+    width: 20px;
+    height: 20px;
+  }
+`;
