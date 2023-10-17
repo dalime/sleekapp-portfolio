@@ -1,6 +1,7 @@
 import React, { useState, useEffect, ReactNode } from "react";
 import { useMediaQuery } from "react-responsive";
-import { Button } from "@mui/material";
+import { Button, SxProps } from "@mui/material";
+import { CheckBoxOutlineBlank, CheckBox } from "@mui/icons-material";
 import Lottie from "react-lottie";
 
 // Helpers
@@ -27,6 +28,62 @@ interface TextProps {
 
 function Text({ children }: TextProps): JSX.Element {
   return <H3 style={{ marginBottom: 20, marginTop: 20 }}>{children}</H3>;
+}
+
+interface NextButtonProps {
+  key: string | number;
+  toNextStep(): void;
+  text?: string;
+  sx?: SxProps;
+  className?: string;
+}
+
+/**
+ * Next Step Button
+ * @param toNextStep () => void
+ * @returns JSX.Element
+ */
+function NextButton({
+  key,
+  toNextStep,
+  text,
+  sx,
+  className,
+}: NextButtonProps): JSX.Element {
+  const [checked, setChecked] = useState<boolean>(false);
+  const [hovering, setHovering] = useState<boolean>(false);
+
+  const handleClick = (): void => {
+    setChecked(true);
+    setTimeout(() => {
+      toNextStep();
+    }, 750);
+  };
+
+  return (
+    <Button
+      key={key}
+      className={className || ""}
+      variant="text"
+      color={hovering || checked ? "success" : "secondary"}
+      startIcon={
+        checked ? (
+          <CheckBox fontSize="large" style={{ width: 30, height: "auto" }} />
+        ) : (
+          <CheckBoxOutlineBlank
+            fontSize="large"
+            style={{ width: 30, height: "auto" }}
+          />
+        )
+      }
+      sx={sx ? { ...sx, fontSize: 18 } : { fontSize: 18 }}
+      onClick={() => handleClick()}
+      onMouseEnter={() => setHovering(true)}
+      onMouseLeave={() => setHovering(false)}
+    >
+      {text || "Next"}
+    </Button>
+  );
 }
 
 function Process() {
@@ -90,7 +147,7 @@ function Process() {
           <>
             {renderLottieJson(videoCallJson)}
             <Text>1:1 Strategy Call</Text>
-            <Button onClick={() => setJourneyStep(2)}>Next</Button>
+            <NextButton key={"step-1"} toNextStep={() => setJourneyStep(2)} />
           </>
         );
       case 2:
@@ -99,7 +156,7 @@ function Process() {
           <>
             {renderLottieJson(designJson)}
             <Text>Design Rounds with Feedback</Text>
-            <Button onClick={() => setJourneyStep(3)}>Next</Button>
+            <NextButton key={"step-2"} toNextStep={() => setJourneyStep(3)} />
           </>
         );
       case 3:
@@ -108,7 +165,7 @@ function Process() {
           <>
             {renderLottieJson(pmBoardJson)}
             <Text>Detailed Project Plan with Kanban Board</Text>
-            <Button onClick={() => setJourneyStep(4)}>Next</Button>
+            <NextButton key={"step-3"} toNextStep={() => setJourneyStep(4)} />
           </>
         );
       case 4:
@@ -119,7 +176,7 @@ function Process() {
             <Text>Development Agile Sprints</Text>
             {renderLottieJson(agileSprintsJson)}
             <Text>Until Version 1.0 Complete</Text>
-            <Button onClick={() => setJourneyStep(5)}>Next</Button>
+            <NextButton key={"step-4"} toNextStep={() => setJourneyStep(5)} />
           </>
         );
       case 5:
@@ -128,7 +185,7 @@ function Process() {
           <>
             {renderLottieJson(deployJson)}
             <Text>Deploy Version 1.0</Text>
-            <Button onClick={() => setJourneyStep(6)}>Next</Button>
+            <NextButton key={"step-5"} toNextStep={() => setJourneyStep(6)} />
           </>
         );
       case 6:
@@ -139,7 +196,7 @@ function Process() {
             <Text>Feature Development</Text>
             {renderLottieJson(agileSprintsJson)}
             <Text>In Agile Sprints</Text>
-            <Button onClick={() => setJourneyStep(7)}>Next</Button>
+            <NextButton key={"step-6"} toNextStep={() => setJourneyStep(7)} />
           </>
         );
       case 7:
@@ -148,32 +205,30 @@ function Process() {
           <>
             {renderLottieJson(supportJson)}
             <Text>Continued Support</Text>
-            <Button onClick={() => setJourneyStep(8)}>Next</Button>
+            <NextButton key={"step-7"} toNextStep={() => setJourneyStep(8)} />
           </>
         );
       case 8:
         // Start Now
         return (
           <>
-            <Button
+            <NextButton
+              key="start-now"
               className="pulse"
-              color="primary"
-              variant="contained"
-              onClick={() =>
+              toNextStep={() =>
                 process.env.REACT_APP_CALL_LINK
                   ? navigateToUrl(process.env.REACT_APP_CALL_LINK)
                   : {}
               }
-              sx={{ padding: 3, margin: 2 }}
-            >
-              Start Now
-            </Button>
+              text="Start Now"
+              sx={{ padding: 2, marginBottom: 4 }}
+            />
             <Button
               color="secondary"
-              variant="contained"
+              variant="outlined"
               onClick={() => setJourneyStep(0)}
             >
-              Start Over
+              View Again
             </Button>
           </>
         );
