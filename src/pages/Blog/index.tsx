@@ -69,8 +69,8 @@ function Blog() {
         Blog
       </MainHeading>
       {fetchLoading ? (
-        <div style={{ width: "100%", textAlign: "center", marginTop: 30 }}>
-          <CircularProgress size={mobile ? 150 : 200} />
+        <div style={{ width: "100%", textAlign: "center", marginTop: 50 }}>
+          <CircularProgress size={mobile ? 80 : 120} />
         </div>
       ) : blogPosts.length ? (
         <PreviewsList>{renderBlogPosts()}</PreviewsList>
