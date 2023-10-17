@@ -18,7 +18,6 @@ import {
 
 // Styles
 import {
-  OptionsWrapper,
   Rows,
   Column,
   TechWrapper,
@@ -34,7 +33,6 @@ function About() {
   // State
   const [imgHovering, setImgHovering] = useState<boolean>(false);
   const [techHovering, setTechHovering] = useState<string | null>(null);
-  const [journeyStep, setJourneyStep] = useState<number>(0);
 
   // Style
   const mainStyle = { color: yellow[300], textAlign: "center" };
@@ -44,76 +42,6 @@ function About() {
     paddingLeft: "10%",
     paddingRight: "10%",
     marginTop: 2,
-  };
-
-  /**
-   * Renders the elements for the current step in the journey
-   * @returns JSX.Element
-   */
-  const renderJourneyStep = (): JSX.Element => {
-    switch (journeyStep) {
-      case 1:
-        // Zoom Call
-        return <Button onClick={() => setJourneyStep(2)}>Zoom Call</Button>;
-      case 2:
-        // Design Rounds
-        return <Button onClick={() => setJourneyStep(3)}>Design Rounds</Button>;
-      case 3:
-        // Project Management Board
-        return (
-          <Button onClick={() => setJourneyStep(4)}>
-            Project Management Board
-          </Button>
-        );
-      case 4:
-        // Version 1 Sprints
-        return (
-          <Button onClick={() => setJourneyStep(5)}>Version 1 Sprints</Button>
-        );
-      case 5:
-        // Deploy
-        return <Button onClick={() => setJourneyStep(6)}>Deploy</Button>;
-      case 6:
-        // Feature Sprints
-        return (
-          <Button onClick={() => setJourneyStep(7)}>Feature Sprints</Button>
-        );
-      case 7:
-        // Continued Support
-        return (
-          <Button onClick={() => setJourneyStep(8)}>Continued Support</Button>
-        );
-      case 8:
-        // Start Now
-        return (
-          <>
-            <Button
-              color="primary"
-              onClick={() =>
-                process.env.REACT_APP_CALL_LINK
-                  ? navigateToUrl(process.env.REACT_APP_CALL_LINK)
-                  : {}
-              }
-            >
-              Start Now
-            </Button>
-            <Button color="secondary" onClick={() => setJourneyStep(0)}>
-              Start Over
-            </Button>
-          </>
-        );
-      default:
-        return (
-          <Button
-            className="pulse"
-            variant="outlined"
-            onClick={() => setJourneyStep(1)}
-            sx={{ padding: 3 }}
-          >
-            Get Started
-          </Button>
-        );
-    }
   };
 
   /**
@@ -152,11 +80,7 @@ function About() {
           something as complicated as developing an app a series of processes.
           Here is how we will handle business.
         </Paragraph>
-        <Process>
-          <OptionsWrapper style={{ marginTop: 30 }}>
-            {renderJourneyStep()}
-          </OptionsWrapper>
-        </Process>
+        <Process />
       </Section>
       <Section
         style={{
