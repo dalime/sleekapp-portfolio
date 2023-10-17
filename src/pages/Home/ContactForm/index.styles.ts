@@ -8,6 +8,10 @@ export const Form = styled.form`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+
+  @media (max-width: 500px) {
+    padding: 20px 0;
+  }
 `;
 
 export const Separator = styled.div`

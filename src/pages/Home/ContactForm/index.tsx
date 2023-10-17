@@ -61,9 +61,14 @@ function ContactForm() {
     );
   };
 
+  const paddingSide = isMobile
+    ? { paddingLeft: "10%", paddingRight: "10%" }
+    : {};
+
   return (
     <Section
       style={{
+        ...paddingSide,
         paddingTop: "7.5%",
         paddingBottom: "7.5%",
       }}
@@ -73,7 +78,9 @@ function ContactForm() {
         <LogoImg src={SleekAppLogo} alt="Sleek App" />
         <Line />
       </Separator>
-      <Subheading sx={{ marginBottom: 1 }}>Leave Us A Message</Subheading>
+      <Subheading sx={{ marginBottom: 1, fontSize: isMobile ? 30 : 40 }}>
+        Leave Us A Message
+      </Subheading>
       <Form onSubmit={handleSubmit}>
         <FormControl style={formControlStyle} required>
           <InputLabel htmlFor="first-name">Your First Name</InputLabel>
