@@ -9,6 +9,7 @@ import React, {
 // Components
 import HeaderMenu from "../HeaderMenu";
 import Footer from "../Footer";
+import MusicPlayer from "../MusicPlayer";
 import Background from "../Background";
 
 // Styles
@@ -50,6 +51,7 @@ function Page({ testId, children, style }: Props) {
       <HeaderMenu opacity={opacity} />
       <Body>{children}</Body>
       <Footer />
+      <MusicPlayer />
       <Background />
     </Div>
   );
