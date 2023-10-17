@@ -19,13 +19,19 @@ function HeroText({ mobile }: Props) {
           fontSize: 30,
           textTransform: "uppercase",
           fontWeight: 600,
+          textAlign: mobile ? "center" : "left",
         }}
       >
         Sleek App <span style={{ color: yellow[200] }}>Development Agency</span>
       </Typography>
       <Typography
         variant="h2"
-        sx={{ fontWeight: 500, marginTop: 2, fontSize: mobile ? 40 : "auto" }}
+        sx={{
+          fontWeight: 500,
+          marginTop: 2,
+          fontSize: mobile ? 40 : "auto",
+          textAlign: mobile ? "center" : "left",
+        }}
       >
         <Typed
           strings={["Let's Bring Your Vision to Life"]}
