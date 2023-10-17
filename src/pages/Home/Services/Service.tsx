@@ -8,9 +8,9 @@ import { Typography, Button } from "@mui/material";
 import { Backdrop } from "../../../components";
 
 // Animations
-import * as designJson from "./lottie-jsons/design.json";
-import * as developmentJson from "./lottie-jsons/development.json";
-import * as copywritingJson from "./lottie-jsons/copywriting.json";
+import designJson from "../../../assets/lottie-jsons/design.json";
+import developmentJson from "../../../assets/lottie-jsons/development.json";
+import copywritingJson from "../../../assets/lottie-jsons/copywriting.json";
 
 interface Props {
   title: string;
