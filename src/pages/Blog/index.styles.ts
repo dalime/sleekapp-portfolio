@@ -8,6 +8,12 @@ export const PreviewsList = styled.div`
   width: 50%;
   margin-left: 25%;
   margin-top: 30px;
+  padding-bottom: 20px;
+
+  @media (max-width: 768px) {
+    width: 80%;
+    margin-left: 10%;
+  }
 `;
 
 export const PreviewWrapper = styled.div`

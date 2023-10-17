@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { CircularProgress } from "@mui/material";
 import { useMediaQuery } from "react-responsive";
+import { CircularProgress } from "@mui/material";
+import { yellow } from "@mui/material/colors";
 
 // Types
 import { WPPost } from "../../types";
@@ -43,6 +44,7 @@ function Blog() {
         key={`blog-post-preview-${blogPost.id}`}
         postDetails={blogPost}
         setActive={() => setActivePost(blogPost)}
+        mobile={mobile}
       />
     ));
   };
@@ -56,9 +58,16 @@ function Blog() {
       />
     );
 
+  const headingColor = { color: yellow[300] };
+
   return (
     <Page>
-      <MainHeading align="center">Blog</MainHeading>
+      <MainHeading
+        align="center"
+        sx={mobile ? { ...headingColor, fontSize: 40 } : headingColor}
+      >
+        Blog
+      </MainHeading>
       {fetchLoading ? (
         <div style={{ width: "100%", textAlign: "center", marginTop: 30 }}>
           <CircularProgress size={mobile ? 150 : 200} />
