@@ -33,6 +33,7 @@ export const TechWrapper = styled.div`
   width: 200px;
   margin-bottom: 16px;
   height: 60px;
+  cursor: pointer;
 
   @media (max-width: 768px) {
     flex-direction: column;

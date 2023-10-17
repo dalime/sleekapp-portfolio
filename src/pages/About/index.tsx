@@ -29,6 +29,7 @@ function About() {
   const isMobile = useMediaQuery({ maxWidth: 768 });
 
   // State
+  const [techHovering, setTechHovering] = useState<string | null>(null);
   const [started, setStarted] = useState<boolean>(false);
 
   // Style
@@ -41,14 +42,15 @@ function About() {
     marginTop: 2,
   };
 
-  const renderTech = (
-    imgSrc: string,
-    name: string,
-    noText?: boolean
-  ): JSX.Element => (
-    <TechWrapper>
+  const renderTech = (imgSrc: string, name: string): JSX.Element => (
+    <TechWrapper
+      onMouseEnter={() => setTechHovering(name)}
+      onMouseLeave={() => setTechHovering(null)}
+    >
       <TechImg src={imgSrc} alt={name} />
-      {!noText && <TechText>{name}</TechText>}
+      <TechText style={techHovering === name ? { color: yellow[500] } : {}}>
+        {name}
+      </TechText>
     </TechWrapper>
   );
 
@@ -64,12 +66,26 @@ function About() {
         helping businesses get online.
       </Paragraph>
       <Section style={paddingSide}>
-        <Subheading>The Sleek App Process</Subheading>
+        <Subheading>The Sleek App Journey</Subheading>
         <Paragraph sx={paragraphSx}>
           Efficiency is found in repeated systems. At Sleek App, we make
           something as complicated as developing an app a series of processes.
           Here is how we will handle business.
         </Paragraph>
+        <OptionsWrapper style={{ marginTop: 30 }}>
+          {started === false ? (
+            <Button
+              className="pulse"
+              variant="outlined"
+              onClick={() => setStarted(true)}
+              sx={{ padding: 3 }}
+            >
+              Get Started
+            </Button>
+          ) : (
+            <Button>Book Consultation</Button>
+          )}
+        </OptionsWrapper>
       </Section>
       <Section
         style={{
@@ -128,9 +144,8 @@ function About() {
               "GraphQL"
             )}
             {renderTech(
-              "https://sleekapp.io/wp-content/uploads/2023/09/mongodb-icon-1024x276.png",
-              "Mongo DB",
-              true
+              "http://sleekapp.io/wp-content/uploads/2023/10/mongodb.png",
+              "Mongo DB"
             )}
             {renderTech(
               "https://sleekapp.io/wp-content/uploads/2023/09/aws-ec2-icon.png",
@@ -170,21 +185,6 @@ function About() {
         >
           Book 1:1 Strategy Call
         </Button>
-      </Section>
-      <Section style={paddingSide}>
-        <OptionsWrapper>
-          {started === false ? (
-            <Button
-              className="pulse"
-              variant="contained"
-              onClick={() => setStarted(true)}
-            >
-              Click Me!
-            </Button>
-          ) : (
-            <Button>Book Consultation</Button>
-          )}
-        </OptionsWrapper>
       </Section>
     </Page>
   );
