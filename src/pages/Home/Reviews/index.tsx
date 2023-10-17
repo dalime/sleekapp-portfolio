@@ -1,11 +1,11 @@
 import React from "react";
+import { useMediaQuery } from "react-responsive";
 import { Button } from "@mui/material";
 import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 
 // Animated Slider
 import Slider from "react-animated-slider";
 import "react-animated-slider/build/horizontal.css";
-import horizontalCss from "react-animated-slider/build/horizontal.css";
 
 // Types
 import { ClientReview } from "../../../types";
@@ -22,10 +22,11 @@ import {
 
 // Styles
 import "./index.css";
+import "./horizontal.css";
 
-function SliderButton(left: boolean): JSX.Element {
+function SliderButton(left: boolean, isMobile: boolean): JSX.Element {
   return (
-    <Button variant="contained">
+    <Button variant={isMobile ? "text" : "contained"}>
       {left ? (
         <ChevronLeft fontSize="large" style={{ color: "#ffffff !important" }} />
       ) : (
@@ -39,6 +40,10 @@ function SliderButton(left: boolean): JSX.Element {
 }
 
 function Reviews() {
+  // Hooks
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+
+  // Get Reviews from Environment Variables
   const clientReview1 = process.env.REACT_APP_REVIEW_1
     ? JSON.parse(process.env.REACT_APP_REVIEW_1)
     : null;
@@ -61,11 +66,15 @@ function Reviews() {
         paddingBottom: "7.5%",
       }}
     >
-      <Subheading>What Our Clients Say</Subheading>
+      <Subheading sx={isMobile ? { fontSize: 30 } : {}}>
+        What Our Clients Say
+      </Subheading>
       <Slider
-        classNames={horizontalCss}
-        previousButton={SliderButton(true)}
-        nextButton={SliderButton(false)}
+        previousButton={SliderButton(true, isMobile)}
+        nextButton={SliderButton(false, isMobile)}
+        style={{
+          height: "fit-content !important",
+        }}
       >
         {portfolioItems.map((item, index) => {
           if (!item) return <></>;

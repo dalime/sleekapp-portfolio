@@ -22,6 +22,7 @@ function Service({ title, animationName, description }: Props) {
   // Hooks
   const isSmallScreen = useMediaQuery({ maxWidth: 1100 });
   const isMobile = useMediaQuery({ maxWidth: 768 });
+  const isSmallMobile = useMediaQuery({ maxWidth: 562 });
   const isSuperSmall = useMediaQuery({ maxWidth: 320 });
   const navigate = useNavigate();
 
@@ -65,7 +66,7 @@ function Service({ title, animationName, description }: Props) {
     },
   };
 
-  const imageWidth = isSuperSmall
+  const imageWidth = isSmallMobile
     ? windowWidth * 0.5
     : isMobile
     ? Math.min(windowWidth * 0.6, 300)
@@ -88,7 +89,13 @@ function Service({ title, animationName, description }: Props) {
         justifyContent: "flex-start",
         alignItems: "center",
         height: 500,
-        marginLeft: isSuperSmall ? "5%" : isMobile ? "10%" : 0,
+        marginLeft: isSuperSmall
+          ? "5%"
+          : isMobile
+          ? "10%"
+          : isSmallScreen
+          ? "25%"
+          : 0,
         marginBottom: isSmallScreen ? 20 : 0,
       }}
     >
