@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ReactNode } from "react";
 import { useMediaQuery } from "react-responsive";
 import { Button } from "@mui/material";
 import Lottie from "react-lottie";
 
 // Helpers
 import { navigateToUrl } from "../../../helpers";
+
+// Components
+import { H3 } from "../../../components";
 
 // Styles
 import { Wrapper } from "./index.styles";
@@ -17,6 +20,14 @@ import devJson from "../../../assets/lottie-jsons/development.json";
 import agileSprintsJson from "../../../assets/lottie-jsons/agile-sprints.json";
 import deployJson from "../../../assets/lottie-jsons/deploy.json";
 import supportJson from "../../../assets/lottie-jsons/support.json";
+
+interface TextProps {
+  children?: ReactNode | ReactNode[];
+}
+
+function Text({ children }: TextProps): JSX.Element {
+  return <H3 style={{ marginBottom: 20, marginTop: 20 }}>{children}</H3>;
+}
 
 function Process() {
   // Hooks
@@ -78,7 +89,8 @@ function Process() {
         return (
           <>
             {renderLottieJson(videoCallJson)}
-            <Button onClick={() => setJourneyStep(2)}>Zoom Call</Button>
+            <Text>1:1 Strategy Call</Text>
+            <Button onClick={() => setJourneyStep(2)}>Next</Button>
           </>
         );
       case 2:
@@ -86,7 +98,8 @@ function Process() {
         return (
           <>
             {renderLottieJson(designJson)}
-            <Button onClick={() => setJourneyStep(3)}>Design Rounds</Button>
+            <Text>Design Rounds with Feedback</Text>
+            <Button onClick={() => setJourneyStep(3)}>Next</Button>
           </>
         );
       case 3:
@@ -94,9 +107,8 @@ function Process() {
         return (
           <>
             {renderLottieJson(pmBoardJson)}
-            <Button onClick={() => setJourneyStep(4)}>
-              Project Management Board
-            </Button>
+            <Text>Detailed Project Plan with Kanban Board</Text>
+            <Button onClick={() => setJourneyStep(4)}>Next</Button>
           </>
         );
       case 4:
@@ -104,10 +116,10 @@ function Process() {
         return (
           <>
             {renderLottieJson(devJson)}
+            <Text>Development Agile Sprints</Text>
             {renderLottieJson(agileSprintsJson)}
-            <Button onClick={() => setJourneyStep(5)}>
-              Version 1 Agile Sprints
-            </Button>
+            <Text>Until Version 1.0 Complete</Text>
+            <Button onClick={() => setJourneyStep(5)}>Next</Button>
           </>
         );
       case 5:
@@ -115,7 +127,8 @@ function Process() {
         return (
           <>
             {renderLottieJson(deployJson)}
-            <Button onClick={() => setJourneyStep(6)}>Deploy</Button>
+            <Text>Deploy Version 1.0</Text>
+            <Button onClick={() => setJourneyStep(6)}>Next</Button>
           </>
         );
       case 6:
@@ -123,8 +136,10 @@ function Process() {
         return (
           <>
             {renderLottieJson(devJson)}
+            <Text>Feature Development</Text>
             {renderLottieJson(agileSprintsJson)}
-            <Button onClick={() => setJourneyStep(7)}>Feature Sprints</Button>
+            <Text>In Agile Sprints</Text>
+            <Button onClick={() => setJourneyStep(7)}>Next</Button>
           </>
         );
       case 7:
@@ -132,7 +147,8 @@ function Process() {
         return (
           <>
             {renderLottieJson(supportJson)}
-            <Button onClick={() => setJourneyStep(8)}>Continued Support</Button>
+            <Text>Continued Support</Text>
+            <Button onClick={() => setJourneyStep(8)}>Next</Button>
           </>
         );
       case 8:
@@ -140,16 +156,23 @@ function Process() {
         return (
           <>
             <Button
+              className="pulse"
               color="primary"
+              variant="contained"
               onClick={() =>
                 process.env.REACT_APP_CALL_LINK
                   ? navigateToUrl(process.env.REACT_APP_CALL_LINK)
                   : {}
               }
+              sx={{ padding: 3, margin: 2 }}
             >
               Start Now
             </Button>
-            <Button color="secondary" onClick={() => setJourneyStep(0)}>
+            <Button
+              color="secondary"
+              variant="contained"
+              onClick={() => setJourneyStep(0)}
+            >
               Start Over
             </Button>
           </>
@@ -158,7 +181,7 @@ function Process() {
         return (
           <Button
             className="pulse"
-            variant="outlined"
+            variant="contained"
             onClick={() => setJourneyStep(1)}
             sx={{ padding: 3 }}
           >
