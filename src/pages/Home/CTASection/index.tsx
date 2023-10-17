@@ -1,4 +1,5 @@
 import React from "react";
+import { useMediaQuery } from "react-responsive";
 import { Button } from "@mui/material";
 import { Paid } from "@mui/icons-material";
 
@@ -12,9 +13,16 @@ import { Section } from "../../../components";
 import "./index.css";
 
 function CTASection() {
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+
+  const paddingSide = isMobile
+    ? { paddingLeft: "10%", paddingRight: "10%" }
+    : {};
+
   return (
     <Section
       style={{
+        ...paddingSide,
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
