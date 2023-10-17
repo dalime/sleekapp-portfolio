@@ -11,6 +11,12 @@ import { Wrapper } from "./index.styles";
 
 // Assets
 import videoCallJson from "../../../assets/lottie-jsons/video-call.json";
+import designJson from "../../../assets/lottie-jsons/design.json";
+import pmBoardJson from "../../../assets/lottie-jsons/project-mgmt-board.json";
+import devJson from "../../../assets/lottie-jsons/development.json";
+import agileSprintsJson from "../../../assets/lottie-jsons/agile-sprints.json";
+import deployJson from "../../../assets/lottie-jsons/deploy.json";
+import supportJson from "../../../assets/lottie-jsons/support.json";
 
 function Process() {
   // Hooks
@@ -47,6 +53,21 @@ function Process() {
     : 300;
 
   /**
+   * Renders the necessary Lottie Animation
+   * @param jsonPath any
+   * @returns JSX.Element
+   */
+  const renderLottieJson = (jsonPath: any): JSX.Element => (
+    <Lottie
+      options={{ ...defaultOptions, animationData: jsonPath }}
+      height={imageWidth}
+      width={imageWidth}
+      isStopped={false}
+      isPaused={false}
+    />
+  );
+
+  /**
    * Renders the elements for the current step in the journey
    * @returns JSX.Element
    */
@@ -56,43 +77,63 @@ function Process() {
         // Zoom Call
         return (
           <>
-            <Lottie
-              options={{ ...defaultOptions, animationData: videoCallJson }}
-              height={imageWidth}
-              width={imageWidth}
-              isStopped={false}
-              isPaused={false}
-            />
+            {renderLottieJson(videoCallJson)}
             <Button onClick={() => setJourneyStep(2)}>Zoom Call</Button>
           </>
         );
       case 2:
         // Design Rounds
-        return <Button onClick={() => setJourneyStep(3)}>Design Rounds</Button>;
+        return (
+          <>
+            {renderLottieJson(designJson)}
+            <Button onClick={() => setJourneyStep(3)}>Design Rounds</Button>
+          </>
+        );
       case 3:
         // Project Management Board
         return (
-          <Button onClick={() => setJourneyStep(4)}>
-            Project Management Board
-          </Button>
+          <>
+            {renderLottieJson(pmBoardJson)}
+            <Button onClick={() => setJourneyStep(4)}>
+              Project Management Board
+            </Button>
+          </>
         );
       case 4:
         // Version 1 Sprints
         return (
-          <Button onClick={() => setJourneyStep(5)}>Version 1 Sprints</Button>
+          <>
+            {renderLottieJson(devJson)}
+            {renderLottieJson(agileSprintsJson)}
+            <Button onClick={() => setJourneyStep(5)}>
+              Version 1 Agile Sprints
+            </Button>
+          </>
         );
       case 5:
         // Deploy
-        return <Button onClick={() => setJourneyStep(6)}>Deploy</Button>;
+        return (
+          <>
+            {renderLottieJson(deployJson)}
+            <Button onClick={() => setJourneyStep(6)}>Deploy</Button>
+          </>
+        );
       case 6:
         // Feature Sprints
         return (
-          <Button onClick={() => setJourneyStep(7)}>Feature Sprints</Button>
+          <>
+            {renderLottieJson(devJson)}
+            {renderLottieJson(agileSprintsJson)}
+            <Button onClick={() => setJourneyStep(7)}>Feature Sprints</Button>
+          </>
         );
       case 7:
         // Continued Support
         return (
-          <Button onClick={() => setJourneyStep(8)}>Continued Support</Button>
+          <>
+            {renderLottieJson(supportJson)}
+            <Button onClick={() => setJourneyStep(8)}>Continued Support</Button>
+          </>
         );
       case 8:
         // Start Now
