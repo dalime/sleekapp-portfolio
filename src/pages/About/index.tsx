@@ -1,4 +1,4 @@
-import React, { CSSProperties, useState } from "react";
+import React, { CSSProperties, ReactNode, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { Button, SxProps } from "@mui/material";
 import { yellow } from "@mui/material/colors";
@@ -25,6 +25,17 @@ import {
   TechText,
   TeamMemberImg,
 } from "./index.styles";
+
+interface SubHeadProps {
+  isMobile: boolean;
+  children?: ReactNode | ReactNode[];
+}
+
+function SubHead({ isMobile, children }: SubHeadProps): JSX.Element {
+  return (
+    <Subheading sx={isMobile ? { fontSize: 30 } : {}}>{children}</Subheading>
+  );
+}
 
 function About() {
   // Hooks
@@ -84,7 +95,7 @@ function About() {
         helping businesses get online.
       </Paragraph>
       <Section style={paddingSide}>
-        <Subheading>The Sleek App Journey</Subheading>
+        <SubHead isMobile={isMobile}>The Sleek App Journey</SubHead>
         <Paragraph sx={paragraphSx}>
           Efficiency is found in repeated systems. At Sleek App, we make
           something as complicated as developing an app a series of processes.
@@ -127,7 +138,7 @@ function About() {
           ...columnCenter,
         }}
       >
-        <Subheading>World-Class Tech Stack</Subheading>
+        <SubHead isMobile={isMobile}>World-Class Tech Stack</SubHead>
         <Paragraph sx={paragraphSx}>
           At Sleek App, we pride ourselves on being both specialists and
           adaptable when it comes to technology. Understanding that each project
@@ -204,7 +215,7 @@ function About() {
           ...paddingSide,
         }}
       >
-        <Subheading>Agile Sprints</Subheading>
+        <SubHead isMobile={isMobile}>Agile Sprints</SubHead>
         <Paragraph sx={paragraphSx}>
           At the heart of modern software development is agile sprints. The best
           way to provide a product that the market wants is to test
@@ -221,9 +232,9 @@ function About() {
           ...columnCenter,
         }}
       >
-        <Subheading>
+        <SubHead isMobile={isMobile}>
           Launch Your Own Fullstack Web App in 180 Days or Less! 🚀
-        </Subheading>
+        </SubHead>
         <Paragraph sx={paragraphSx}>
           Time&apos;s ticking and we&apos;ve ONLY 2 SPOTS LEFT out of 5. Get
           your development milestones finished before the year wraps up.
