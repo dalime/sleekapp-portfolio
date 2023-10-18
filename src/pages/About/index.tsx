@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { CSSProperties, useState } from "react";
 import { useMediaQuery } from "react-responsive";
-import { Button } from "@mui/material";
+import { Button, SxProps } from "@mui/material";
 import { yellow } from "@mui/material/colors";
 
 // Helpers
@@ -35,13 +35,23 @@ function About() {
   const [techHovering, setTechHovering] = useState<string | null>(null);
 
   // Style
-  const mainStyle = { color: yellow[300], textAlign: "center" };
-  const paddingSide = { paddingLeft: "10%", paddingRight: "10%" };
-  const paragraphSx = {
+  const mainStyle: CSSProperties = { color: yellow[300], textAlign: "center" };
+  const paddingSide = {
+    paddingLeft: "10%",
+    paddingRight: "10%",
+  };
+  const paragraphSx: SxProps = {
     textAlign: "center",
     paddingLeft: "10%",
     paddingRight: "10%",
     marginTop: 2,
+  };
+  const columnCenter: CSSProperties = {
+    display: "fex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    textAlign: "center",
   };
 
   /**
@@ -67,7 +77,7 @@ function About() {
       <MainHeading sx={isMobile ? { ...mainStyle, fontSize: 30 } : mainStyle}>
         About
       </MainHeading>
-      <Paragraph sx={paragraphSx}>
+      <Paragraph sx={{ ...paragraphSx, ...paddingSide }}>
         Sleek App Development Agency was born out of a desire to deliver high
         quality web and mobile apps for clients who want to provide real value
         to customers. We pride ourselves in the work we&apos;ve done so far in
@@ -85,10 +95,7 @@ function About() {
       <Section
         style={{
           ...paddingSide,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
+          ...columnCenter,
         }}
       >
         <Button
@@ -117,10 +124,7 @@ function About() {
       <Section
         style={{
           ...paddingSide,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
+          ...columnCenter,
         }}
       >
         <Subheading>World-Class Tech Stack</Subheading>
@@ -193,6 +197,39 @@ function About() {
           sx={{ marginTop: 3 }}
         >
           Book 1:1 Strategy Call
+        </Button>
+      </Section>
+      <Section
+        style={{
+          ...paddingSide,
+        }}
+      >
+        <Subheading>Agile Sprints</Subheading>
+        <Paragraph sx={paragraphSx}>
+          At the heart of modern software development is agile sprints. The best
+          way to provide a product that the market wants is to test
+          incrementally. Long gone are the days of developing software behind
+          closed doors in hopes that it will convert well with the market. We
+          take this to heart and like to work in 2-week agile sprints.
+          Basically, that means we develop a set of features every 2 weeks,
+          deploy, and see how customers react with live feedback.
+        </Paragraph>
+      </Section>
+      <Section
+        style={{
+          ...paddingSide,
+          ...columnCenter,
+        }}
+      >
+        <Subheading>
+          Launch Your Own Fullstack Web App in 180 Days or Less! 🚀
+        </Subheading>
+        <Paragraph sx={paragraphSx}>
+          Time&apos;s ticking and we&apos;ve ONLY 2 SPOTS LEFT out of 5. Get
+          your development milestones finished before the year wraps up.
+        </Paragraph>
+        <Button color="primary" variant="contained" sx={{ marginTop: 2 }}>
+          Find Out More
         </Button>
       </Section>
     </Page>

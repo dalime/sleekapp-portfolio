@@ -6,6 +6,7 @@ export const Rows = styled.div`
   flex-direction: row;
   justify-content: space-evenly;
   align-items: flex-start;
+  margin-top: 30px;
 `;
 
 export const Column = styled.div`
@@ -42,6 +43,7 @@ export const TechImg = styled.img`
   @media (max-width: 768px) {
     margin-right: 0;
     margin-top: 10px;
+    height: 30px !important;
   }
 `;
 
