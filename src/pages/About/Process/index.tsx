@@ -8,7 +8,7 @@ import Lottie from "react-lottie";
 import { navigateToUrl } from "../../../helpers";
 
 // Components
-import { H3 } from "../../../components";
+import { H3, Paragraph } from "../../../components";
 
 // Styles
 import { Wrapper } from "./index.styles";
@@ -16,20 +16,40 @@ import { Wrapper } from "./index.styles";
 // Assets
 import videoCallJson from "../../../assets/lottie-jsons/video-call.json";
 import designJson from "../../../assets/lottie-jsons/design.json";
+import landingPageJson from "../../../assets/lottie-jsons/landing-page.json";
+import testServerJson from "../../../assets/lottie-jsons/test-server.json";
 import pmBoardJson from "../../../assets/lottie-jsons/project-mgmt-board.json";
 import devJson from "../../../assets/lottie-jsons/development.json";
 import agileSprintsJson from "../../../assets/lottie-jsons/agile-sprints.json";
 import deployJson from "../../../assets/lottie-jsons/deploy.json";
 import supportJson from "../../../assets/lottie-jsons/support.json";
+import moneyBagsJson from "../../../assets/lottie-jsons/moneybags.json";
 
 interface TextProps {
+  key: string | number;
   children?: ReactNode | ReactNode[];
+  timeDelay?: number;
 }
 
-function Text({ children }: TextProps): JSX.Element {
-  return <H3 style={{ marginBottom: 20, marginTop: 20 }}>{children}</H3>;
+function Text({ key, children, timeDelay }: TextProps): JSX.Element {
+  return (
+    <Paragraph
+      key={key}
+      sx={{ textAlign: "center", marginBottom: 2, marginTop: 2 }}
+      className="fade-in-slow"
+    >
+      {children}
+    </Paragraph>
+  );
 }
 
+function StepHeading({ key, children }: TextProps): JSX.Element {
+  return (
+    <H3 key={key} style={{ marginBottom: 10, marginTop: 10 }}>
+      {children}
+    </H3>
+  );
+}
 interface NextButtonProps {
   key: string | number;
   toNextStep(): void;
@@ -123,17 +143,20 @@ function Process() {
   /**
    * Renders the necessary Lottie Animation
    * @param jsonPath any
+   * @param timeDelay number | undefined
    * @returns JSX.Element
    */
-  const renderLottieJson = (jsonPath: any): JSX.Element => (
-    <Lottie
-      options={{ ...defaultOptions, animationData: jsonPath }}
-      height={imageWidth}
-      width={imageWidth}
-      isStopped={false}
-      isPaused={false}
-    />
-  );
+  const renderLottieJson = (jsonPath: any, timeDelay?: number): JSX.Element => {
+    return (
+      <Lottie
+        options={{ ...defaultOptions, animationData: jsonPath }}
+        height={undefined}
+        width={imageWidth}
+        isStopped={false}
+        isPaused={false}
+      />
+    );
+  };
 
   /**
    * Renders the elements for the current step in the journey
@@ -146,7 +169,11 @@ function Process() {
         return (
           <>
             {renderLottieJson(videoCallJson)}
-            <Text>1:1 Strategy Call</Text>
+            <StepHeading key="step-1-heading">#1 - Strategy Call</StepHeading>
+            <Text key="step-1-text">
+              We hop on a call to discuss your unique project and formulate a
+              plan
+            </Text>
             <NextButton key={"step-1"} toNextStep={() => setJourneyStep(2)} />
           </>
         );
@@ -155,7 +182,12 @@ function Process() {
         return (
           <>
             {renderLottieJson(designJson)}
-            <Text>Design Rounds with Feedback</Text>
+            <StepHeading key="step-2-heading">#2 - Design Rounds</StepHeading>
+            <Text key="step-2-text">
+              You'll work closely with our designer to come up with a mock-up
+              you are fully satisfied with. As many rounds of feedback as it
+              takes.
+            </Text>
             <NextButton key={"step-2"} toNextStep={() => setJourneyStep(3)} />
           </>
         );
@@ -163,55 +195,121 @@ function Process() {
         // Project Management Board
         return (
           <>
-            {renderLottieJson(pmBoardJson)}
-            <Text>Detailed Project Plan with Kanban Board</Text>
+            {renderLottieJson(landingPageJson)}
+            <StepHeading key="step-3-heading">#3 - Landing Page</StepHeading>
+            <Text key="step-3-text">
+              We'll publish a Landing Page for you to garner interest for your
+              app and collect emails.
+            </Text>
             <NextButton key={"step-3"} toNextStep={() => setJourneyStep(4)} />
           </>
         );
       case 4:
-        // Version 1 Sprints
+        // Project Management Board
         return (
           <>
-            {renderLottieJson(devJson)}
-            <Text>Development Agile Sprints</Text>
-            {renderLottieJson(agileSprintsJson)}
-            <Text>Until Version 1.0 Complete</Text>
+            {renderLottieJson(pmBoardJson)}
+            <StepHeading key="step-4-heading">
+              #4 - Project Plan + Board
+            </StepHeading>
+            <Text key="step-4-text">
+              Detailed Project Plan with feature list and deadlines on a Kanban
+              Board
+            </Text>
             <NextButton key={"step-4"} toNextStep={() => setJourneyStep(5)} />
           </>
         );
       case 5:
-        // Deploy
+        // Test Server
         return (
           <>
-            {renderLottieJson(deployJson)}
-            <Text>Deploy Version 1.0</Text>
+            {renderLottieJson(testServerJson)}
+            <StepHeading key="step-5-heading">#5 - Test Server</StepHeading>
+            <Text key="step-5-text">
+              You'll receive a private Test Server so you can view development
+              progress.
+            </Text>
             <NextButton key={"step-5"} toNextStep={() => setJourneyStep(6)} />
           </>
         );
       case 6:
-        // Feature Sprints
+        // Version 1 Sprints
         return (
           <>
             {renderLottieJson(devJson)}
-            <Text>Feature Development</Text>
-            {renderLottieJson(agileSprintsJson)}
-            <Text>In Agile Sprints</Text>
+            <StepHeading key="step-6-heading">
+              #6 - Develompent Sprints
+            </StepHeading>
+            <Text key="step-6-text">
+              We'll develop your app with a tech stack that fits.
+            </Text>
+            {() => {
+              setTimeout(() => {
+                renderLottieJson(agileSprintsJson);
+              }, 4000);
+            }}
+            <Text key="step-6-text-1" timeDelay={4000}>
+              We'll work in Agile Sprints until Version 1.0 is complete. All
+              changes will be pushed to the test server every Sprint.
+            </Text>
             <NextButton key={"step-6"} toNextStep={() => setJourneyStep(7)} />
           </>
         );
       case 7:
-        // Continued Support
+        // Deploy
         return (
           <>
-            {renderLottieJson(supportJson)}
-            <Text>Continued Support</Text>
+            {renderLottieJson(deployJson)}
+            <StepHeading key="step-7-heading">
+              #7 - Deploy Version 1.0
+            </StepHeading>
+            <Text key="step-7-text">We'll deploy your app's Version 1.0</Text>
             <NextButton key={"step-7"} toNextStep={() => setJourneyStep(8)} />
           </>
         );
       case 8:
+        // Feature Sprints
+        return (
+          <>
+            {renderLottieJson(devJson)}
+            <StepHeading key="step-8-heading">
+              #8 - Feature Development
+            </StepHeading>
+            <Text key="step-8-text">
+              We'll develop extra features after Version 1.0
+            </Text>
+            {() => {
+              setTimeout(() => {
+                renderLottieJson(agileSprintsJson);
+              }, 4000);
+            }}
+            <Text key="step-8-text-1" timeDelay={4000}>
+              We'll work in Agile Sprints and deploy first to the Test Server
+              then to the Live version.
+            </Text>
+            <NextButton key={"step-8"} toNextStep={() => setJourneyStep(9)} />
+          </>
+        );
+      case 9:
+        // Continued Support
+        return (
+          <>
+            {renderLottieJson(supportJson)}
+            <StepHeading key="step-9-heading">
+              #9 - Continued Support
+            </StepHeading>
+            <Text key="step-9-text">
+              We'll continue to support you by squashing any bugs or consulting
+              you on next steps
+            </Text>
+            <NextButton key={"step-9"} toNextStep={() => setJourneyStep(10)} />
+          </>
+        );
+      case 10:
         // Start Now
         return (
           <>
+            {renderLottieJson(moneyBagsJson)}
             <NextButton
               key="start-now"
               className="pulse"

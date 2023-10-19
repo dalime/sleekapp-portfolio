@@ -3,16 +3,21 @@ import { SxProps, Typography } from "@mui/material";
 
 interface Props {
   sx?: SxProps;
+  className?: string;
   children?: ReactNode | ReactNode[];
 }
 
-function Paragraph({ sx, children }: Props) {
+function Paragraph({ sx, className, children }: Props) {
   const baseSx: SxProps = {
     marginBottom: 1,
   };
 
   return (
-    <Typography variant="body1" sx={sx ? { ...baseSx, ...sx } : baseSx}>
+    <Typography
+      variant="body1"
+      className={className || ""}
+      sx={sx ? { ...baseSx, ...sx } : baseSx}
+    >
       {children}
     </Typography>
   );
