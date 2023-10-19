@@ -130,6 +130,7 @@ function About() {
         style={{
           ...paddingSide,
           ...columnCenter,
+          marginBottom: 30,
         }}
       >
         <SubHead isMobile={isMobile}>World-Class Tech Stack</SubHead>
