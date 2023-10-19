@@ -1,7 +1,12 @@
 import React, { useState, useEffect, ReactNode } from "react";
 import { useMediaQuery } from "react-responsive";
 import { Button, SxProps } from "@mui/material";
-import { CheckBoxOutlineBlank, CheckBox } from "@mui/icons-material";
+import {
+  CheckBoxOutlineBlank,
+  CheckBox,
+  AppShortcut,
+} from "@mui/icons-material";
+import { grey } from "@mui/material/colors";
 import Lottie from "react-lottie";
 
 // Helpers
@@ -21,6 +26,7 @@ import testServerJson from "../../../assets/lottie-jsons/test-server.json";
 import pmBoardJson from "../../../assets/lottie-jsons/project-mgmt-board.json";
 import devJson from "../../../assets/lottie-jsons/development.json";
 import agileSprintsJson from "../../../assets/lottie-jsons/agile-sprints.json";
+import deployingJson from "../../../assets/lottie-jsons/deploying.json";
 import deployJson from "../../../assets/lottie-jsons/deploy.json";
 import supportJson from "../../../assets/lottie-jsons/support.json";
 import moneyBagsJson from "../../../assets/lottie-jsons/moneybags.json";
@@ -71,17 +77,14 @@ function Text({ key, children, timeDelay }: TextProps): JSX.Element {
  * The H3 component that shows in the process steps
  * @param key string | number
  * @param children ReactNode | ReactNode[] | undefined
- * @param center boolean | undefined
  * @returns JSX.Element
  */
-function StepHeading({ key, children, center }: TextProps): JSX.Element {
-  const baseStyle = { marginBottom: 10, marginTop: 10 };
-
+function StepHeading({ key, children }: TextProps): JSX.Element {
   return (
     <H3
       key={key}
       className="fade-in-slow"
-      style={center ? { ...baseStyle, textAlign: "center" } : baseStyle}
+      style={{ marginBottom: 10, marginTop: 10, textAlign: "center" }}
     >
       {children}
     </H3>
@@ -206,6 +209,7 @@ function Process() {
   // State
   const [journeyStep, setJourneyStep] = useState<number>(0);
   const [windowWidth, setWindowWidth] = useState<number>(0);
+  const [finishRocket, setFinishRocket] = useState<boolean>(false);
 
   // Effects
   useEffect(() => {
@@ -216,6 +220,14 @@ function Process() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  useEffect(() => {
+    if (journeyStep === 10) {
+      setTimeout(() => {
+        setFinishRocket(true);
+      }, 3500);
+    }
+  }, [journeyStep]);
 
   const imageWidth = isSmallMobile
     ? windowWidth * 0.5
@@ -243,6 +255,50 @@ function Process() {
         timeDelay={timeDelay}
       />
     );
+  };
+
+  /**
+   * Render the last lottie animation
+   * @param jsonPath
+   * @param timeDelay
+   * @returns
+   */
+  const renderFinishLottie = (): JSX.Element => {
+    if (finishRocket) {
+      return (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <AppShortcut
+            fontSize="large"
+            style={{
+              width: isMobile ? 75 : 150,
+              height: "auto",
+              color: grey[200],
+              marginBottom: 30,
+            }}
+          />
+          <Animation
+            key="step-10-animation-1"
+            jsonPath={moneyBagsJson}
+            imageWidth={imageWidth}
+          />
+        </div>
+      );
+    } else {
+      return (
+        <Animation
+          key="step-10-animation"
+          jsonPath={deployJson}
+          imageWidth={imageWidth}
+        />
+      );
+    }
   };
 
   /**
@@ -342,7 +398,7 @@ function Process() {
         // Deploy
         return (
           <>
-            {renderLottieJson("step-7-animation", deployJson)}
+            {renderLottieJson("step-7-animation", deployingJson)}
             <StepHeading key="step-7-heading">
               #7 - Deploy Version 1.0
             </StepHeading>
@@ -388,21 +444,18 @@ function Process() {
         // Start Now
         return (
           <>
-            {renderLottieJson("step-10-animation", moneyBagsJson)}
-            <StepHeading key="step-9-heading" timeDelay={1000} center>
-              Print Money
-            </StepHeading>
-            <NextButton
-              key="start-now"
+            {renderFinishLottie()}
+            <Button
               className="pulse"
-              toNextStep={() =>
+              onClick={() =>
                 process.env.REACT_APP_CALL_LINK
                   ? navigateToUrl(process.env.REACT_APP_CALL_LINK)
                   : {}
               }
-              text="Start Now"
               sx={{ padding: 2, marginBottom: 4 }}
-            />
+            >
+              Print Money
+            </Button>
             <Button
               color="secondary"
               variant="outlined"
