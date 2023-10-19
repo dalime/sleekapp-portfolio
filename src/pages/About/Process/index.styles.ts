@@ -19,3 +19,10 @@ export const Wrapper = styled.div`
     margin-left: 10%;
   }
 `;
+
+export const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;

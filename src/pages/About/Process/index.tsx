@@ -16,7 +16,7 @@ import { navigateToUrl } from "../../../helpers";
 import { H3, Paragraph } from "../../../components";
 
 // Styles
-import { Wrapper } from "./index.styles";
+import { Wrapper, Column } from "./index.styles";
 
 // Assets
 import videoCallJson from "../../../assets/lottie-jsons/video-call.json";
@@ -24,7 +24,7 @@ import designJson from "../../../assets/lottie-jsons/design.json";
 import landingPageJson from "../../../assets/lottie-jsons/landing-page.json";
 import testServerJson from "../../../assets/lottie-jsons/test-server.json";
 import pmBoardJson from "../../../assets/lottie-jsons/project-mgmt-board.json";
-import devJson from "../../../assets/lottie-jsons/development.json";
+import codingJson from "../../../assets/lottie-jsons/coding.json";
 import agileSprintsJson from "../../../assets/lottie-jsons/agile-sprints.json";
 import deployingJson from "../../../assets/lottie-jsons/deploying.json";
 import deployJson from "../../../assets/lottie-jsons/deploy.json";
@@ -222,7 +222,7 @@ function Process() {
   }, []);
 
   useEffect(() => {
-    if (journeyStep === 10) {
+    if (journeyStep === 9) {
       setTimeout(() => {
         setFinishRocket(true);
       }, 3500);
@@ -266,14 +266,7 @@ function Process() {
   const renderFinishLottie = (): JSX.Element => {
     if (finishRocket) {
       return (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
+        <Column>
           <AppShortcut
             fontSize="large"
             style={{
@@ -284,16 +277,16 @@ function Process() {
             }}
           />
           <Animation
-            key="step-10-animation-1"
+            key="step-9-animation-1"
             jsonPath={moneyBagsJson}
             imageWidth={imageWidth}
           />
-        </div>
+        </Column>
       );
     } else {
       return (
         <Animation
-          key="step-10-animation"
+          key="step-9-animation"
           jsonPath={deployJson}
           imageWidth={imageWidth}
         />
@@ -314,8 +307,7 @@ function Process() {
             {renderLottieJson("step-1-animation", videoCallJson)}
             <StepHeading key="step-1-heading">#1 - Strategy Call</StepHeading>
             <Text key="step-1-text">
-              We hop on a call to discuss your unique project and formulate a
-              plan
+              We'll discuss your project and create a project plan
             </Text>
             <NextButton key={"step-1"} toNextStep={() => setJourneyStep(2)} />
           </>
@@ -327,9 +319,7 @@ function Process() {
             {renderLottieJson("step-2-animation", designJson)}
             <StepHeading key="step-2-heading">#2 - Design Rounds</StepHeading>
             <Text key="step-2-text">
-              You'll work closely with our designer to come up with a mock-up
-              you are fully satisfied with. As many rounds of feedback as it
-              takes.
+              Receive a mock-up you love with the help of our UI Designer
             </Text>
             <NextButton key={"step-2"} toNextStep={() => setJourneyStep(3)} />
           </>
@@ -341,8 +331,7 @@ function Process() {
             {renderLottieJson("step-3-animation", landingPageJson)}
             <StepHeading key="step-3-heading">#3 - Landing Page</StepHeading>
             <Text key="step-3-text">
-              We'll publish a Landing Page for you to garner interest for your
-              app and collect emails.
+              A Landing Page for your app to garner interest and collect emails
             </Text>
             <NextButton key={"step-3"} toNextStep={() => setJourneyStep(4)} />
           </>
@@ -369,8 +358,7 @@ function Process() {
             {renderLottieJson("step-5-animation", testServerJson)}
             <StepHeading key="step-5-heading">#5 - Test Server</StepHeading>
             <Text key="step-5-text">
-              You'll receive a private Test Server so you can view development
-              progress.
+              A private Test Server so you can view development progress
             </Text>
             <NextButton key={"step-5"} toNextStep={() => setJourneyStep(6)} />
           </>
@@ -379,17 +367,15 @@ function Process() {
         // Version 1 Sprints
         return (
           <>
-            {renderLottieJson("step-6-animation", devJson)}
-            <StepHeading key="step-6-heading">
-              #6 - Develompent Sprints
-            </StepHeading>
+            {renderLottieJson("step-6-animation", codingJson)}
+            <StepHeading key="step-6-heading">#6 - Dev Sprints</StepHeading>
             <Text key="step-6-text">
-              We'll develop your app with a tech stack that fits.
+              The coding magic to make your app real
             </Text>
-            {renderLottieJson("step-6-animation-1", agileSprintsJson, 3000)}
-            <Text key="step-6-text-1" timeDelay={3000}>
-              We'll work in Agile Sprints until Version 1.0 is complete. All
-              changes will be pushed to the test server every Sprint.
+            {renderLottieJson("step-6-animation-1", agileSprintsJson)}
+            <Text key="step-6-text-1">
+              Agile Sprints for features with frequent deployments to your Test
+              and Live server
             </Text>
             <NextButton key={"step-6"} toNextStep={() => setJourneyStep(7)} />
           </>
@@ -399,48 +385,29 @@ function Process() {
         return (
           <>
             {renderLottieJson("step-7-animation", deployingJson)}
-            <StepHeading key="step-7-heading">
-              #7 - Deploy Version 1.0
-            </StepHeading>
-            <Text key="step-7-text">We'll deploy your app's Version 1.0</Text>
+            <StepHeading key="step-7-heading">#7 - Deploy</StepHeading>
+            <Text key="step-7-text">
+              Your App will be deployed at the end of every Sprint
+            </Text>
             <NextButton key={"step-7"} toNextStep={() => setJourneyStep(8)} />
           </>
         );
       case 8:
-        // Feature Sprints
+        // Continued Support
         return (
           <>
-            {renderLottieJson("step-8-animation", devJson)}
+            {renderLottieJson("step-8-animation", supportJson)}
             <StepHeading key="step-8-heading">
-              #8 - Feature Development
+              #8 - Continued Support
             </StepHeading>
             <Text key="step-8-text">
-              We'll develop extra features after Version 1.0
-            </Text>
-            {renderLottieJson("step-8-animation-1", agileSprintsJson, 3000)}
-            <Text key="step-8-text-1" timeDelay={3000}>
-              We'll work in Agile Sprints and deploy first to the Test Server
-              then to the Live version.
+              We'll continue to squash bugs, develop new features, and consult
+              you on best practices
             </Text>
             <NextButton key={"step-8"} toNextStep={() => setJourneyStep(9)} />
           </>
         );
       case 9:
-        // Continued Support
-        return (
-          <>
-            {renderLottieJson("step-9-animation", supportJson)}
-            <StepHeading key="step-9-heading">
-              #9 - Continued Support
-            </StepHeading>
-            <Text key="step-9-text">
-              We'll continue to support you by squashing any bugs or consulting
-              you on next steps
-            </Text>
-            <NextButton key={"step-9"} toNextStep={() => setJourneyStep(10)} />
-          </>
-        );
-      case 10:
         // Start Now
         return (
           <>
@@ -459,7 +426,10 @@ function Process() {
             <Button
               color="secondary"
               variant="outlined"
-              onClick={() => setJourneyStep(0)}
+              onClick={() => {
+                setJourneyStep(0);
+                setFinishRocket(false);
+              }}
             >
               View Again
             </Button>
@@ -467,14 +437,16 @@ function Process() {
         );
       default:
         return (
-          <Button
-            className="pulse"
-            variant="contained"
-            onClick={() => setJourneyStep(1)}
-            sx={{ padding: 3 }}
-          >
-            Get Started
-          </Button>
+          <Column>
+            <Button
+              className="pulse"
+              variant="contained"
+              onClick={() => setJourneyStep(1)}
+              sx={{ padding: 3 }}
+            >
+              Get Started
+            </Button>
+          </Column>
         );
     }
   };
