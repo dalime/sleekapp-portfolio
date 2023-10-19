@@ -29,13 +29,37 @@ interface TextProps {
   key: string | number;
   children?: ReactNode | ReactNode[];
   timeDelay?: number;
+  center?: boolean;
 }
 
+/**
+ * The Text component that shows in the process steps
+ * @param key string | number
+ * @param children ReactNode | ReactNode[] | undefined
+ * @param timeDelay number | undefined
+ * @returns JSX.Element
+ */
 function Text({ key, children, timeDelay }: TextProps): JSX.Element {
+  const [visible, setVisible] = useState<boolean>(timeDelay ? false : true);
+
+  useEffect(() => {
+    if (timeDelay) {
+      setTimeout(() => {
+        setVisible(true);
+      }, timeDelay);
+    }
+  }, [timeDelay]);
+
+  if (!visible) return <></>;
+
   return (
     <Paragraph
       key={key}
-      sx={{ textAlign: "center", marginBottom: 2, marginTop: 2 }}
+      sx={{
+        textAlign: "center",
+        marginBottom: 2,
+        marginTop: 2,
+      }}
       className="fade-in-slow"
     >
       {children}
@@ -43,11 +67,79 @@ function Text({ key, children, timeDelay }: TextProps): JSX.Element {
   );
 }
 
-function StepHeading({ key, children }: TextProps): JSX.Element {
+/**
+ * The H3 component that shows in the process steps
+ * @param key string | number
+ * @param children ReactNode | ReactNode[] | undefined
+ * @param center boolean | undefined
+ * @returns JSX.Element
+ */
+function StepHeading({ key, children, center }: TextProps): JSX.Element {
+  const baseStyle = { marginBottom: 10, marginTop: 10 };
+
   return (
-    <H3 key={key} style={{ marginBottom: 10, marginTop: 10 }}>
+    <H3
+      key={key}
+      className="fade-in-slow"
+      style={center ? { ...baseStyle, textAlign: "center" } : baseStyle}
+    >
       {children}
     </H3>
+  );
+}
+
+// Options for Lottie animation
+const defaultOptions = {
+  loop: true,
+  autoplay: true,
+  rendererSettings: {
+    preserveAspectRatio: "xMidYMid slice",
+  },
+};
+
+interface AnimationProps {
+  key: number | string;
+  jsonPath: any;
+  imageWidth: number;
+  timeDelay?: number;
+}
+
+/**
+ * The Lottie Animation that shows up for process steps
+ * @param key number | string
+ * @param jsonPath any
+ * @param imageWidth number
+ * @param timeDelay number | undefined
+ * @returns JSX.Element
+ */
+function Animation({
+  key,
+  jsonPath,
+  imageWidth,
+  timeDelay,
+}: AnimationProps): JSX.Element {
+  const [visible, setVisible] = useState<boolean>(timeDelay ? false : true);
+
+  useEffect(() => {
+    if (timeDelay) {
+      setTimeout(() => {
+        setVisible(true);
+      }, timeDelay);
+    }
+  }, [timeDelay]);
+
+  if (!visible) return <></>;
+
+  return (
+    <Lottie
+      key={key}
+      options={{ ...defaultOptions, animationData: jsonPath }}
+      height={undefined}
+      width={imageWidth}
+      isStopped={false}
+      isPaused={false}
+      style={{ opacity: visible ? 1 : 0 }}
+    />
   );
 }
 interface NextButtonProps {
@@ -125,15 +217,6 @@ function Process() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Options for Lottie animation
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
-
   const imageWidth = isSmallMobile
     ? windowWidth * 0.5
     : isMobile
@@ -142,18 +225,22 @@ function Process() {
 
   /**
    * Renders the necessary Lottie Animation
+   * @param key string | number
    * @param jsonPath any
    * @param timeDelay number | undefined
    * @returns JSX.Element
    */
-  const renderLottieJson = (jsonPath: any, timeDelay?: number): JSX.Element => {
+  const renderLottieJson = (
+    key: string | number,
+    jsonPath: any,
+    timeDelay?: number
+  ): JSX.Element => {
     return (
-      <Lottie
-        options={{ ...defaultOptions, animationData: jsonPath }}
-        height={undefined}
-        width={imageWidth}
-        isStopped={false}
-        isPaused={false}
+      <Animation
+        key={key}
+        jsonPath={jsonPath}
+        imageWidth={imageWidth}
+        timeDelay={timeDelay}
       />
     );
   };
@@ -168,7 +255,7 @@ function Process() {
         // Zoom Call
         return (
           <>
-            {renderLottieJson(videoCallJson)}
+            {renderLottieJson("step-1-animation", videoCallJson)}
             <StepHeading key="step-1-heading">#1 - Strategy Call</StepHeading>
             <Text key="step-1-text">
               We hop on a call to discuss your unique project and formulate a
@@ -181,7 +268,7 @@ function Process() {
         // Design Rounds
         return (
           <>
-            {renderLottieJson(designJson)}
+            {renderLottieJson("step-2-animation", designJson)}
             <StepHeading key="step-2-heading">#2 - Design Rounds</StepHeading>
             <Text key="step-2-text">
               You'll work closely with our designer to come up with a mock-up
@@ -195,7 +282,7 @@ function Process() {
         // Project Management Board
         return (
           <>
-            {renderLottieJson(landingPageJson)}
+            {renderLottieJson("step-3-animation", landingPageJson)}
             <StepHeading key="step-3-heading">#3 - Landing Page</StepHeading>
             <Text key="step-3-text">
               We'll publish a Landing Page for you to garner interest for your
@@ -208,7 +295,7 @@ function Process() {
         // Project Management Board
         return (
           <>
-            {renderLottieJson(pmBoardJson)}
+            {renderLottieJson("step-4-animation", pmBoardJson)}
             <StepHeading key="step-4-heading">
               #4 - Project Plan + Board
             </StepHeading>
@@ -223,7 +310,7 @@ function Process() {
         // Test Server
         return (
           <>
-            {renderLottieJson(testServerJson)}
+            {renderLottieJson("step-5-animation", testServerJson)}
             <StepHeading key="step-5-heading">#5 - Test Server</StepHeading>
             <Text key="step-5-text">
               You'll receive a private Test Server so you can view development
@@ -236,19 +323,15 @@ function Process() {
         // Version 1 Sprints
         return (
           <>
-            {renderLottieJson(devJson)}
+            {renderLottieJson("step-6-animation", devJson)}
             <StepHeading key="step-6-heading">
               #6 - Develompent Sprints
             </StepHeading>
             <Text key="step-6-text">
               We'll develop your app with a tech stack that fits.
             </Text>
-            {() => {
-              setTimeout(() => {
-                renderLottieJson(agileSprintsJson);
-              }, 4000);
-            }}
-            <Text key="step-6-text-1" timeDelay={4000}>
+            {renderLottieJson("step-6-animation-1", agileSprintsJson, 3000)}
+            <Text key="step-6-text-1" timeDelay={3000}>
               We'll work in Agile Sprints until Version 1.0 is complete. All
               changes will be pushed to the test server every Sprint.
             </Text>
@@ -259,7 +342,7 @@ function Process() {
         // Deploy
         return (
           <>
-            {renderLottieJson(deployJson)}
+            {renderLottieJson("step-7-animation", deployJson)}
             <StepHeading key="step-7-heading">
               #7 - Deploy Version 1.0
             </StepHeading>
@@ -271,19 +354,15 @@ function Process() {
         // Feature Sprints
         return (
           <>
-            {renderLottieJson(devJson)}
+            {renderLottieJson("step-8-animation", devJson)}
             <StepHeading key="step-8-heading">
               #8 - Feature Development
             </StepHeading>
             <Text key="step-8-text">
               We'll develop extra features after Version 1.0
             </Text>
-            {() => {
-              setTimeout(() => {
-                renderLottieJson(agileSprintsJson);
-              }, 4000);
-            }}
-            <Text key="step-8-text-1" timeDelay={4000}>
+            {renderLottieJson("step-8-animation-1", agileSprintsJson, 3000)}
+            <Text key="step-8-text-1" timeDelay={3000}>
               We'll work in Agile Sprints and deploy first to the Test Server
               then to the Live version.
             </Text>
@@ -294,7 +373,7 @@ function Process() {
         // Continued Support
         return (
           <>
-            {renderLottieJson(supportJson)}
+            {renderLottieJson("step-9-animation", supportJson)}
             <StepHeading key="step-9-heading">
               #9 - Continued Support
             </StepHeading>
@@ -309,7 +388,10 @@ function Process() {
         // Start Now
         return (
           <>
-            {renderLottieJson(moneyBagsJson)}
+            {renderLottieJson("step-10-animation", moneyBagsJson)}
+            <StepHeading key="step-9-heading" timeDelay={1000} center>
+              Print Money
+            </StepHeading>
             <NextButton
               key="start-now"
               className="pulse"
