@@ -57,4 +57,9 @@ export const TeamMemberImg = styled.img`
   height: 150px;
   object-fit: contain;
   border-radius: 50%;
+
+  @media (max-width: 768px) {
+    width: 100px;
+    height: 100px;
+  }
 `;

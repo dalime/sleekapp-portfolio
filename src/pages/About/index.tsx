@@ -89,18 +89,12 @@ function About() {
         About
       </MainHeading>
       <Paragraph sx={{ ...paragraphSx, ...paddingSide }}>
-        Sleek App Development Agency was born out of a desire to deliver high
-        quality web and mobile apps for clients who want to provide real value
-        to customers. We pride ourselves in the work we&apos;ve done so far in
-        helping businesses get online.
+        Sleek App was born out of a desire to deliver high quality web and
+        mobile apps for clients who want to create real value-providing products
+        for customers.
       </Paragraph>
       <Section style={paddingSide}>
-        <SubHead isMobile={isMobile}>The Sleek App Journey</SubHead>
-        <Paragraph sx={paragraphSx}>
-          Efficiency is found in repeated systems. At Sleek App, we make
-          something as complicated as developing an app a series of processes.
-          Here is how we will handle business.
-        </Paragraph>
+        <SubHead isMobile={isMobile}>How Your Journey Will Look</SubHead>
         <Process />
       </Section>
       <Section
@@ -140,12 +134,8 @@ function About() {
       >
         <SubHead isMobile={isMobile}>World-Class Tech Stack</SubHead>
         <Paragraph sx={paragraphSx}>
-          At Sleek App, we pride ourselves on being both specialists and
-          adaptable when it comes to technology. Understanding that each project
-          has its unique requirements and challenges, our team is adept at
-          tailoring our approach to match the exact needs of each client. While
-          we can venture into diverse technologies, we have a core tech stack in
-          which we specialize, ensuring world-class quality with it.
+          We have a core tech stack in which we specialize, ensuring world-class
+          quality with it.
         </Paragraph>
         <Rows>
           <Column>
@@ -193,9 +183,7 @@ function About() {
         </Rows>
         <Paragraph sx={paragraphSx}>
           Depending on your project needs, we can adjust the technology stack
-          accordingly. For example, some of our clients in the past have had
-          their backends developed with Python and we found this to be a more
-          suitable choice.
+          accordingly.
         </Paragraph>
         <Button
           variant="contained"
@@ -208,39 +196,6 @@ function About() {
           sx={{ marginTop: 3 }}
         >
           Book 1:1 Strategy Call
-        </Button>
-      </Section>
-      <Section
-        style={{
-          ...paddingSide,
-        }}
-      >
-        <SubHead isMobile={isMobile}>Agile Sprints</SubHead>
-        <Paragraph sx={paragraphSx}>
-          At the heart of modern software development is agile sprints. The best
-          way to provide a product that the market wants is to test
-          incrementally. Long gone are the days of developing software behind
-          closed doors in hopes that it will convert well with the market. We
-          take this to heart and like to work in 2-week agile sprints.
-          Basically, that means we develop a set of features every 2 weeks,
-          deploy, and see how customers react with live feedback.
-        </Paragraph>
-      </Section>
-      <Section
-        style={{
-          ...paddingSide,
-          ...columnCenter,
-        }}
-      >
-        <SubHead isMobile={isMobile}>
-          Launch Your Own Fullstack Web App in 180 Days or Less! 🚀
-        </SubHead>
-        <Paragraph sx={paragraphSx}>
-          Time&apos;s ticking and we&apos;ve ONLY 2 SPOTS LEFT out of 5. Get
-          your development milestones finished before the year wraps up.
-        </Paragraph>
-        <Button color="primary" variant="contained" sx={{ marginTop: 2 }}>
-          Find Out More
         </Button>
       </Section>
     </Page>
