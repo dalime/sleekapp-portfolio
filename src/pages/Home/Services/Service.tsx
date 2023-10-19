@@ -9,7 +9,7 @@ import { Backdrop } from "../../../components";
 
 // Animations
 import designJson from "../../../assets/lottie-jsons/design.json";
-import developmentJson from "../../../assets/lottie-jsons/development.json";
+import codingJson from "../../../assets/lottie-jsons/coding.json";
 import copywritingJson from "../../../assets/lottie-jsons/copywriting.json";
 
 interface Props {
@@ -48,7 +48,7 @@ function Service({ title, animationName, description }: Props) {
       case "design":
         return designJson;
       case "development":
-        return developmentJson;
+        return codingJson;
       case "copywriting":
         return copywritingJson;
       default:

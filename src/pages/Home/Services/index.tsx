@@ -31,17 +31,17 @@ function Services() {
         <Service
           title="Design"
           animationName="design"
-          description="App and web design services that combine creativity and user-centric principles. Our team crafts visually engaging interfaces with seamless experiences."
+          description="App and website designs that combine creativity and user-centric principles"
         />
         <Service
           title="Development"
           animationName="development"
-          description="Our expert team leverages the latest technologies to build customized apps and websites that convert to business growth."
+          description="Customized apps and websites that lead to business growth"
         />
         <Service
           title="Copywriting"
           animationName="copywriting"
-          description="Compelling app and website copywriting services. Our team crafts persuasive and engaging content that converts visitors to customers."
+          description="Compelling copywriting services that converts visitors to customers"
         />
       </Wrapper>
     </Section>
