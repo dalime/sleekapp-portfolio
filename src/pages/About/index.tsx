@@ -31,14 +31,43 @@ interface SubHeadProps {
   children?: ReactNode | ReactNode[];
 }
 
+/**
+ * Subheading with mobile style
+ * @param isMobile boolean
+ * @param children ReactNode | ReactNode[] | undefined
+ * @returns
+ */
 function SubHead({ isMobile, children }: SubHeadProps): JSX.Element {
   return (
     <Subheading sx={isMobile ? { fontSize: 30 } : {}}>{children}</Subheading>
   );
 }
 
+interface SectionCutProps {
+  children?: ReactNode | ReactNode[];
+  style?: CSSProperties;
+}
+
+/**
+ * Subheading with mobile style
+ * @param children ReactNode | ReactNode[] | undefined
+ * @param style CSSProperties | undefined
+ * @returns
+ */
+function SectionCut({ children, style }: SectionCutProps): JSX.Element {
+  const baseStyle = { paddingTop: "7.5%", paddingBottom: "7.5%" };
+
+  return (
+    <Section style={style ? { ...baseStyle, ...style } : baseStyle}>
+      {children}
+    </Section>
+  );
+}
+
 function About() {
   // Hooks
+  const isMedScreen = useMediaQuery({ maxWidth: 1100 });
+  const isSmallScreen = useMediaQuery({ maxWidth: 900 });
   const isMobile = useMediaQuery({ maxWidth: 768 });
 
   // State
@@ -88,16 +117,35 @@ function About() {
       <MainHeading sx={isMobile ? { ...mainStyle, fontSize: 30 } : mainStyle}>
         About
       </MainHeading>
-      <Paragraph sx={{ ...paragraphSx, ...paddingSide }}>
+      <Paragraph
+        sx={{
+          ...paragraphSx,
+          ...paddingSide,
+          width: isMobile
+            ? "100%"
+            : isSmallScreen
+            ? "75%"
+            : isMedScreen
+            ? "60%"
+            : "50%",
+          marginLeft: isMobile
+            ? 0
+            : isSmallScreen
+            ? "12.5%"
+            : isMedScreen
+            ? "20%"
+            : "25%",
+        }}
+      >
         Sleek App was born out of a desire to deliver high quality web and
         mobile apps for clients who want to create real value-providing products
         for customers.
       </Paragraph>
-      <Section style={paddingSide}>
+      <SectionCut style={paddingSide}>
         <SubHead isMobile={isMobile}>How Your Journey Will Look</SubHead>
         <Process />
-      </Section>
-      <Section
+      </SectionCut>
+      <SectionCut
         style={{
           ...paddingSide,
           ...columnCenter,
@@ -123,10 +171,24 @@ function About() {
         </Button>
         <Paragraph sx={paragraphSx}>
           “There is nothing more fulfilling than watching clients&apos; visions
-          become a reality” - Danny Lim, President
+          become a reality”
         </Paragraph>
-      </Section>
-      <Section
+        <Paragraph>- Danny Lim, President</Paragraph>
+        <Button
+          className="pulse"
+          variant="outlined"
+          color="primary"
+          sx={{ marginTop: 5 }}
+          onClick={() =>
+            process.env.REACT_APP_CALL_LINK
+              ? navigateToUrl(process.env.REACT_APP_CALL_LINK)
+              : {}
+          }
+        >
+          Book 1:1 Strategy Call
+        </Button>
+      </SectionCut>
+      <SectionCut
         style={{
           ...paddingSide,
           ...columnCenter,
@@ -187,18 +249,19 @@ function About() {
           accordingly.
         </Paragraph>
         <Button
-          variant="contained"
+          className="pulse"
+          variant="outlined"
           color="primary"
           onClick={() =>
             process.env.REACT_APP_CALL_LINK
               ? navigateToUrl(process.env.REACT_APP_CALL_LINK)
               : {}
           }
-          sx={{ marginTop: 3 }}
+          sx={{ marginTop: 5 }}
         >
           Book 1:1 Strategy Call
         </Button>
-      </Section>
+      </SectionCut>
     </Page>
   );
 }
