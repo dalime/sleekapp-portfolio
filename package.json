@@ -1,0 +1,15 @@
+{
+  "name": "sleekapp-portfolio",
+  "version": "1.0.0",
+  "description": "A custom-coded portfolio website for Sleek App Development Agency",
+  "main": "index.js",
+  "repository": "https://github.com/dalime/sleekapp-portfolio",
+  "author": "dalime <Danny.B.Lim@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "installation": "cd backend && yarn && cd ../frontend && yarn",
+    "start:backend": "cd backend && yarn start:dev",
+    "start:frontend": "cd frontend && yarn start",
+    "start:dev": "concurrently \"yarn start:backend\" \"yarn start:frontend\""
+  }
+}
