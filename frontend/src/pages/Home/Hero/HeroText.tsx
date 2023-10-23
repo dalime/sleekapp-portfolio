@@ -47,7 +47,7 @@ function HeroText({ mobile }: Props) {
           textAlign: mobile ? "center" : "left",
         }}
       >
-        A One-Stop-Shop App Development Agency.{mobile ? <br /> : <></>}We turn
+        A One-Stop-Shop App Development Agency.{mobile ? <br /> : " "}We turn
         visions into reality.
       </Typography>
       <Button

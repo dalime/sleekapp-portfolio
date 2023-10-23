@@ -75,12 +75,10 @@ function Service({ title, animationName, description }: Props) {
   return (
     <Backdrop
       width={
-        isSuperSmall
-          ? "90%"
-          : isMobile
-          ? "80%"
+        isSuperSmall || isMobile
+          ? "100%"
           : isSmallScreen
-          ? "50%"
+          ? "75%"
           : "calc(100% / 3 - 5%)"
       }
       style={{
@@ -89,13 +87,8 @@ function Service({ title, animationName, description }: Props) {
         justifyContent: "flex-start",
         alignItems: "center",
         height: 500,
-        marginLeft: isSuperSmall
-          ? "5%"
-          : isMobile
-          ? "10%"
-          : isSmallScreen
-          ? "25%"
-          : 0,
+        marginLeft:
+          isSuperSmall || isMobile ? "0%" : isSmallScreen ? "12.5%" : 0,
         marginBottom: isSmallScreen ? 20 : 0,
       }}
     >
