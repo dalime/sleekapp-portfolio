@@ -123,7 +123,7 @@ function Service({ title, animationName, description }: Props) {
       <Button
         variant="contained"
         onClick={() => navigate("portfolio")}
-        sx={{ padding: 2, marginTop: 2 }}
+        sx={{ padding: 2, marginTop: 2, borderRadius: 0 }}
       >
         See More
       </Button>
