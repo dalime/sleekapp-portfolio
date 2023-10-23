@@ -8,6 +8,7 @@ export const Form = styled.form`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  position: relative;
 
   @media (max-width: 500px) {
     padding: 20px 0;
@@ -46,4 +47,14 @@ export const LogoImg = styled.img`
     margin-left: 10px;
     margin-right: 10px;
   }
+`;
+
+export const Loader = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
