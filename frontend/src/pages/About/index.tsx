@@ -1,4 +1,5 @@
 import React, { CSSProperties, ReactNode, useState } from "react";
+import { Helmet } from "react-helmet";
 import { useMediaQuery } from "react-responsive";
 import { Button, SxProps } from "@mui/material";
 import { yellow } from "@mui/material/colors";
@@ -90,6 +91,17 @@ function About() {
 
   return (
     <Page>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>About Sleek App - App Development Agency</title>
+        <meta
+          name="description"
+          content="Sleek App Development Agency was born out of a desire to deliver high quality web and
+        mobile apps for clients who want to create real value-providing products
+        for customers."
+        />
+      </Helmet>
+
       <MainHeading sx={isMobile ? { ...mainStyle, fontSize: 30 } : mainStyle}>
         About
       </MainHeading>

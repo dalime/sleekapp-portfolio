@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Helmet } from "react-helmet";
 import { useMediaQuery } from "react-responsive";
 import { CircularProgress, IconButton, Alert } from "@mui/material";
 import { Close } from "@mui/icons-material";
@@ -71,6 +72,15 @@ function Blog() {
 
   return (
     <Page>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Sleek App - Blog</title>
+        <meta
+          name="description"
+          content="Read blog posts written by Sleek App Development Agency and team members, from technical guides to industry insights to personal stories."
+        />
+      </Helmet>
+
       <MainHeading
         align="center"
         sx={mobile ? { ...headingColor, fontSize: 40 } : headingColor}

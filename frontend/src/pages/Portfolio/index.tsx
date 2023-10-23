@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Helmet } from "react-helmet";
 import { useMediaQuery } from "react-responsive";
 import { List, Button } from "@mui/material";
 import { Close, Web, Code } from "@mui/icons-material";
@@ -86,6 +87,15 @@ function Portfolio() {
 
   return (
     <Page>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Sleek App - Portfolio</title>
+        <meta
+          name="description"
+          content="Sleek App Develompent Agency's Portfolio, showcasing some recent projects the team worked on for clients. Detailed case studies and approaches to solving problems."
+        />
+      </Helmet>
+
       <Section padding={20}>
         <MainHeading
           align="center"

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, ReactNode } from "react";
+import { Helmet } from "react-helmet";
 import { yellow } from "@mui/material/colors";
 
 // Components
@@ -48,6 +49,15 @@ function Home() {
 
   return (
     <Page testId="home-page">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Sleek App - App Development Agency</title>
+        <meta
+          name="description"
+          content="Turn your digital ideas into reality. An app development agency that offers app and website design, development, and copywriting services. Contact us today!"
+        />
+      </Helmet>
+
       <Hero />
       <Services />
       <TechStack noAction />
