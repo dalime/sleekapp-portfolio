@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 import bodyParser from 'body-parser';
+import cors from 'cors';
 import sgMail from '@sendgrid/mail';
 import dotenv from 'dotenv';
 
@@ -12,6 +13,9 @@ const PORT = 8000;
 
 // Middleware
 app.use(bodyParser.json());
+app.use(cors({
+  origin: "*"
+}));
 
 // Set SendGrid
 sgMail.setApiKey(process.env.SENDGRID_API_KEY || "");

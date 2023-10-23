@@ -2,6 +2,7 @@
 const express = require("express");
 const serverless = require("serverless-http");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 const sgMail = require("@sendgrid/mail");
 const dotenv = require("dotenv");
 
@@ -17,6 +18,11 @@ const router = express.Router();
 
 // Middleware
 app.use(bodyParser.json());
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 // Set SendGrid
 sgMail.setApiKey(process.env.SENDGRID_API_KEY || "");
