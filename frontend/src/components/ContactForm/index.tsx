@@ -17,16 +17,17 @@ import {
 } from "@mui/material";
 
 // Actions
-import { sendEmail } from "../../../actions";
+import { sendEmail } from "../../actions";
 
 // Components
-import { Section, Subheading, Paragraph } from "../../../components";
+import Section from "../Section";
+import { Subheading, Paragraph } from "../fonts";
 
 // Styles
 import { Form, Separator, Line, LogoImg, Loader } from "./index.styles";
 
 // Assets
-import SleekAppLogo from "../../../assets/images/sleekapp-logo.png";
+import SleekAppLogo from "../../assets/images/sleekapp-logo.png";
 
 function ContactForm() {
   // Hooks

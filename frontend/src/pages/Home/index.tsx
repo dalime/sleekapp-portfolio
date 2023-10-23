@@ -5,9 +5,15 @@ import { yellow } from "@mui/material/colors";
 import Hero from "./Hero";
 import Services from "./Services";
 import Reviews from "./Reviews";
-import ContactForm from "./ContactForm";
 import CTASection from "./CTASection";
-import { H3, Page, Paragraph, Section, Subheading } from "../../components";
+import {
+  H3,
+  Page,
+  Paragraph,
+  Section,
+  Subheading,
+  ContactForm,
+} from "../../components";
 
 interface GoldHighlightProps {
   children?: ReactNode | ReactNode[];

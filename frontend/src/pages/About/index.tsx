@@ -14,6 +14,7 @@ import {
   MainHeading,
   Paragraph,
   Subheading,
+  ContactForm,
 } from "../../components";
 
 // Styles
@@ -176,9 +177,9 @@ function About() {
         <Paragraph>- Danny Lim, President</Paragraph>
         <Button
           className="pulse"
-          variant="outlined"
+          variant="contained"
           color="primary"
-          sx={{ marginTop: 5 }}
+          sx={{ marginTop: 5, padding: 2 }}
           onClick={() =>
             process.env.REACT_APP_CALL_LINK
               ? navigateToUrl(process.env.REACT_APP_CALL_LINK)
@@ -250,17 +251,20 @@ function About() {
         </Paragraph>
         <Button
           className="pulse"
-          variant="outlined"
+          variant="contained"
           color="primary"
           onClick={() =>
             process.env.REACT_APP_CALL_LINK
               ? navigateToUrl(process.env.REACT_APP_CALL_LINK)
               : {}
           }
-          sx={{ marginTop: 5 }}
+          sx={{ marginTop: 5, padding: 2 }}
         >
           Book 1:1 Strategy Call
         </Button>
+      </SectionCut>
+      <SectionCut>
+        <ContactForm />
       </SectionCut>
     </Page>
   );
