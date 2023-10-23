@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# Sleek App Portfolio Website
+
+The frontend for the Sleek App portfolio website, built with **React** and **Typescript**.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
