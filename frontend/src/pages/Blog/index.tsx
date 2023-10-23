@@ -33,7 +33,6 @@ function Blog() {
       try {
         setFetchLoading(true);
         const response = await fetchBlogPosts();
-        console.log("response", response);
         setFetchLoading(false);
         setBlogPosts(response || []);
       } catch (error) {
