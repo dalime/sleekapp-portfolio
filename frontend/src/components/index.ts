@@ -7,6 +7,7 @@ import Page from "./Page";
 import PortfolioItem from "./PortfolioItem";
 import Section from "./Section";
 import StarRating from "./StarRating";
+import TechStack from "./TechStack";
 
 export {
   Backdrop,
@@ -18,6 +19,7 @@ export {
   PortfolioItem,
   Section,
   StarRating,
+  TechStack,
 };
 
 export * from './fonts';

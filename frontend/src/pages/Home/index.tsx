@@ -12,6 +12,7 @@ import {
   Paragraph,
   Section,
   Subheading,
+  TechStack,
   ContactForm,
 } from "../../components";
 
@@ -49,6 +50,7 @@ function Home() {
     <Page testId="home-page">
       <Hero />
       <Services />
+      <TechStack noAction />
       <CTASection />
       <Reviews />
       <CTASection />

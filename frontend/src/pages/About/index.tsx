@@ -15,17 +15,11 @@ import {
   Paragraph,
   Subheading,
   ContactForm,
+  TechStack,
 } from "../../components";
 
 // Styles
-import {
-  Rows,
-  Column,
-  TechWrapper,
-  TechImg,
-  TechText,
-  TeamMemberImg,
-} from "./index.styles";
+import { TeamMemberImg } from "./index.styles";
 
 interface SubHeadProps {
   isMobile: boolean;
@@ -73,7 +67,6 @@ function About() {
 
   // State
   const [imgHovering, setImgHovering] = useState<boolean>(false);
-  const [techHovering, setTechHovering] = useState<string | null>(null);
 
   // Style
   const mainStyle: CSSProperties = { color: yellow[300], textAlign: "center" };
@@ -94,24 +87,6 @@ function About() {
     alignItems: "center",
     textAlign: "center",
   };
-
-  /**
-   * Renders a technology logo and name for the Tech Stack
-   * @param imgSrc string
-   * @param name strig
-   * @returns JSX.Element
-   */
-  const renderTech = (imgSrc: string, name: string): JSX.Element => (
-    <TechWrapper
-      onMouseEnter={() => setTechHovering(name)}
-      onMouseLeave={() => setTechHovering(null)}
-    >
-      <TechImg src={imgSrc} alt={name} />
-      <TechText style={techHovering === name ? { color: yellow[500] } : {}}>
-        {name}
-      </TechText>
-    </TechWrapper>
-  );
 
   return (
     <Page>
@@ -189,80 +164,7 @@ function About() {
           Book 1:1 Strategy Call
         </Button>
       </SectionCut>
-      <SectionCut
-        style={{
-          ...paddingSide,
-          ...columnCenter,
-          marginBottom: 30,
-        }}
-      >
-        <SubHead isMobile={isMobile}>World-Class Tech Stack</SubHead>
-        <Paragraph sx={paragraphSx}>
-          We have a core tech stack in which we specialize, ensuring world-class
-          quality with it.
-        </Paragraph>
-        <Rows>
-          <Column>
-            {renderTech(
-              "https://sleekapp.io/wp-content/uploads/2023/09/react-icon.png",
-              "React"
-            )}
-            {renderTech(
-              "https://sleekapp.io/wp-content/uploads/2023/09/nodejs-icon.png",
-              "Node.js"
-            )}
-            {renderTech(
-              "https://sleekapp.io/wp-content/uploads/2023/09/aws-s3-icon-846x1024.png",
-              "AWS S3"
-            )}
-          </Column>
-          <Column>
-            {renderTech(
-              "https://sleekapp.io/wp-content/uploads/2023/09/graphql-icon-1024x1024.png",
-              "GraphQL"
-            )}
-            {renderTech(
-              "http://sleekapp.io/wp-content/uploads/2023/10/mongodb.png",
-              "Mongo DB"
-            )}
-            {renderTech(
-              "https://sleekapp.io/wp-content/uploads/2023/09/aws-ec2-icon.png",
-              "AWS EC2"
-            )}
-          </Column>
-          <Column>
-            {renderTech(
-              "https://sleekapp.io/wp-content/uploads/2023/09/typescript-logo-1024x1024.png",
-              "Typescript"
-            )}
-            {renderTech(
-              "https://sleekapp.io/wp-content/uploads/2023/09/postgresql-icon.png",
-              "PostgreSQL"
-            )}
-            {renderTech(
-              "https://sleekapp.io/wp-content/uploads/2023/09/aws-ecs-icon.png",
-              "AWS ECS"
-            )}
-          </Column>
-        </Rows>
-        <Paragraph sx={paragraphSx}>
-          Depending on your project needs, we can adjust the technology stack
-          accordingly.
-        </Paragraph>
-        <Button
-          className="pulse"
-          variant="contained"
-          color="primary"
-          onClick={() =>
-            process.env.REACT_APP_CALL_LINK
-              ? navigateToUrl(process.env.REACT_APP_CALL_LINK)
-              : {}
-          }
-          sx={{ marginTop: 5, padding: 2 }}
-        >
-          Book 1:1 Strategy Call
-        </Button>
-      </SectionCut>
+      <TechStack />
       <SectionCut>
         <ContactForm />
       </SectionCut>
