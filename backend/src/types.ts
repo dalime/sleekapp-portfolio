@@ -16,11 +16,11 @@ app.use(bodyParser.json());
 // Set SendGrid
 sgMail.setApiKey(process.env.SENDGRID_API_KEY || "");
 
-app.get("/", (req: Request, res: Response) => {
+app.get("/", (req, res) => {
   res.status(200).send("Sleek App API");
 });
 
-app.post('/send-email', async (req: Request, res: Response) => {
+app.post('/send-email', async (req, res) => {
   try {
     const body = `New ${req.body.service} Inquiry! Name: ${req.body.name}, Email: ${req.body.email}, Service: ${req.body.service}. Message: ${req.body.message}`;
 

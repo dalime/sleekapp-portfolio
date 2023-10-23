@@ -1,9 +1,9 @@
 "use strict";
-import express, { Request, Response } from "express";
-import serverless from "serverless-http";
-import bodyParser from "body-parser";
-import sgMail from "@sendgrid/mail";
-import dotenv from "dotenv";
+const express = require("express");
+const serverless = require("serverless-http");
+const bodyParser = require("body-parser");
+const sgMail = require("@sendgrid/mail");
+const dotenv = require("dotenv");
 
 // Initiate Environment Variables
 dotenv.config();
@@ -12,17 +12,20 @@ dotenv.config();
 const app = express();
 // const PORT = 8000;
 
+// Create a router to handle routes
+const router = express.Router();
+
 // Middleware
 app.use(bodyParser.json());
 
 // Set SendGrid
 sgMail.setApiKey(process.env.SENDGRID_API_KEY || "");
 
-app.get("/", (req, res) => {
+router.get("/", (req, res) => {
   res.status(200).send("Sleek App API");
 });
 
-app.post("/send-email", async (req, res) => {
+router.post("/send-email", async (req, res) => {
   try {
     const body = `New ${req.body.service} Inquiry! Name: ${req.body.name}, Email: ${req.body.email}, Service: ${req.body.service}. Message: ${req.body.message}`;
 
@@ -68,4 +71,9 @@ app.post("/send-email", async (req, res) => {
   }
 });
 
+// Use the router to handle requests to the `/.netlify/functions/api` path
+app.use(`/.netlify/functions/api`, router);
+
+// Export the app and the serverless function
+module.exports = app;
 module.exports.handler = serverless(app);

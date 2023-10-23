@@ -1,2 +1,5 @@
 [build]
-  functions = "lambda"
+  functions = "functions"
+
+[dev]
+  publish = "dist"
