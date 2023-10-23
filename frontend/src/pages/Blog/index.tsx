@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, IconButton, Alert } from "@mui/material";
+import { Close } from "@mui/icons-material";
 import { yellow } from "@mui/material/colors";
 
 // Types
@@ -15,21 +16,30 @@ import PostBody from "./PostBody";
 import { Page, MainHeading } from "../../components";
 
 // Styles
-import { PreviewsList } from "./index.styles";
+import { PreviewsList, ErrorWrapper } from "./index.styles";
 
 function Blog() {
+  // Hooks
   const mobile = useMediaQuery({ maxWidth: 768 });
 
+  // State
   const [blogPosts, setBlogPosts] = useState<WPPost[]>([]);
   const [fetchLoading, setFetchLoading] = useState<boolean>(false);
+  const [fetchError, setFetchError] = useState<string | null>(null);
   const [activePost, setActivePost] = useState<WPPost | null>(null);
 
   useEffect(() => {
     const fetchPosts = async () => {
-      setFetchLoading(true);
-      const response = await fetchBlogPosts();
-      setFetchLoading(false);
-      setBlogPosts(response || []);
+      try {
+        setFetchLoading(true);
+        const response = await fetchBlogPosts();
+        console.log("response", response);
+        setFetchLoading(false);
+        setBlogPosts(response || []);
+      } catch (error) {
+        setFetchLoading(false);
+        setFetchError("Could not fetch blog posts");
+      }
     };
 
     fetchPosts();
@@ -68,7 +78,27 @@ function Blog() {
       >
         Blog
       </MainHeading>
-      {fetchLoading ? (
+      {fetchError ? (
+        <ErrorWrapper mobile={mobile}>
+          <Alert
+            severity="error"
+            action={
+              <IconButton
+                aria-label="close"
+                color="inherit"
+                size="small"
+                onClick={() => {
+                  setFetchError(null);
+                }}
+              >
+                <Close fontSize="inherit" />
+              </IconButton>
+            }
+          >
+            {fetchError}
+          </Alert>
+        </ErrorWrapper>
+      ) : fetchLoading ? (
         <div style={{ width: "100%", textAlign: "center", marginTop: 50 }}>
           <CircularProgress size={mobile ? 80 : 120} />
         </div>

@@ -24,3 +24,13 @@ export const PreviewWrapper = styled.div`
   border-radius: 8px;
   box-shadow: rgba(255, 241, 118, 0.2) 0px 8px 24px;
 `;
+
+interface ErrorWrapperProps {
+  mobile: boolean;
+}
+
+export const ErrorWrapper = styled.div<ErrorWrapperProps>`
+  width: ${(props) => props.mobile ? "90%" : "300px"};
+  margin-left: ${(props) => props.mobile ? "5%" : "calc(50% - 150px)"};
+  margin-top: 30px;
+`;
