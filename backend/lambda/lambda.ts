@@ -1,4 +1,6 @@
+"use strict";
 import express, { Request, Response } from "express";
+import serverless from 'serverless-http';
 import bodyParser from 'body-parser';
 import sgMail from '@sendgrid/mail';
 import dotenv from 'dotenv';
@@ -8,7 +10,7 @@ dotenv.config();
 
 // Constants
 const app = express();
-const PORT = 8000;
+// const PORT = 8000;
 
 // Middleware
 app.use(bodyParser.json());
@@ -65,6 +67,4 @@ app.post('/send-email', async (req: Request, res: Response) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`App is listening on PORT ${PORT}`);
-});
+module.exports.handler = serverless(app);
