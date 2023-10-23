@@ -1,9 +1,9 @@
 "use strict";
 import express, { Request, Response } from "express";
-import serverless from 'serverless-http';
-import bodyParser from 'body-parser';
-import sgMail from '@sendgrid/mail';
-import dotenv from 'dotenv';
+import serverless from "serverless-http";
+import bodyParser from "body-parser";
+import sgMail from "@sendgrid/mail";
+import dotenv from "dotenv";
 
 // Initiate Environment Variables
 dotenv.config();
@@ -18,11 +18,11 @@ app.use(bodyParser.json());
 // Set SendGrid
 sgMail.setApiKey(process.env.SENDGRID_API_KEY || "");
 
-app.get("/", (req: Request, res: Response) => {
+app.get("/", (req, res) => {
   res.status(200).send("Sleek App API");
 });
 
-app.post('/send-email', async (req: Request, res: Response) => {
+app.post("/send-email", async (req, res) => {
   try {
     const body = `New ${req.body.service} Inquiry! Name: ${req.body.name}, Email: ${req.body.email}, Service: ${req.body.service}. Message: ${req.body.message}`;
 
@@ -44,25 +44,26 @@ app.post('/send-email', async (req: Request, res: Response) => {
           <p>${req.body.message}</p>
         </div>
       `,
-    };    
+    };
 
     // Send Email
-    sgMail
-      .send(msg)
-      .then(() => {
+    sgMail.send(msg).then(
+      () => {
         res.status(200).send("Email sent successfully");
-      }, error => {
+      },
+      (error) => {
         console.error(error);
 
         if (error.response) {
-          console.error(error.response.body)
+          console.error(error.response.body);
         }
 
         res.status(500).send(error);
-      });
+      }
+    );
   } catch (error) {
     // Print error and send
-    console.error('Error sending email:', error);
+    console.error("Error sending email:", error);
     res.status(500).send(error);
   }
 });
