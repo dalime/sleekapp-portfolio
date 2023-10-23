@@ -78,7 +78,7 @@ function Blog() {
         Blog
       </MainHeading>
       {fetchError ? (
-        <ErrorWrapper mobile={mobile}>
+        <ErrorWrapper mobile={mobile || false}>
           <Alert
             severity="error"
             action={

@@ -15,10 +15,8 @@ const wpPersonal = new WPAPI({ endpoint: `${process.env.REACT_APP_PERSONAL_WP_UR
 export const fetchBlogPosts = async (): Promise<WPPost[] | null> => {
   return new Promise(async (resolve, reject) => {
     try {
-      const [agencyPosts, personalPosts] = await Promise.all([
-        wpAgency.posts(),
-        wpPersonal.posts(),
-      ]);
+      const agencyPosts = await wpAgency.posts();
+      const personalPosts = await wpPersonal.posts();
       const blogPosts = [ ...agencyPosts, ...personalPosts ];
       resolve(blogPosts);
     } catch (err) {
