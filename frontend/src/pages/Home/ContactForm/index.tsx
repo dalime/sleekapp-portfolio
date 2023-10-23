@@ -195,8 +195,8 @@ function ContactForm() {
         <Button
           type="submit"
           color="primary"
-          variant="outlined"
-          sx={{ marginTop: 3, padding: 1.5 }}
+          variant="contained"
+          sx={{ marginTop: 3, padding: 2 }}
           disabled={emailLoading}
         >
           Submit

@@ -28,7 +28,7 @@ function CTASection() {
       }}
     >
       <Button
-        variant="outlined"
+        variant="contained"
         onClick={() =>
           process.env.REACT_APP_CALL_LINK
             ? navigateToUrl(process.env.REACT_APP_CALL_LINK)

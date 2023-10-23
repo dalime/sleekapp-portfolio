@@ -120,7 +120,11 @@ function Service({ title, animationName, description }: Props) {
       <Typography variant="body2" sx={{ marginTop: 2, marginBottom: 2 }}>
         {description}
       </Typography>
-      <Button variant="contained" onClick={() => navigate("portfolio")}>
+      <Button
+        variant="contained"
+        onClick={() => navigate("portfolio")}
+        sx={{ padding: 2, marginTop: 2 }}
+      >
         See More
       </Button>
     </Backdrop>

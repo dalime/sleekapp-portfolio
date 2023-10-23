@@ -52,7 +52,7 @@ function HeroText({ mobile }: Props) {
       </Typography>
       <Button
         variant="contained"
-        sx={{ marginTop: 4 }}
+        sx={{ marginTop: 4, padding: 2 }}
         onClick={() =>
           process.env.REACT_APP_CALL_LINK
             ? navigateToUrl(process.env.REACT_APP_CALL_LINK)
