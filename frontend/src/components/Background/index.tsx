@@ -50,7 +50,7 @@ function Background() {
           },
           modes: {
             push: {
-              quantity: 2,
+              quantity: 3,
             },
             repulse: {
               distance: 100,
@@ -64,7 +64,7 @@ function Background() {
           },
           links: {
             color: "#fff076",
-            distance: 200,
+            distance: 180,
             enable: true,
             opacity: 0.2,
             width: 1,
@@ -76,13 +76,13 @@ function Background() {
               default: "bounce",
             },
             random: false,
-            speed: 2,
+            speed: 3,
             straight: false,
           },
           number: {
             density: {
               enable: true,
-              area: 1200,
+              area: 800,
             },
             value: 20,
           },
@@ -93,7 +93,7 @@ function Background() {
             type: "triangle",
           },
           size: {
-            value: { min: 1, max: 4 },
+            value: { min: 2, max: 6 },
           },
         },
         detectRetina: true,
