@@ -172,7 +172,7 @@ function NextButton({
     setChecked(true);
     setTimeout(() => {
       toNextStep();
-    }, 750);
+    }, 350);
   };
 
   return (
@@ -234,6 +234,11 @@ function Process() {
     : isMobile
     ? Math.min(windowWidth * 0.6, 300)
     : 300;
+  const moneyWidth = isSmallMobile
+    ? windowWidth * 0.3
+    : isMobile
+    ? Math.min(windowWidth * 0.4, 200)
+    : 200;
 
   /**
    * Renders the necessary Lottie Animation
@@ -279,7 +284,7 @@ function Process() {
           <Animation
             key="step-9-animation-1"
             jsonPath={moneyBagsJson}
-            imageWidth={imageWidth}
+            imageWidth={moneyWidth}
           />
         </Column>
       );
@@ -412,27 +417,31 @@ function Process() {
         return (
           <>
             {renderFinishLottie()}
-            <Button
-              className="pulse"
-              onClick={() =>
-                process.env.REACT_APP_CALL_LINK
-                  ? navigateToUrl(process.env.REACT_APP_CALL_LINK)
-                  : {}
-              }
-              sx={{ padding: 2, marginBottom: 4 }}
-            >
-              Print Money
-            </Button>
-            <Button
-              color="secondary"
-              variant="outlined"
-              onClick={() => {
-                setJourneyStep(0);
-                setFinishRocket(false);
-              }}
-            >
-              View Again
-            </Button>
+            {finishRocket && (
+              <>
+                <Button
+                  className="pulse"
+                  onClick={() =>
+                    process.env.REACT_APP_CALL_LINK
+                      ? navigateToUrl(process.env.REACT_APP_CALL_LINK)
+                      : {}
+                  }
+                  sx={{ padding: 2, marginBottom: 4 }}
+                >
+                  Print Money
+                </Button>
+                <Button
+                  color="secondary"
+                  variant="outlined"
+                  onClick={() => {
+                    setJourneyStep(0);
+                    setFinishRocket(false);
+                  }}
+                >
+                  View Again
+                </Button>
+              </>
+            )}
           </>
         );
       default:
