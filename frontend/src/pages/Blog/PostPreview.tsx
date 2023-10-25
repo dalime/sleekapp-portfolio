@@ -20,7 +20,7 @@ function PostPreview({ postDetails, setActive, mobile }: Props) {
 
   return (
     <PreviewWrapper onClick={() => setActive()}>
-      <H3 style={mobile ? { fontSize: 30, textAlign: "center" } : {}}>
+      <H3 style={mobile ? { fontSize: 22, textAlign: "center" } : {}}>
         {title.rendered}
       </H3>
       {x_featured_media_medium && (

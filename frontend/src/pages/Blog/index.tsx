@@ -85,6 +85,8 @@ function Blog() {
 
   const headingColor = { color: yellow[300] };
 
+  const marginTopStyle = { marginTop: 3 };
+
   const renderBlogPosts = (agency: boolean): JSX.Element => {
     return fetchError ? (
       <ErrorWrapper mobile={mobile || false}>
@@ -108,7 +110,18 @@ function Blog() {
       </ErrorWrapper>
     ) : (agency ? agencyPosts.length : teamPosts.length) ? (
       <>
-        <Subheading sx={{ marginTop: 3 }}>
+        <Subheading
+          sx={
+            mobile
+              ? {
+                  ...marginTopStyle,
+                  fontSize: 26,
+                  marginLeft: 2,
+                  marginRight: 2,
+                }
+              : marginTopStyle
+          }
+        >
           {agency ? "By Sleek App" : "By Our Team Members"}
         </Subheading>
         <PreviewsList>
