@@ -56,6 +56,47 @@ function Home() {
           name="description"
           content="Turn your digital ideas into reality. An app development agency that offers app and website design, development, and copywriting services. Contact us today!"
         />
+        <meta name="robots" content="max-image-preview:large" />
+        <link rel="canonical" href="https://sleekapp.io/" />
+        <meta name="generator" content="All in One SEO (AIOSEO) 4.3.6.1 " />
+        <meta property="og:locale" content="en_US" />
+        <meta
+          property="og:site_name"
+          content="Sleek App - Turning visions into reality"
+        />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:title"
+          content="Sleek App - App Development Agency"
+        />
+        <meta
+          property="og:description"
+          content="Turn your digital ideas into reality. An app development agency that offers app and website design, development, and copywriting services. Contact us today!"
+        />
+        <meta property="og:url" content="https://sleekapp.io/" />
+        <meta
+          property="og:image"
+          content="https://sleekapp.io/wp-content/uploads/2023/06/cropped-Sleek-App-LLC_Icon-1.png"
+        />
+        <meta
+          property="og:image:secure_url"
+          content="https://sleekapp.io/wp-content/uploads/2023/06/cropped-Sleek-App-LLC_Icon-1.png"
+        />
+        <meta property="og:image:width" content="512" />
+        <meta property="og:image:height" content="512" />
+        <meta name="twitter:card" content="summary" />
+        <meta
+          name="twitter:title"
+          content="Sleek App - App Development Agency"
+        />
+        <meta
+          name="twitter:description"
+          content="Turn your digital ideas into reality. An app development agency that offers app and website design, development, and copywriting services. Contact us today!"
+        />
+        <meta
+          name="twitter:image"
+          content="https://sleekapp.io/wp-content/uploads/2023/06/cropped-Sleek-App-LLC_Icon-1.png"
+        />
       </Helmet>
 
       <Hero />

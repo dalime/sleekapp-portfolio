@@ -89,10 +89,51 @@ function Portfolio() {
     <Page>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Sleek App - Portfolio</title>
+        <title>Portfolio - Sleek App</title>
         <meta
           name="description"
-          content="Sleek App Develompent Agency's Portfolio, showcasing some recent projects the team worked on for clients. Detailed case studies and approaches to solving problems."
+          content="Sleek App's web development portfolio of applicable work. You can find recent case studies of how we handled problems and approached solutions for clients."
+        />
+        <meta name="robots" content="max-image-preview:large" />
+        <link rel="canonical" href="https://sleekapp.io/portfolio/" />
+        <meta name="generator" content="All in One SEO (AIOSEO) 4.3.6.1 " />
+        <meta property="og:locale" content="en_US" />
+        <meta
+          property="og:site_name"
+          content="Sleek App - Turning visions into reality"
+        />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="Portfolio - Sleek App" />
+        <meta
+          property="og:description"
+          content="Sleek App's web development portfolio of applicable work. You can find recent case studies of how we handled problems and approached solutions for clients."
+        />
+        <meta property="og:url" content="https://sleekapp.io/portfolio/" />
+        <meta
+          property="og:image"
+          content="https://sleekapp.io/wp-content/uploads/2023/06/cropped-Sleek-App-LLC.png"
+        />
+        <meta
+          property="og:image:secure_url"
+          content="https://sleekapp.io/wp-content/uploads/2023/06/cropped-Sleek-App-LLC.png"
+        />
+        <meta
+          property="article:published_time"
+          content="2023-10-11T08:52:12+00:00"
+        />
+        <meta
+          property="article:modified_time"
+          content="2023-10-11T10:15:57+00:00"
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Portfolio - Sleek App" />
+        <meta
+          name="twitter:description"
+          content="Sleek App's web development portfolio of applicable work. You can find recent case studies of how we handled problems and approached solutions for clients."
+        />
+        <meta
+          name="twitter:image"
+          content="https://sleekapp.io/wp-content/uploads/2023/06/cropped-Sleek-App-LLC.png"
         />
       </Helmet>
 
