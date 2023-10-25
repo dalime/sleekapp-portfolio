@@ -4,7 +4,7 @@ import React from "react";
 import { WPPost } from "../../types";
 
 // Components
-import { Subheading } from "../../components";
+import { H3 } from "../../components";
 
 // Styles
 import { PreviewWrapper } from "./index.styles";
@@ -20,9 +20,9 @@ function PostPreview({ postDetails, setActive, mobile }: Props) {
 
   return (
     <PreviewWrapper onClick={() => setActive()}>
-      <Subheading sx={mobile ? { fontSize: 30 } : {}}>
+      <H3 style={mobile ? { fontSize: 30, textAlign: "center" } : {}}>
         {title.rendered}
-      </Subheading>
+      </H3>
       {x_featured_media_medium && (
         <img
           src={x_featured_media_medium}
