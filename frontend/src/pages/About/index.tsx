@@ -96,9 +96,54 @@ function About() {
         <title>About Sleek App - App Development Agency</title>
         <meta
           name="description"
-          content="Sleek App Development Agency was born out of a desire to deliver high quality web and
-        mobile apps for clients who want to create real value-providing products
-        for customers."
+          content="Sleek App Development Agency was born out of a desire to deliver high quality web and mobile apps for clients who want to provide real value to customers."
+        />
+        <meta name="robots" content="max-image-preview:large" />
+        <link rel="canonical" href="https://sleekapp.io/about/" />
+        <meta name="generator" content="All in One SEO (AIOSEO) 4.3.6.1 " />
+        <meta property="og:locale" content="en_US" />
+        <meta
+          property="og:site_name"
+          content="Sleek App - Turning visions into reality"
+        />
+        <meta property="og:type" content="article" />
+        <meta
+          property="og:title"
+          content="About Sleek App – App Development Agency"
+        />
+        <meta
+          property="og:description"
+          content="Sleek App Development Agency was born out of a desire to deliver high quality web and mobile apps for clients who want to provide real value to customers."
+        />
+        <meta property="og:url" content="https://sleekapp.io/about/" />
+        <meta
+          property="og:image"
+          content="https://sleekapp.io/wp-content/uploads/2023/06/cropped-Sleek-App-LLC.png"
+        />
+        <meta
+          property="og:image:secure_url"
+          content="https://sleekapp.io/wp-content/uploads/2023/06/cropped-Sleek-App-LLC.png"
+        />
+        <meta
+          property="article:published_time"
+          content="2023-09-09T10:12:21+00:00"
+        />
+        <meta
+          property="article:modified_time"
+          content="2023-09-09T10:26:59+00:00"
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="About Sleek App – App Development Agency"
+        />
+        <meta
+          name="twitter:description"
+          content="Sleek App Development Agency was born out of a desire to deliver high quality web and mobile apps for clients who want to provide real value to customers."
+        />
+        <meta
+          name="twitter:image"
+          content="https://sleekapp.io/wp-content/uploads/2023/06/cropped-Sleek-App-LLC.png"
         />
       </Helmet>
 
