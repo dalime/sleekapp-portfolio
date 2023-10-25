@@ -13,6 +13,10 @@ export const Wrapper = styled.div`
   min-height: 500px;
   margin-left: 25%;
   padding: 20px;
+  background: rgba(125, 125, 125, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(90px);
+  box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
 
   @media (max-width: 768px) {
     width: 80%;
