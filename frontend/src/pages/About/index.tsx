@@ -22,6 +22,10 @@ import {
 // Styles
 import { TeamMemberImg } from "./index.styles";
 
+// Assets
+import dannyAvatarImg from "../../assets/images/team/danny-avatar.png";
+import dannyAvatarBwImg from "../../assets/images/team/danny-avatar-bw.png";
+
 interface SubHeadProps {
   isMobile: boolean;
   children?: ReactNode | ReactNode[];
@@ -192,11 +196,7 @@ function About() {
           }
         >
           <TeamMemberImg
-            src={
-              imgHovering
-                ? "http://sleekapp.io/wp-content/uploads/2023/10/danny-avatar.png"
-                : "https://sleekapp.io/wp-content/uploads/2023/07/danny-avatar-bw-150x150.png"
-            }
+            src={imgHovering ? dannyAvatarImg : dannyAvatarBwImg}
             alt="Sleek App President"
             onMouseEnter={() => setImgHovering(true)}
             onMouseLeave={() => setImgHovering(false)}
