@@ -109,7 +109,7 @@ function About() {
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
-          content="About Sleek App – App Development Agency"
+          content="About Sleek App - App Development Agency"
         />
         <meta
           property="og:description"

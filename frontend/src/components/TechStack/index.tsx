@@ -13,6 +13,17 @@ import { Paragraph, Subheading } from "../fonts";
 // Styles
 import { Rows, Column, TechWrapper, TechText, TechImg } from "./index.styles";
 
+// Assets
+import reactIcon from "../../assets/images/techstack/react-icon.png";
+import nodeIcon from "../../assets/images/techstack/nodejs-icon.png";
+import awsS3Icon from "../../assets/images/techstack/aws-s3-icon.png";
+import graphQlIcon from "../../assets/images/techstack/graphql-icon.png";
+import mongoDbIcon from "../../assets/images/techstack/mongodb-icon.png";
+import awsEc2Icon from "../../assets/images/techstack/aws-ec2-icon.png";
+import typescriptIcon from "../../assets/images/techstack/typescript-logo.png";
+import postgresQlIcon from "../../assets/images/techstack/postgresql-icon.png";
+import awsEcsIcon from "../../assets/images/techstack/aws-ecs-icon.png";
+
 interface SubHeadProps {
   isMobile: boolean;
   children?: ReactNode | ReactNode[];
@@ -114,46 +125,19 @@ function TechStack({ noAction }: Props) {
       </Paragraph>
       <Rows>
         <Column>
-          {renderTech(
-            "https://sleekapp.io/wp-content/uploads/2023/09/react-icon.png",
-            "React"
-          )}
-          {renderTech(
-            "https://sleekapp.io/wp-content/uploads/2023/09/nodejs-icon.png",
-            "Node.js"
-          )}
-          {renderTech(
-            "https://sleekapp.io/wp-content/uploads/2023/09/aws-s3-icon-846x1024.png",
-            "AWS S3"
-          )}
+          {renderTech(reactIcon, "React")}
+          {renderTech(nodeIcon, "Node.js")}
+          {renderTech(awsS3Icon, "AWS S3")}
         </Column>
         <Column>
-          {renderTech(
-            "https://sleekapp.io/wp-content/uploads/2023/09/graphql-icon-1024x1024.png",
-            "GraphQL"
-          )}
-          {renderTech(
-            "http://sleekapp.io/wp-content/uploads/2023/10/mongodb.png",
-            "Mongo DB"
-          )}
-          {renderTech(
-            "https://sleekapp.io/wp-content/uploads/2023/09/aws-ec2-icon.png",
-            "AWS EC2"
-          )}
+          {renderTech(graphQlIcon, "GraphQL")}
+          {renderTech(mongoDbIcon, "Mongo DB")}
+          {renderTech(awsEc2Icon, "AWS EC2")}
         </Column>
         <Column>
-          {renderTech(
-            "https://sleekapp.io/wp-content/uploads/2023/09/typescript-logo-1024x1024.png",
-            "Typescript"
-          )}
-          {renderTech(
-            "https://sleekapp.io/wp-content/uploads/2023/09/postgresql-icon.png",
-            "PostgreSQL"
-          )}
-          {renderTech(
-            "https://sleekapp.io/wp-content/uploads/2023/09/aws-ecs-icon.png",
-            "AWS ECS"
-          )}
+          {renderTech(typescriptIcon, "Typescript")}
+          {renderTech(postgresQlIcon, "PostgreSQL")}
+          {renderTech(awsEcsIcon, "AWS ECS")}
         </Column>
       </Rows>
       <Paragraph sx={paragraphSx}>
