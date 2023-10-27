@@ -93,6 +93,46 @@ function TechStack({ noAction }: Props) {
   };
 
   /**
+   * Navigates user to a link based on what technology is provided
+   * @param name string
+   */
+  const navigateToTech = (name: string): void => {
+    let url = "";
+    switch (name) {
+      case "React":
+        url = "https://react.dev/";
+        break;
+      case "GraphQL":
+        url = "https://graphql.org/";
+        break;
+      case "Typescript":
+        url = "https://www.typescriptlang.org/";
+        break;
+      case "Node.js":
+        url = "https://nodejs.org/en";
+        break;
+      case "MongoDB":
+        url = "https://www.mongodb.com/";
+        break;
+      case "PostgreSQL":
+        url = "https://www.postgresql.org/";
+        break;
+      case "AWS S3":
+        url = "https://aws.amazon.com/s3/";
+        break;
+      case "AWS EC2":
+        url = "https://aws.amazon.com/ec2";
+        break;
+      case "AWS ECS":
+        url = "https://aws.amazon.com/ecs";
+        break;
+      default:
+        break;
+    }
+    navigateToUrl(url);
+  };
+
+  /**
    * Renders a technology logo and name for the Tech Stack
    * @param imgSrc string
    * @param name strig
@@ -102,6 +142,7 @@ function TechStack({ noAction }: Props) {
     <TechWrapper
       onMouseEnter={() => setTechHovering(name)}
       onMouseLeave={() => setTechHovering(null)}
+      onClick={() => navigateToTech(name)}
     >
       <TechImg src={imgSrc} alt={name} />
       <TechText style={techHovering === name ? { color: yellow[500] } : {}}>
