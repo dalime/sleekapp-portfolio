@@ -34,3 +34,21 @@ export const ErrorWrapper = styled.div<ErrorWrapperProps>`
   margin-left: ${(props) => props.mobile ? "5%" : "calc(50% - 150px)"};
   margin-top: 30px;
 `;
+
+export const AuthorImg = styled.img`
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+
+  @media (max-width: 768px) {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+  }
+
+  @media (max-width: 400px) {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+  }
+`;

@@ -4,7 +4,7 @@ import React from "react";
 import { WPPost } from "../../types";
 
 // Components
-import { H3 } from "../../components";
+import { H3, H4 } from "../../components";
 
 // Styles
 import { PreviewWrapper } from "./index.styles";
@@ -13,9 +13,10 @@ interface Props {
   postDetails: WPPost;
   setActive(): void;
   mobile: boolean;
+  teamMember?: string;
 }
 
-function PostPreview({ postDetails, setActive, mobile }: Props) {
+function PostPreview({ postDetails, setActive, mobile, teamMember }: Props) {
   const { title, excerpt, x_featured_media_medium } = postDetails;
 
   return (
@@ -23,6 +24,13 @@ function PostPreview({ postDetails, setActive, mobile }: Props) {
       <H3 style={mobile ? { fontSize: 22, textAlign: "center" } : {}}>
         {title.rendered}
       </H3>
+      <H4
+        style={
+          mobile ? { fontSize: 16, textAlign: "center" } : { fontSize: 18 }
+        }
+      >
+        By {teamMember}
+      </H4>
       {x_featured_media_medium && (
         <img
           src={x_featured_media_medium}

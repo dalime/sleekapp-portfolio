@@ -1,10 +1,15 @@
 import React from "react";
 import { useMediaQuery } from "react-responsive";
+import { Button } from "@mui/material";
 import { ArrowBack } from "@mui/icons-material";
+import { yellow } from "@mui/material/colors";
+
+// Types
+import { AuthorInformation } from "./types";
 
 // Components
-import { Page } from "../../components";
-import { Button } from "@mui/material";
+import AuthorInfo from "./AuthorInfo";
+import { Page, MainHeading } from "../../components";
 
 // Styles
 import "./index.css";
@@ -13,9 +18,10 @@ interface Props {
   title: string;
   body: string;
   closePost(): void;
+  authorInfo?: AuthorInformation;
 }
 
-function PostBody({ title, body, closePost }: Props) {
+function PostBody({ title, body, closePost, authorInfo }: Props) {
   const isTablet = useMediaQuery({ maxWidth: 1000 });
   const isMobile = useMediaQuery({ maxWidth: 768 });
   const isSmallMobile = useMediaQuery({ maxWidth: 380 });
@@ -44,8 +50,22 @@ function PostBody({ title, body, closePost }: Props) {
           <ArrowBack style={{ marginRight: 10 }} />
           Back to Blog Posts
         </Button>
-        <h1>{title}</h1>
+        <MainHeading style={isMobile ? { fontSize: 30 } : { fontSize: 40 }}>
+          {title}
+        </MainHeading>
+        {authorInfo && (
+          <p style={{ fontSize: isMobile ? 14 : 18 }}>
+            By <span style={{ color: yellow[500] }}>{authorInfo.name}</span>
+          </p>
+        )}
         <div dangerouslySetInnerHTML={{ __html: body }} />
+        {authorInfo && (
+          <AuthorInfo
+            isMobile={isMobile}
+            isTablet={isTablet}
+            info={authorInfo}
+          />
+        )}
       </div>
     </Page>
   );

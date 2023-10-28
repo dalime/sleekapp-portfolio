@@ -7,6 +7,7 @@ import { yellow } from "@mui/material/colors";
 
 // Types
 import { WPPost } from "../../types";
+import { AuthorInformation } from "./types";
 
 // Actions
 import { fetchAgencyPosts, fetchTeamPosts } from "../../actions";
@@ -19,6 +20,13 @@ import { Page, MainHeading, Subheading } from "../../components";
 // Styles
 import { PreviewsList, ErrorWrapper } from "./index.styles";
 
+// Assets
+import DannyAvatarImg from "../../assets/images/team/danny-avatar.png";
+
+interface WPPostWithAuthor extends WPPost {
+  authorInfo: AuthorInformation | null;
+}
+
 function Blog() {
   // Hooks
   const mobile = useMediaQuery({ maxWidth: 768 });
@@ -28,7 +36,7 @@ function Blog() {
   const [teamPosts, setTeamPosts] = useState<WPPost[]>([]);
   const [fetchLoading, setFetchLoading] = useState<boolean>(false);
   const [fetchError, setFetchError] = useState<string | null>(null);
-  const [activePost, setActivePost] = useState<WPPost | null>(null);
+  const [activePost, setActivePost] = useState<WPPostWithAuthor | null>(null);
 
   useEffect(() => {
     const fetchBlogPosts = async () => {
@@ -51,27 +59,42 @@ function Blog() {
   const renderAgencyBlogPosts = (): JSX.Element[] => {
     if (!agencyPosts) return [];
 
-    return agencyPosts.map((blogPost: WPPost) => (
-      <PostPreview
-        key={`agency-blog-post-preview-${blogPost.id}`}
-        postDetails={blogPost}
-        setActive={() => setActivePost(blogPost)}
-        mobile={mobile}
-      />
-    ));
+    return agencyPosts.map((blogPost: WPPost) => {
+      const blogPostWithAuthor: WPPostWithAuthor = {
+        ...blogPost,
+        authorInfo: null,
+      };
+      return (
+        <PostPreview
+          key={`agency-blog-post-preview-${blogPost.id}`}
+          postDetails={blogPost}
+          setActive={() => setActivePost(blogPostWithAuthor)}
+          mobile={mobile}
+        />
+      );
+    });
   };
 
   const renderTeamBlogPosts = (): JSX.Element[] => {
     if (!teamPosts) return [];
 
-    return teamPosts.map((blogPost: WPPost) => (
-      <PostPreview
-        key={`team-blog-post-preview-${blogPost.id}`}
-        postDetails={blogPost}
-        setActive={() => setActivePost(blogPost)}
-        mobile={mobile}
-      />
-    ));
+    return teamPosts.map((blogPost: WPPost) => {
+      const authorInfo: AuthorInformation = {
+        name: "Danny Lim",
+        profileImg: DannyAvatarImg,
+        linkedIn: "https://www.linkedin.com/in/dalime",
+      };
+      const blogPostWithAuthor: WPPostWithAuthor = { ...blogPost, authorInfo };
+      return (
+        <PostPreview
+          key={`team-blog-post-preview-${blogPost.id}`}
+          postDetails={blogPost}
+          setActive={() => setActivePost(blogPostWithAuthor)}
+          mobile={mobile}
+          teamMember="Danny Lim"
+        />
+      );
+    });
   };
 
   if (activePost)
@@ -80,6 +103,7 @@ function Blog() {
         title={activePost.title.rendered}
         body={activePost.content.rendered}
         closePost={() => setActivePost(null)}
+        authorInfo={activePost.authorInfo || undefined}
       />
     );
 
