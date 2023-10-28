@@ -14,7 +14,7 @@ function MusicPlayer() {
   const [playMusic, setPlayMusic] = useState<boolean>(false);
   const [visible, setVisible] = useState<boolean>(true);
 
-  if (!process.env.REACT_APP_MUSIC_URL) return <></>;
+  if (!process.env.REACT_APP_MUSIC_NAME) return <></>;
 
   return (
     <Wrapper>
@@ -38,7 +38,10 @@ function MusicPlayer() {
                 : { marginLeft: 10 }
             }
           >
-            <source src={process.env.REACT_APP_MUSIC_URL} type="audio/mpeg" />
+            <source
+              src={require(`../../assets/music/${process.env.REACT_APP_MUSIC_NAME}`)}
+              type="audio/mpeg"
+            />
             Your browser does not support the audio element.
           </audio>
           <Button
