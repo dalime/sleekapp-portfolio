@@ -73,6 +73,20 @@ export const PreviewImg = styled.img`
   overflow: hidden;
 `;
 
+interface MobilePreviewImgProps {
+  heightLessThanWidth: boolean;
+}
+
+export const MobilePreviewImg = styled.img<MobilePreviewImgProps>`
+  width: ${(props) => props.heightLessThanWidth ? "100%" : "auto"};
+  height: ${(props) => props.heightLessThanWidth ? "auto" : "calc(100vh - 76px - 65px - 46.5px) !important"};
+  object-fit: ${(props) => props.heightLessThanWidth ? "cover" : "contain"};
+  max-width: "none";
+  display: "block";
+  margin-left: "auto";
+  margin-right: "auto";
+`;
+
 export const ProjectsList = styled.div`
   height: calc(100vh - 95px - 40px - 90.02px);
   width: 50%;

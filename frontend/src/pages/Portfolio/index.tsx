@@ -156,7 +156,7 @@ function Portfolio() {
               <PreviewWrapper>
                 {activeItem && <PreviewOverlay project={activeItem} />}
                 <PreviewImg
-                  src={activeItem.imgSrc}
+                  src={require(`../../assets/images/portfolio/${activeItem.imgSrc}`)}
                   alt="Preview of the project being hovered"
                   loading="lazy"
                 />

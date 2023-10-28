@@ -20,17 +20,21 @@ import {
   PreviewWrapper,
   MobileProjectsList,
   MatrixBackdrop,
+  MobilePreviewImg,
 } from "./index.styles";
 import "./index.css";
 
 // Assets
 import MatrixBackground from "../../assets/images/matrix-background.gif";
 
+interface MobilePortfolioItemInterface extends PortfolioItemInterface {
+  mobileImgSrc: string;
+}
+
 function MobilePortfolio() {
   const [hoveringItem, setHoveringItem] = useState<number | null>(null);
-  const [activeItem, setActiveItem] = useState<PortfolioItemInterface | null>(
-    null
-  );
+  const [activeItem, setActiveItem] =
+    useState<MobilePortfolioItemInterface | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [showPreview, setShowPreview] = useState<boolean>(false);
   const [windowDimensions, setWindowDimensions] = useState<{
@@ -59,7 +63,17 @@ function MobilePortfolio() {
    */
   const changeProject = (newItem: PortfolioItemInterface | null): void => {
     if (newItem) setLoading(true);
-    setActiveItem(newItem);
+    const newItemMobile: MobilePortfolioItemInterface | null = newItem
+      ? {
+          ...newItem,
+          mobileImgSrc:
+            newItem.mobileImg && height > width
+              ? newItem.mobileImg
+              : newItem.imgSrc,
+        }
+      : null;
+    setActiveItem(newItemMobile);
+
     setTimeout(() => {
       setLoading(false);
     }, 2000);
@@ -137,7 +151,7 @@ function MobilePortfolio() {
                       maxWidth: "none",
                     }}
                   />
-                ) : activeItem && activeItem.imgSrc ? (
+                ) : activeItem && activeItem.mobileImgSrc ? (
                   <PreviewWrapper
                     style={{
                       display: "flex",
@@ -147,32 +161,11 @@ function MobilePortfolio() {
                     }}
                   >
                     {activeItem && <PreviewOverlay project={activeItem} />}
-                    <img
-                      src={
-                        activeItem.mobileImg && height > width
-                          ? activeItem.mobileImg
-                          : activeItem.imgSrc
-                      }
+                    <MobilePreviewImg
+                      src={require(`../../assets/images/portfolio/${activeItem.mobileImgSrc}`)}
                       alt="Preview of the project being hovered"
                       loading="lazy"
-                      style={
-                        height > width
-                          ? {
-                              width: "auto",
-                              height:
-                                "calc(100vh - 76px - 65px - 46.5px) !important",
-                              objectFit: "contain",
-                              maxWidth: "none",
-                              display: "block",
-                              marginLeft: "auto",
-                              marginRight: "auto",
-                            }
-                          : {
-                              width: "100%",
-                              height: "auto",
-                              objectFit: "cover",
-                            }
-                      }
+                      heightLessThanWidth={height < width}
                     />
                   </PreviewWrapper>
                 ) : (
