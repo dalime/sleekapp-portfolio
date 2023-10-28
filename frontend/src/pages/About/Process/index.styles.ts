@@ -19,8 +19,8 @@ export const Wrapper = styled.div`
   box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
 
   @media (max-width: 768px) {
-    width: 80%;
-    margin-left: 10%;
+    width: 90%;
+    margin-left: 5%;
   }
 `;
 
