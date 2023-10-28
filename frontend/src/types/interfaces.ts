@@ -128,5 +128,5 @@ export interface ClientReview {
   company: string;
   rating: number;
   feedback: string;
-  clientImg: string;
+  clientImgName: string;
 }

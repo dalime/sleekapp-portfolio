@@ -44,20 +44,42 @@ function Reviews() {
   const isMobile = useMediaQuery({ maxWidth: 768 });
 
   // Get Reviews from Environment Variables
-  const clientReview1 = process.env.REACT_APP_REVIEW_1
+  const clientReview1: ClientReview | null = process.env.REACT_APP_REVIEW_1
     ? JSON.parse(process.env.REACT_APP_REVIEW_1)
     : null;
-  const clientReview2 = process.env.REACT_APP_REVIEW_2
+  const clientReview2: ClientReview | null = process.env.REACT_APP_REVIEW_2
     ? JSON.parse(process.env.REACT_APP_REVIEW_2)
     : null;
-  const clientReview3 = process.env.REACT_APP_REVIEW_3
+  const clientReview3: ClientReview | null = process.env.REACT_APP_REVIEW_3
     ? JSON.parse(process.env.REACT_APP_REVIEW_3)
     : null;
-  const portfolioItems: (ClientReview | null)[] = [
-    clientReview1,
-    clientReview2,
-    clientReview3,
-  ];
+  const portfolioItems = [clientReview1, clientReview2, clientReview3];
+  // const [portfolioItems, setPortfolioItems] = useState<(ClientReview | null)[]>(
+  //   [clientReview1, clientReview2, clientReview3]
+  // );
+
+  // useEffect(() => {
+  //   const fetchImages = async () => {
+  //     for (let i = 0; i < 3; i++) {
+  //       const image = await loadImage(process.env.REACT_APP_IMAGE_PATH || "");
+  //       const portfolioItemsCopy = [...portfolioItems];
+  //       const portfolioItemByIndex = portfolioItemsCopy[i];
+  //       const portfolioItem: ClientReview = {
+  //         clientImg: portfolioItemByIndex?.clientImg || "",
+  //         company: portfolioItemByIndex?.company || "",
+  //         feedback: portfolioItemByIndex?.feedback || "",
+  //         name: portfolioItemByIndex?.name || "",
+  //         rating: portfolioItemByIndex?.rating || 0,
+  //         clientImgLoaded: image,
+  //       };
+  //       portfolioItemsCopy[i] = portfolioItemByIndex ? portfolioItem : null;
+  //       console.log("portfolioItemsCopy", portfolioItemsCopy);
+  //       setPortfolioItems(portfolioItemsCopy);
+  //     }
+  //   };
+
+  //   fetchImages();
+  // }, []);
 
   return (
     <Section
@@ -78,14 +100,14 @@ function Reviews() {
       >
         {portfolioItems.map((item, index) => {
           if (!item) return <></>;
-          const { name, feedback, clientImg, rating } = item;
+          const { name, feedback, clientImgName, rating } = item;
           return (
             <div key={`client-review-${index}`}>
               <Backdrop className="center">
                 <H3>{name}</H3>
-                {clientImg && (
+                {clientImgName && (
                   <img
-                    src={clientImg}
+                    src={require(`../../../assets/images/testimonials/${clientImgName}`)}
                     alt={`Review from ${name}`}
                     style={{
                       width: 150,
