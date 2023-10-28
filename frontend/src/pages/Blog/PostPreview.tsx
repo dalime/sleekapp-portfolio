@@ -4,10 +4,7 @@ import React from "react";
 import { WPPost } from "../../types";
 
 // Components
-import { H3, H4 } from "../../components";
-
-// Styles
-import { PreviewWrapper } from "./index.styles";
+import { H3, H4, Backdrop } from "../../components";
 
 interface Props {
   postDetails: WPPost;
@@ -20,7 +17,7 @@ function PostPreview({ postDetails, setActive, mobile, teamMember }: Props) {
   const { title, excerpt, x_featured_media_medium } = postDetails;
 
   return (
-    <PreviewWrapper onClick={() => setActive()}>
+    <Backdrop onClick={() => setActive()} style={{ cursor: "pointer" }}>
       <H3 style={mobile ? { fontSize: 22, textAlign: "center" } : {}}>
         {title.rendered}
       </H3>
@@ -37,8 +34,14 @@ function PostPreview({ postDetails, setActive, mobile, teamMember }: Props) {
           alt={`Featured media for post ${title}`}
         />
       )}
-      <div dangerouslySetInnerHTML={{ __html: excerpt.rendered }} />
-    </PreviewWrapper>
+      <div
+        dangerouslySetInnerHTML={{
+          __html: mobile
+            ? `${excerpt.rendered.substring(0, 200)}...`
+            : excerpt.rendered,
+        }}
+      />
+    </Backdrop>
   );
 }
 

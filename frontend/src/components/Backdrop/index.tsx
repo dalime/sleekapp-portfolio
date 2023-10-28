@@ -8,9 +8,18 @@ interface Props {
   style?: CSSProperties;
   sx?: SxProps;
   className?: string;
+  onClick?(): void;
 }
 
-function Backdrop({ width, height, children, style, sx, className }: Props) {
+function Backdrop({
+  width,
+  height,
+  children,
+  style,
+  sx,
+  className,
+  onClick,
+}: Props) {
   const baseSx: SxProps = {
     padding: 4,
     borderRadius: 3,
@@ -24,6 +33,7 @@ function Backdrop({ width, height, children, style, sx, className }: Props) {
       sx={sx ? { ...baseSx, ...sx } : baseSx}
       style={style || {}}
       className={className || ""}
+      onClick={() => (onClick ? onClick() : {})}
     >
       {children}
     </Paper>
