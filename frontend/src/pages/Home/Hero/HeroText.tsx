@@ -47,8 +47,9 @@ function HeroText({ mobile }: Props) {
           textAlign: mobile ? "center" : "left",
         }}
       >
-        A One-Stop-Shop App Development Agency.{mobile ? <br /> : " "}We turn
-        visions into reality.
+        {mobile
+          ? "We turn visions into reality."
+          : "A One-Stop-Shop App Development Agency. We turn visions into reality."}
       </Typography>
       <Button
         variant="contained"
