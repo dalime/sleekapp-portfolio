@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { Button } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import { useRecoilState } from "recoil";
+import { Button, Snackbar, Alert } from "@mui/material";
 import {
   VolumeUp,
   VolumeOff,
@@ -7,17 +8,67 @@ import {
   VisibilityOff,
 } from "@mui/icons-material";
 
+// Recoil
+import { musicPlayerState, snackBarState } from "../../recoil/atoms";
+
 // Styles
 import { Wrapper } from "./index.styles";
 
 function MusicPlayer() {
-  const [playMusic, setPlayMusic] = useState<boolean>(false);
+  // Recoil State
+  const [recoilMusicPlayer, setRecoilMusicPlayer] =
+    useRecoilState(musicPlayerState);
+  const [recoilSnackBar, setRecoilSnackBar] = useRecoilState(snackBarState);
+
+  // Component State
+  const [playMusic, setPlayMusic] = useState<boolean>(true);
   const [visible, setVisible] = useState<boolean>(true);
 
-  if (!process.env.REACT_APP_MUSIC_NAME) return <></>;
+  useEffect(() => {
+    // Set a timeout to display the alert after 1 minute (60,000 milliseconds)
+    const alertTimeout = setTimeout(() => {
+      setRecoilSnackBar({
+        color: "info",
+        message: "You've been on for quite some time. Want to play some music?",
+        action: () => setRecoilMusicPlayer(true),
+      });
+    }, 60000);
+
+    // Clean up the timeout when the component unmounts
+    return () => {
+      clearTimeout(alertTimeout);
+    };
+  }, [setRecoilMusicPlayer, setRecoilSnackBar]);
+
+  if (recoilSnackBar && recoilSnackBar.color && recoilSnackBar.message)
+    return (
+      <Snackbar open={!!recoilSnackBar} onClose={() => setRecoilSnackBar(null)}>
+        <Alert
+          severity={recoilSnackBar.color}
+          style={{ padding: 20 }}
+          action={
+            <Button
+              color="inherit"
+              size="small"
+              onClick={() => {
+                setRecoilSnackBar(null);
+                setRecoilMusicPlayer(true);
+              }}
+            >
+              YES
+            </Button>
+          }
+          onClose={() => setRecoilSnackBar(null)}
+        >
+          {recoilSnackBar.message}
+        </Alert>
+      </Snackbar>
+    );
+
+  if (!process.env.REACT_APP_MUSIC_NAME || !recoilMusicPlayer) return <></>;
 
   return (
-    <Wrapper>
+    <Wrapper style={visible ? {} : { paddingBottom: 8.5 }}>
       <Button
         variant="text"
         sx={{ marginLeft: 2 }}
@@ -27,6 +78,13 @@ function MusicPlayer() {
       </Button>
       {playMusic && (
         <>
+          <Button
+            variant="text"
+            sx={{ marginLeft: 1 }}
+            onClick={() => setVisible(!visible)}
+          >
+            {visible ? <VisibilityOff /> : <Visibility />}
+          </Button>
           <audio
             className="custom-audio"
             controls
@@ -44,13 +102,6 @@ function MusicPlayer() {
             />
             Your browser does not support the audio element.
           </audio>
-          <Button
-            variant="text"
-            sx={{ marginLeft: 1 }}
-            onClick={() => setVisible(!visible)}
-          >
-            {visible ? <VisibilityOff /> : <Visibility />}
-          </Button>
         </>
       )}
     </Wrapper>

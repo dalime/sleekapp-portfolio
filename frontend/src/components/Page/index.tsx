@@ -9,7 +9,6 @@ import React, {
 // Components
 import HeaderMenu from "../HeaderMenu";
 import Footer from "../Footer";
-// import MusicPlayer from "../MusicPlayer";
 import Background from "../Background";
 
 // Styles
@@ -23,9 +22,13 @@ interface Props {
 }
 
 function Page({ testId, children, style }: Props) {
+  // Refs
   const triggerRef = useRef<HTMLDivElement | null>(null);
+
+  // Component State
   const [opacity, setOpacity] = useState<number>(0);
 
+  // Effects
   useEffect(() => {
     const handleScroll = () => {
       if (!triggerRef.current) return;
@@ -51,7 +54,6 @@ function Page({ testId, children, style }: Props) {
       <HeaderMenu opacity={opacity} />
       <Body>{children}</Body>
       <Footer />
-      {/* <MusicPlayer /> */}
       <Background />
     </Div>
   );

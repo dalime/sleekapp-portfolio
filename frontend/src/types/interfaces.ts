@@ -130,3 +130,9 @@ export interface ClientReview {
   feedback: string;
   clientImgName: string;
 }
+
+export interface SnackBarState {
+  message: string;
+  color: "success" | "error" | "info" | "warning";
+  action?(): void;
+}

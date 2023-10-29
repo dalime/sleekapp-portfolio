@@ -1,4 +1,5 @@
 import React, { CSSProperties, useState } from "react";
+import { useRecoilValue } from "recoil";
 import { useMediaQuery } from "react-responsive";
 import {
   FormControl,
@@ -15,6 +16,9 @@ import {
   Alert,
   CircularProgress,
 } from "@mui/material";
+
+// Recoil
+import { snackBarState } from "../../recoil/atoms";
 
 // Actions
 import { sendEmail } from "../../actions";
@@ -33,7 +37,10 @@ function ContactForm() {
   // Hooks
   const isMobile = useMediaQuery({ maxWidth: 768 });
 
-  // State
+  // Recoil State
+  const recoilSnackBar = useRecoilValue(snackBarState);
+
+  // Component State
   const [firstName, setFirstName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [service, setService] = useState<
@@ -206,7 +213,7 @@ function ContactForm() {
       <Paragraph sx={{ textAlign: "center", marginTop: 3 }}>
         We'll get back to you shortly.
       </Paragraph>
-      {emailSuccess && !errorAlert && (
+      {!recoilSnackBar && emailSuccess && !errorAlert && (
         <Snackbar
           open={emailSuccess}
           autoHideDuration={5000}
@@ -215,7 +222,7 @@ function ContactForm() {
           <Alert severity="success">Message was sent</Alert>
         </Snackbar>
       )}
-      {errorAlert && !emailSuccess && (
+      {!recoilSnackBar && errorAlert && !emailSuccess && (
         <Snackbar
           open={!!errorAlert}
           autoHideDuration={5000}
