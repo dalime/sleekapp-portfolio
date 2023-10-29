@@ -29,7 +29,8 @@ function MusicPlayer() {
     const alertTimeout = setTimeout(() => {
       setRecoilSnackBar({
         color: "info",
-        message: "You've been on for quite some time. Want to play some music?",
+        message:
+          "You've been here for a hot minute. Want some background music?",
         action: () => setRecoilMusicPlayer(true),
       });
     }, 60000);
