@@ -147,7 +147,7 @@ function ContactForm() {
             disabled={emailLoading}
           />
           <FormHelperText id="email-helper-text">
-            We'll send you a confirmation email.
+            Your email will never be shared with third-parties.
           </FormHelperText>
         </FormControl>
         <FormControl style={formControlStyle} required>
