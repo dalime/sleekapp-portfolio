@@ -92,7 +92,7 @@ function MusicPlayer() {
         sx={{ marginLeft: isMobile ? 0 : isSmallScreen ? 1 : 2 }}
         onClick={() => setPlayMusic(!playMusic)}
       >
-        {playMusic ? <VolumeOff /> : <VolumeUp />}
+        {playMusic ? <VolumeUp /> : <VolumeOff />}
       </Button>
       {playMusic && (
         <>
