@@ -23,7 +23,7 @@ import {
 import { TeamMemberImg } from "./index.styles";
 
 // Assets
-import sleekAppLogo from "../../assets/images/sleekapp-logo.png";
+import aboutPageImg from "../../assets/images/pages/sleekapp-about-page.png";
 import dannyAvatarImg from "../../assets/images/team/danny-avatar.png";
 import dannyAvatarBwImg from "../../assets/images/team/danny-avatar-bw.png";
 
@@ -121,8 +121,8 @@ function About() {
           content="Sleek App Development Agency was born out of a desire to deliver high quality web and mobile apps for clients who want to provide real value to customers."
         />
         <meta property="og:url" content="https://sleekapp.io/about/" />
-        <meta property="og:image" content={sleekAppLogo} />
-        <meta property="og:image:secure_url" content={sleekAppLogo} />
+        <meta property="og:image" content={aboutPageImg} />
+        <meta property="og:image:secure_url" content={aboutPageImg} />
         <meta
           property="article:published_time"
           content="2023-09-09T10:12:21+00:00"
@@ -140,7 +140,7 @@ function About() {
           name="twitter:description"
           content="Sleek App Development Agency was born out of a desire to deliver high quality web and mobile apps for clients who want to provide real value to customers."
         />
-        <meta name="twitter:image" content={sleekAppLogo} />
+        <meta name="twitter:image" content={aboutPageImg} />
       </Helmet>
 
       <MainHeading sx={isMobile ? { ...mainStyle, fontSize: 30 } : mainStyle}>

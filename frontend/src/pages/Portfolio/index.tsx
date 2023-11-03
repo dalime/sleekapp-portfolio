@@ -31,7 +31,7 @@ import MobilePortfolio from "./MobilePortfolio";
 import "./index.css";
 
 // Assets
-import sleekAppLogo from "../../assets/images/sleekapp-logo.png";
+import portfolioPageImg from "../../assets/images/pages/sleekapp-portfolio-page.png";
 import MatrixBackground from "../../assets/images/matrix-background.gif";
 
 function Portfolio() {
@@ -110,8 +110,8 @@ function Portfolio() {
           content="Sleek App's web development portfolio of applicable work. You can find recent case studies of how we handled problems and approached solutions for clients."
         />
         <meta property="og:url" content="https://sleekapp.io/portfolio/" />
-        <meta property="og:image" content={sleekAppLogo} />
-        <meta property="og:image:secure_url" content={sleekAppLogo} />
+        <meta property="og:image" content={portfolioPageImg} />
+        <meta property="og:image:secure_url" content={portfolioPageImg} />
         <meta
           property="article:published_time"
           content="2023-10-11T08:52:12+00:00"
@@ -126,7 +126,7 @@ function Portfolio() {
           name="twitter:description"
           content="Sleek App's web development portfolio of applicable work. You can find recent case studies of how we handled problems and approached solutions for clients."
         />
-        <meta name="twitter:image" content={sleekAppLogo} />
+        <meta name="twitter:image" content={portfolioPageImg} />
       </Helmet>
 
       <Section padding={20}>
