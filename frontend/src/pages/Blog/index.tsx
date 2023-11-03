@@ -21,6 +21,7 @@ import { Page, MainHeading, Subheading } from "../../components";
 import { PreviewsList, ErrorWrapper } from "./index.styles";
 
 // Assets
+import sleekAppLogo from "../../assets/images/sleekapp-logo.png";
 import DannyAvatarImg from "../../assets/images/team/danny-avatar.png";
 
 interface WPPostWithAuthor extends WPPost {
@@ -181,14 +182,8 @@ function Blog() {
           content="Sleek App's agency blog that talks about trends in multiple industries, best practices, and new solutions to emerging problems."
         />
         <meta property="og:url" content="https://sleekapp.io/blog/" />
-        <meta
-          property="og:image"
-          content="https://sleekapp.io/wp-content/uploads/2023/06/cropped-Sleek-App-LLC-01.jpg"
-        />
-        <meta
-          property="og:image:secure_url"
-          content="https://sleekapp.io/wp-content/uploads/2023/06/cropped-Sleek-App-LLC-01.jpg"
-        />
+        <meta property="og:image" content={sleekAppLogo} />
+        <meta property="og:image:secure_url" content={sleekAppLogo} />
         <meta property="og:image:width" content="512" />
         <meta property="og:image:height" content="512" />
         <meta property="article:tag" content="agency blog" />
@@ -208,10 +203,7 @@ function Blog() {
           name="twitter:description"
           content="Sleek App's agency blog that talks about trends in multiple industries, best practices, and new solutions to emerging problems."
         />
-        <meta
-          name="twitter:image"
-          content="https://sleekapp.io/wp-content/uploads/2023/06/cropped-Sleek-App-LLC-01.jpg"
-        />
+        <meta name="twitter:image" content={sleekAppLogo} />
       </Helmet>
 
       <MainHeading

@@ -17,6 +17,9 @@ import {
   ContactForm,
 } from "../../components";
 
+// Assets
+import sleekAppLogo from "../../assets/images/sleekapp-logo.png";
+
 interface GoldHighlightProps {
   children?: ReactNode | ReactNode[];
 }
@@ -74,14 +77,8 @@ function Home() {
           content="Turn your digital ideas into reality. An app development agency that offers app and website design, development, and copywriting services. Contact us today!"
         />
         <meta property="og:url" content="https://sleekapp.io/" />
-        <meta
-          property="og:image"
-          content="https://sleekapp.io/wp-content/uploads/2023/06/cropped-Sleek-App-LLC_Icon-1.png"
-        />
-        <meta
-          property="og:image:secure_url"
-          content="https://sleekapp.io/wp-content/uploads/2023/06/cropped-Sleek-App-LLC_Icon-1.png"
-        />
+        <meta property="og:image" content={sleekAppLogo} />
+        <meta property="og:image:secure_url" content={sleekAppLogo} />
         <meta property="og:image:width" content="512" />
         <meta property="og:image:height" content="512" />
         <meta name="twitter:card" content="summary" />
@@ -93,10 +90,7 @@ function Home() {
           name="twitter:description"
           content="Turn your digital ideas into reality. An app development agency that offers app and website design, development, and copywriting services. Contact us today!"
         />
-        <meta
-          name="twitter:image"
-          content="https://sleekapp.io/wp-content/uploads/2023/06/cropped-Sleek-App-LLC_Icon-1.png"
-        />
+        <meta name="twitter:image" content={sleekAppLogo} />
       </Helmet>
 
       <Hero />
