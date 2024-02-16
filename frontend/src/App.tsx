@@ -10,7 +10,7 @@ import NotFoundPage from "./routes/NotFoundPage";
 import Home from "./pages/Home";
 import Portfolio from "./pages/Portfolio";
 import About from "./pages/About";
-import Blog from "./pages/Blog";
+// import Blog from "./pages/Blog";
 
 // Components
 import { MusicPlayer } from "./components";
@@ -35,11 +35,11 @@ const router = createBrowserRouter([
     errorElement: <NotFoundPage />,
   },
   // Blog
-  {
-    path: "/blog",
-    element: <Blog />,
-    errorElement: <NotFoundPage />,
-  },
+  // {
+  //   path: "/blog",
+  //   element: <Blog />,
+  //   errorElement: <NotFoundPage />,
+  // },
   // Portfolio
   {
     path: "/portfolio",

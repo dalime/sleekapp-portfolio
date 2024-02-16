@@ -28,7 +28,7 @@ function HeaderMenu({ opacity }: Props) {
         <CustomMenuItem text="Home" route="/" />
         <CustomMenuItem text="About" route="/about" />
         <CustomMenuItem text="Portfolio" route="/portfolio" />
-        <CustomMenuItem text="Blog" route="/blog" />
+        {/* <CustomMenuItem text="Blog" route="/blog" /> */}
       </RightSide>
     </>
   );
