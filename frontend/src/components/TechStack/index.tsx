@@ -44,6 +44,10 @@ import wordpressIcon from "../../assets/images/techstack/wordpress-icon.png";
 import appleAppStoreIcon from "../../assets/images/techstack/apple-app-store-icon.png";
 import androidIcon from "../../assets/images/techstack/android-icon.png";
 
+// Design
+import figmaIcon from "../../assets/images/techstack/figma-icon.png";
+import invisionIcon from "../../assets/images/techstack/invision-icon.png";
+
 // Copywriting
 import pdfIcon from "../../assets/images/techstack/pdf-icon.png";
 import docsIcon from "../../assets/images/techstack/docs-icon.png";
@@ -99,6 +103,18 @@ enum DevServiceOption {
   mobileAppDevelopment = "mobile app development",
 }
 
+enum DesignServiceOption {
+  webOrAppDesign = "webOrAppDesign",
+  appDesign = "appDesign",
+  fullPrototype = "fullPrototype",
+}
+
+enum CopywritingServiceOption {
+  websiteAppCopy = "websiteAppCopy",
+  landingPageCopy = "landingPageCopy",
+  adsCopy = "adsCopy",
+}
+
 interface Props {
   noAction?: boolean;
 }
@@ -109,8 +125,9 @@ function TechStack({ noAction }: Props) {
 
   // State
   const [mainService, setMainService] = useState<MainService | null>(null);
-  const [devServiceOption, setDevServiceOption] =
-    useState<DevServiceOption | null>(null);
+  const [subService, setSubService] = useState<
+    DevServiceOption | CopywritingServiceOption | DesignServiceOption | null
+  >(null);
   const [techHovering, setTechHovering] = useState<string | null>(null);
 
   // Style
@@ -175,10 +192,16 @@ function TechStack({ noAction }: Props) {
       case "WordPress":
         url = "https://wordpress.com";
         break;
+      case "Raw Figma Files":
+        url = "https://www.figma.com/";
+        break;
+      case "Invision Prototype":
+        url = "https://www.invisionapp.com/product/prototype";
+        break;
       default:
         break;
     }
-    navigateToUrl(url);
+    if (url) navigateToUrl(url);
   };
 
   /**
@@ -222,16 +245,16 @@ function TechStack({ noAction }: Props) {
    * @param option ServiceOption
    * @returns JSX.Element
    */
-  const renderDevServiceOption = (
+  const renderSubService = (
     text: string,
-    option: DevServiceOption
+    option: DevServiceOption | CopywritingServiceOption | DesignServiceOption
   ): JSX.Element => {
     return (
       <Button
         variant="contained"
         color="primary"
         sx={{ marginLeft: 2, marginRight: 2 }}
-        onClick={() => setDevServiceOption(option)}
+        onClick={() => setSubService(option)}
       >
         {text}
       </Button>
@@ -239,7 +262,7 @@ function TechStack({ noAction }: Props) {
   };
 
   const renderTechStack = (): JSX.Element => {
-    switch (devServiceOption) {
+    switch (subService) {
       case DevServiceOption.contentWebsite:
         return (
           <Rows>
@@ -289,6 +312,35 @@ function TechStack({ noAction }: Props) {
               {renderTech(reactIcon, "React Native", false, true)}
               {renderTech(appleAppStoreIcon, "iOS", false, true)}
               {renderTech(androidIcon, "Android", false, true)}
+            </Column>
+          </Rows>
+        );
+      case CopywritingServiceOption.websiteAppCopy:
+      case CopywritingServiceOption.adsCopy:
+      case CopywritingServiceOption.landingPageCopy:
+        return (
+          <Rows>
+            <Column>
+              {renderTech(docsIcon, "Raw .doc or .docx file", false, true)}
+              {renderTech(pdfIcon, "Finalized PDF copy", false, true)}
+            </Column>
+          </Rows>
+        );
+      case DesignServiceOption.appDesign:
+      case DesignServiceOption.webOrAppDesign:
+        return (
+          <Rows>
+            <Column>
+              {renderTech(figmaIcon, "Raw Figma Files", false, true)}
+            </Column>
+          </Rows>
+        );
+      case DesignServiceOption.fullPrototype:
+        return (
+          <Rows>
+            <Column>
+              {renderTech(figmaIcon, "Raw Figma Files", false, true)}
+              {renderTech(invisionIcon, "Invision Prototype", false, true)}
             </Column>
           </Rows>
         );
@@ -343,27 +395,50 @@ function TechStack({ noAction }: Props) {
   const renderServiceButtons = (): JSX.Element => {
     switch (mainService) {
       case MainService.design:
-        return <></>;
+        return (
+          <>
+            {renderSubService(
+              "Website / App Design",
+              DesignServiceOption.webOrAppDesign
+            )}
+            {renderSubService(
+              "Full Prototype",
+              DesignServiceOption.fullPrototype
+            )}
+          </>
+        );
       case MainService.development:
         return (
           <>
-            {renderDevServiceOption(
+            {renderSubService(
               "Content Website",
               DevServiceOption.contentWebsite
             )}
-            {renderDevServiceOption("E-Commerce", DevServiceOption.eCommerce)}
-            {renderDevServiceOption(
+            {renderSubService("E-Commerce", DevServiceOption.eCommerce)}
+            {renderSubService(
               "Fullstack Web Development",
               DevServiceOption.fullstackWebDevelopment
             )}
-            {renderDevServiceOption(
+            {renderSubService(
               "Mobile App Development",
               DevServiceOption.mobileAppDevelopment
             )}
           </>
         );
       case MainService.copywriting:
-        return <></>;
+        return (
+          <>
+            {renderSubService(
+              "Website / App Copy",
+              CopywritingServiceOption.websiteAppCopy
+            )}
+            {renderSubService(
+              "Landing Page Copy",
+              CopywritingServiceOption.landingPageCopy
+            )}
+            {renderSubService("Ads Copy", CopywritingServiceOption.adsCopy)}
+          </>
+        );
       default:
         return (
           <>
@@ -386,15 +461,34 @@ function TechStack({ noAction }: Props) {
       <SubHead isMobile={isMobile}>Our Specialized Tools</SubHead>
       <Paragraph sx={paragraphSx}>{renderMainServiceText()}</Paragraph>
       <Buttons>{renderServiceButtons()}</Buttons>
-      <Paragraph sx={paragraphSx}>
-        We specialize in different tech stacks, depending on your project's
-        needs.
-      </Paragraph>
-      {renderTechStack()}
-      <Paragraph sx={paragraphSx}>
-        Depending on your project needs, we can adjust the technology stack
-        accordingly.
-      </Paragraph>
+      {mainService === MainService.development ? (
+        <>
+          <Paragraph sx={paragraphSx}>
+            We specialize in different tech stacks, depending on your project's
+            needs.
+          </Paragraph>
+          {renderTechStack()}
+          <Paragraph sx={paragraphSx}>
+            Depending on your project needs, we can adjust the technology stack
+            accordingly.
+          </Paragraph>
+        </>
+      ) : mainService === MainService.copywriting ? (
+        <>
+          {renderTechStack()}
+          <Paragraph sx={paragraphSx}>
+            Receive deliverables straight to your inbox.
+          </Paragraph>
+        </>
+      ) : (
+        <>
+          {renderTechStack()}
+          <Paragraph sx={paragraphSx}>
+            Iterate designs with us until you are fully satisfied.
+          </Paragraph>
+        </>
+      )}
+
       {!noAction && (
         <Button
           className="pulse"
