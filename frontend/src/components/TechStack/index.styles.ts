@@ -51,3 +51,12 @@ export const TechText = styled.p`
   color: ${grey[300]};
   font-size: 14px;
 `;
+
+export const Buttons = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+`;
