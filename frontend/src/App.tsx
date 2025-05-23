@@ -10,6 +10,7 @@ import NotFoundPage from "./routes/NotFoundPage";
 import Home from "./pages/Home";
 import Portfolio from "./pages/Portfolio";
 import About from "./pages/About";
+import MessagingConsent from "./pages/MessagingConsent";
 // import Blog from "./pages/Blog";
 
 // Components
@@ -44,6 +45,12 @@ const router = createBrowserRouter([
   {
     path: "/portfolio",
     element: <Portfolio />,
+    errorElement: <NotFoundPage />,
+  },
+  // Messaging Consent
+  {
+    path: "/messaging-consent",
+    element: <MessagingConsent />,
     errorElement: <NotFoundPage />,
   },
   // Home

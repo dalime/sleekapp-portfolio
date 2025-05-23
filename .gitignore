@@ -38,3 +38,7 @@ yarn-error.log*
 frontend/npm-debug.log*
 frontend/yarn-debug.log*
 frontend/yarn-error.log*
+
+# Local errors
+nohup.out
+**/nohup.out
