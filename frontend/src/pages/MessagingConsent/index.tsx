@@ -22,6 +22,9 @@ import {
   Paragraph,
 } from "../../components";
 
+// Supabase
+import { supabase } from "../../lib/supabase";
+
 function MessagingConsent() {
   const theme = useTheme();
   const isMobile = useMediaQuery({ maxWidth: 768 });
@@ -47,26 +50,27 @@ function MessagingConsent() {
     setShowSuccess(false);
 
     try {
-      const response = await fetch("/.netlify/functions/api/store-consent", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          phoneNumber,
-          consent: true,
-          timestamp: new Date().toISOString(),
-        }),
-      });
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { data, error } = await supabase
+        .from('messaging_consents')
+        .insert([
+          {
+            phone_number: phoneNumber,
+            consent: true,
+            timestamp: new Date().toISOString(),
+            source: 'web_form',
+            status: 'active'
+          }
+        ])
+        .select();
 
-      if (!response.ok) {
-        throw new Error("Failed to store consent");
-      }
+      if (error) throw error;
 
       setShowSuccess(true);
       setConsentChecked(false);
       setPhoneNumber("");
     } catch (error) {
+      console.error('Error storing consent:', error);
       setErrorMessage("Failed to submit consent. Please try again.");
       setShowError(true);
     } finally {
