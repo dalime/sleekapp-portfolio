@@ -11,6 +11,7 @@ import Home from "./pages/Home";
 import Portfolio from "./pages/Portfolio";
 import About from "./pages/About";
 import MessagingConsent from "./pages/MessagingConsent";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 // import Blog from "./pages/Blog";
 
 // Components
@@ -51,6 +52,12 @@ const router = createBrowserRouter([
   {
     path: "/messaging-consent",
     element: <MessagingConsent />,
+    errorElement: <NotFoundPage />,
+  },
+  // Privacy Policy
+  {
+    path: "/privacy-policy",
+    element: <PrivacyPolicy />,
     errorElement: <NotFoundPage />,
   },
   // Home

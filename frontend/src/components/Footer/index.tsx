@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import { Button } from "@mui/material";
 import { Email, LinkedIn, YouTube } from "@mui/icons-material";
@@ -25,6 +26,7 @@ interface SocialMediaLink {
 function Footer() {
   // Hooks
   const isMobile = useMediaQuery({ maxWidth: 768 });
+  const navigate = useNavigate();
 
   // State
   const [hoveringItem, setHoveringItem] = useState<number | null>(null);
@@ -65,6 +67,14 @@ function Footer() {
             {link.icon}
           </Button>
         ))}
+      </SocialMediaIcons>
+      <SocialMediaIcons>
+        <Button variant="text" color="secondary" onClick={() => navigate("/privacy-policy")}>
+          Privacy Policy
+        </Button>
+        <Button variant="text" color="secondary" onClick={() => navigate("/messaging-consent")}>
+          Messaging Consent
+        </Button>
       </SocialMediaIcons>
       <SocialMediaIcons
         style={{
