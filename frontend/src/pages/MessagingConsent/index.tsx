@@ -112,7 +112,7 @@ function MessagingConsent() {
           </Typography>
           
           <Paragraph sx={{ mb: 3 }}>
-            By providing your consent, you agree to receive messages from Sleek App. 
+            By providing your consent, you agree to receive messages from Sleek App LLC. 
             These messages may include:
           </Paragraph>
 
